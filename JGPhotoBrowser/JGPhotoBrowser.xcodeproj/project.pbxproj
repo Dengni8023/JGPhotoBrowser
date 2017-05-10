@@ -15,13 +15,13 @@
 		D4568B721EC2AE1D00C77BA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4568B701EC2AE1D00C77BA5 /* LaunchScreen.storyboard */; };
 		D4568B921EC2AF4100C77BA5 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568B811EC2AF4100C77BA5 /* CollectionViewCell.m */; };
 		D4568B931EC2AF4100C77BA5 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568B831EC2AF4100C77BA5 /* CollectionViewController.m */; };
-		D4568BA91EC2AFDD00C77BA5 /* JGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568B9D1EC2AFDD00C77BA5 /* JGPhoto.m */; };
-		D4568BAA1EC2AFDD00C77BA5 /* JGPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4568B9E1EC2AFDD00C77BA5 /* JGPhotoBrowser.bundle */; };
-		D4568BAB1EC2AFDD00C77BA5 /* JGPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568BA01EC2AFDD00C77BA5 /* JGPhotoBrowser.m */; };
-		D4568BAC1EC2AFDD00C77BA5 /* JGPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568BA21EC2AFDD00C77BA5 /* JGPhotoLoadingView.m */; };
-		D4568BAD1EC2AFDD00C77BA5 /* JGPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568BA41EC2AFDD00C77BA5 /* JGPhotoProgressView.m */; };
-		D4568BAE1EC2AFDD00C77BA5 /* JGPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568BA61EC2AFDD00C77BA5 /* JGPhotoToolbar.m */; };
-		D4568BAF1EC2AFDD00C77BA5 /* JGPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568BA81EC2AFDD00C77BA5 /* JGPhotoView.m */; };
+		D4BBAA811EC4416300699D9C /* JGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBAA751EC4416300699D9C /* JGPhoto.m */; };
+		D4BBAA821EC4416300699D9C /* JGPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4BBAA761EC4416300699D9C /* JGPhotoBrowser.bundle */; };
+		D4BBAA831EC4416300699D9C /* JGPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBAA781EC4416300699D9C /* JGPhotoBrowser.m */; };
+		D4BBAA841EC4416300699D9C /* JGPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBAA7A1EC4416300699D9C /* JGPhotoLoadingView.m */; };
+		D4BBAA851EC4416300699D9C /* JGPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBAA7C1EC4416300699D9C /* JGPhotoProgressView.m */; };
+		D4BBAA861EC4416300699D9C /* JGPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBAA7E1EC4416300699D9C /* JGPhotoToolbar.m */; };
+		D4BBAA871EC4416300699D9C /* JGPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBAA801EC4416300699D9C /* JGPhotoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,19 +39,19 @@
 		D4568B811EC2AF4100C77BA5 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		D4568B821EC2AF4100C77BA5 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		D4568B831EC2AF4100C77BA5 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		D4568B9C1EC2AFDD00C77BA5 /* JGPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhoto.h; sourceTree = "<group>"; };
-		D4568B9D1EC2AFDD00C77BA5 /* JGPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhoto.m; sourceTree = "<group>"; };
-		D4568B9E1EC2AFDD00C77BA5 /* JGPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JGPhotoBrowser.bundle; sourceTree = "<group>"; };
-		D4568B9F1EC2AFDD00C77BA5 /* JGPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowser.h; sourceTree = "<group>"; };
-		D4568BA01EC2AFDD00C77BA5 /* JGPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoBrowser.m; sourceTree = "<group>"; };
-		D4568BA11EC2AFDD00C77BA5 /* JGPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoLoadingView.h; sourceTree = "<group>"; };
-		D4568BA21EC2AFDD00C77BA5 /* JGPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoLoadingView.m; sourceTree = "<group>"; };
-		D4568BA31EC2AFDD00C77BA5 /* JGPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoProgressView.h; sourceTree = "<group>"; };
-		D4568BA41EC2AFDD00C77BA5 /* JGPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoProgressView.m; sourceTree = "<group>"; };
-		D4568BA51EC2AFDD00C77BA5 /* JGPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoToolbar.h; sourceTree = "<group>"; };
-		D4568BA61EC2AFDD00C77BA5 /* JGPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoToolbar.m; sourceTree = "<group>"; };
-		D4568BA71EC2AFDD00C77BA5 /* JGPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoView.h; sourceTree = "<group>"; };
-		D4568BA81EC2AFDD00C77BA5 /* JGPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoView.m; sourceTree = "<group>"; };
+		D4BBAA741EC4416300699D9C /* JGPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhoto.h; sourceTree = "<group>"; };
+		D4BBAA751EC4416300699D9C /* JGPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhoto.m; sourceTree = "<group>"; };
+		D4BBAA761EC4416300699D9C /* JGPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JGPhotoBrowser.bundle; sourceTree = "<group>"; };
+		D4BBAA771EC4416300699D9C /* JGPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowser.h; sourceTree = "<group>"; };
+		D4BBAA781EC4416300699D9C /* JGPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoBrowser.m; sourceTree = "<group>"; };
+		D4BBAA791EC4416300699D9C /* JGPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoLoadingView.h; sourceTree = "<group>"; };
+		D4BBAA7A1EC4416300699D9C /* JGPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoLoadingView.m; sourceTree = "<group>"; };
+		D4BBAA7B1EC4416300699D9C /* JGPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoProgressView.h; sourceTree = "<group>"; };
+		D4BBAA7C1EC4416300699D9C /* JGPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoProgressView.m; sourceTree = "<group>"; };
+		D4BBAA7D1EC4416300699D9C /* JGPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoToolbar.h; sourceTree = "<group>"; };
+		D4BBAA7E1EC4416300699D9C /* JGPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoToolbar.m; sourceTree = "<group>"; };
+		D4BBAA7F1EC4416300699D9C /* JGPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoView.h; sourceTree = "<group>"; };
+		D4BBAA801EC4416300699D9C /* JGPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGPhotoView.m; sourceTree = "<group>"; };
 		F4C7105F282569E11B9C4F7D /* libPods-JGPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JGPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,7 +96,7 @@
 		D4568B611EC2AE1D00C77BA5 /* JGPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				D4568B9B1EC2AFDD00C77BA5 /* JGPhotoBrowser */,
+				D4BBAA731EC4416300699D9C /* SourceFiles */,
 				D4568B7F1EC2AF4100C77BA5 /* Classes */,
 				D4568B651EC2AE1D00C77BA5 /* AppDelegate.h */,
 				D4568B661EC2AE1D00C77BA5 /* AppDelegate.m */,
@@ -128,24 +128,25 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		D4568B9B1EC2AFDD00C77BA5 /* JGPhotoBrowser */ = {
+		D4BBAA731EC4416300699D9C /* SourceFiles */ = {
 			isa = PBXGroup;
 			children = (
-				D4568B9C1EC2AFDD00C77BA5 /* JGPhoto.h */,
-				D4568B9D1EC2AFDD00C77BA5 /* JGPhoto.m */,
-				D4568B9E1EC2AFDD00C77BA5 /* JGPhotoBrowser.bundle */,
-				D4568B9F1EC2AFDD00C77BA5 /* JGPhotoBrowser.h */,
-				D4568BA01EC2AFDD00C77BA5 /* JGPhotoBrowser.m */,
-				D4568BA11EC2AFDD00C77BA5 /* JGPhotoLoadingView.h */,
-				D4568BA21EC2AFDD00C77BA5 /* JGPhotoLoadingView.m */,
-				D4568BA31EC2AFDD00C77BA5 /* JGPhotoProgressView.h */,
-				D4568BA41EC2AFDD00C77BA5 /* JGPhotoProgressView.m */,
-				D4568BA51EC2AFDD00C77BA5 /* JGPhotoToolbar.h */,
-				D4568BA61EC2AFDD00C77BA5 /* JGPhotoToolbar.m */,
-				D4568BA71EC2AFDD00C77BA5 /* JGPhotoView.h */,
-				D4568BA81EC2AFDD00C77BA5 /* JGPhotoView.m */,
+				D4BBAA741EC4416300699D9C /* JGPhoto.h */,
+				D4BBAA751EC4416300699D9C /* JGPhoto.m */,
+				D4BBAA761EC4416300699D9C /* JGPhotoBrowser.bundle */,
+				D4BBAA771EC4416300699D9C /* JGPhotoBrowser.h */,
+				D4BBAA781EC4416300699D9C /* JGPhotoBrowser.m */,
+				D4BBAA791EC4416300699D9C /* JGPhotoLoadingView.h */,
+				D4BBAA7A1EC4416300699D9C /* JGPhotoLoadingView.m */,
+				D4BBAA7B1EC4416300699D9C /* JGPhotoProgressView.h */,
+				D4BBAA7C1EC4416300699D9C /* JGPhotoProgressView.m */,
+				D4BBAA7D1EC4416300699D9C /* JGPhotoToolbar.h */,
+				D4BBAA7E1EC4416300699D9C /* JGPhotoToolbar.m */,
+				D4BBAA7F1EC4416300699D9C /* JGPhotoView.h */,
+				D4BBAA801EC4416300699D9C /* JGPhotoView.m */,
 			);
-			path = JGPhotoBrowser;
+			name = SourceFiles;
+			path = ../../SourceFiles;
 			sourceTree = "<group>";
 		};
 		F5DD8A895CBB42350980A714 /* Pods */ = {
@@ -218,9 +219,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BBAA821EC4416300699D9C /* JGPhotoBrowser.bundle in Resources */,
 				D4568B721EC2AE1D00C77BA5 /* LaunchScreen.storyboard in Resources */,
 				D4568B6F1EC2AE1D00C77BA5 /* Assets.xcassets in Resources */,
-				D4568BAA1EC2AFDD00C77BA5 /* JGPhotoBrowser.bundle in Resources */,
 				D4568B6D1EC2AE1D00C77BA5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,16 +281,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4568BAF1EC2AFDD00C77BA5 /* JGPhotoView.m in Sources */,
-				D4568BAE1EC2AFDD00C77BA5 /* JGPhotoToolbar.m in Sources */,
+				D4BBAA871EC4416300699D9C /* JGPhotoView.m in Sources */,
+				D4BBAA841EC4416300699D9C /* JGPhotoLoadingView.m in Sources */,
+				D4BBAA831EC4416300699D9C /* JGPhotoBrowser.m in Sources */,
 				D4568B931EC2AF4100C77BA5 /* CollectionViewController.m in Sources */,
-				D4568BAD1EC2AFDD00C77BA5 /* JGPhotoProgressView.m in Sources */,
-				D4568BA91EC2AFDD00C77BA5 /* JGPhoto.m in Sources */,
+				D4BBAA851EC4416300699D9C /* JGPhotoProgressView.m in Sources */,
+				D4BBAA811EC4416300699D9C /* JGPhoto.m in Sources */,
 				D4568B921EC2AF4100C77BA5 /* CollectionViewCell.m in Sources */,
 				D4568B671EC2AE1D00C77BA5 /* AppDelegate.m in Sources */,
-				D4568BAC1EC2AFDD00C77BA5 /* JGPhotoLoadingView.m in Sources */,
-				D4568BAB1EC2AFDD00C77BA5 /* JGPhotoBrowser.m in Sources */,
 				D4568B641EC2AE1D00C77BA5 /* main.m in Sources */,
+				D4BBAA861EC4416300699D9C /* JGPhotoToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
