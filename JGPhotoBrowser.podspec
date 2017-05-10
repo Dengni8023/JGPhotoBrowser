@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "JGPhotoBrowser/JGPhotoBrowser/JGPhotoBrowser/*.{h,m}"
-  s.exclude_files = "JGPhotoBrowser/JGPhotoBrowser/JGPhotoBrowser/JGPhotoBrowser.bundle"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -104,7 +104,7 @@ Pod::Spec.new do |s|
   #  non-essential files like tests, examples and documentation.
   #
 
-  # s.resource  = "icon.png"
+  s.resource  = "JGPhotoBrowser/JGPhotoBrowser/JGPhotoBrowser/*.bundle"
   # s.resources = "Resources/*.png"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
