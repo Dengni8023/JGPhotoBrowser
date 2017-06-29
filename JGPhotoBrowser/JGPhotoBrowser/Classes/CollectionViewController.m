@@ -2,8 +2,8 @@
 //  CollectionViewController.m
 //  JGPhotoBrowser
 //
-//  Created by Sunnyyoung on 15/5/22.
-//  Copyright (c) 2015年 Sunnyyoung. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import "CollectionViewController.h"
@@ -23,15 +23,30 @@ static NSString * const reuseIdentifier = @"Cell";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _imageURLArray = @[@"http://h.hiphotos.baidu.com/image/pic/item/b8389b504fc2d5628a2690ece51190ef76c66c80.jpg",
-                           @"http://g.hiphotos.baidu.com/image/pic/item/1ad5ad6eddc451da6709d67ab5fd5266d11632a0.jpg",
-                           @"http://b.hiphotos.baidu.com/image/pic/item/908fa0ec08fa513def983c7f3e6d55fbb2fbd965.jpg",
-                           @"http://f.hiphotos.baidu.com/image/pic/item/32fa828ba61ea8d398b30a7d950a304e251f5831.jpg",
-                           @"http://a.hiphotos.baidu.com/image/w%3D230/sign=525711e6a60f4bfb8cd09957334e788f/1e30e924b899a9019c5d254f1f950a7b0208f55b.jpg",
-                           @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d8c709a49b8a1cd11728b2931.jpg",
-                           @"http://b.hiphotos.baidu.com/image/w%3D230/sign=87da5b715143fbf2c52ca120807fca1e/77c6a7efce1b9d16bc7ce418f1deb48f8c54640b.jpg",
-                           @"http://h.hiphotos.baidu.com/image/pic/item/a71ea8d3fd1f4134f08c7b07271f95cad1c85e0b.jpg",
-                           @"http://g.hiphotos.baidu.com/image/pic/item/adaf2edda3cc7cd9c3b328cd3b01213fb80e9103.jpg"];
+        _imageURLArray = @[@"http://test.api.yypapa.com/img?id=17923&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17921&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17920&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17919&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17915&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17913&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17914&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17912&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17911&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17910&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17909&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17908&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17907&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17906&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17905&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17904&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17902&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17901&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17898&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17897&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17896&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17895&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17894&size=100x100",
+                           @"http://test.api.yypapa.com/img?id=17892&size=100x100"];
     }
     return self;
 }
@@ -63,7 +78,7 @@ static NSString * const reuseIdentifier = @"Cell";
     for (NSString *imageURL in _imageURLArray) {
         JGPhoto *photo = ({
             JGPhoto *photo = [[JGPhoto alloc] init];
-            photo.url = [NSURL URLWithString:imageURL];
+            photo.url = [NSURL URLWithString:[imageURL substringToIndex:[imageURL rangeOfString:@"&"].location]];
             photo.srcImageView = ((CollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]).imageView;
             photo;
         });

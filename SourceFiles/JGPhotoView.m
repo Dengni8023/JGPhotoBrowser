@@ -1,14 +1,16 @@
 //
 //  MJZoomingScrollView.m
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-3-4.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import "JGPhotoView.h"
-#import "JGPhoto.h"
 #import "JGPhotoLoadingView.h"
-#import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <YLGIFImage/YLImageView.h>
+#import <YLGIFImage/YLGIFImage.h>
 
 #define ESWeak(var, weakVar) __weak __typeof(&*var) weakVar = var
 #define ESStrong_DoNotCheckNil(weakVar, _var) __typeof(&*weakVar) _var = weakVar
@@ -22,35 +24,38 @@
 /** defines a strong `self` named `_self` from `__weakSelf` */
 #define ESStrongSelf    ESStrong(__weakSelf, _self);
 
-@interface JGPhotoView ()
-{
+@interface JGPhotoView () {
+    
     BOOL _zoomByDoubleTap;
     YLImageView *_imageView;
     JGPhotoLoadingView *_photoLoadingView;
 }
+
 @end
 
 @implementation JGPhotoView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    if ((self = [super initWithFrame:frame])) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        
         self.clipsToBounds = YES;
-		// 图片
-		_imageView = [[YLImageView alloc] init];
+        // 图片
+        _imageView = [[YLImageView alloc] init];
         _imageView.backgroundColor = [UIColor blackColor];
-		_imageView.contentMode = UIViewContentModeScaleAspectFit;
-		[self addSubview:_imageView];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:_imageView];
         
         // 进度条
         _photoLoadingView = [[JGPhotoLoadingView alloc] init];
-		
-		// 属性
-		self.delegate = self;
-//		self.showsHorizontalScrollIndicator = NO;
-//		self.showsVerticalScrollIndicator = NO;
-		self.decelerationRate = UIScrollViewDecelerationRateFast;
-		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        // 属性
+        self.delegate = self;
+        //self.showsHorizontalScrollIndicator = NO;
+        //self.showsVerticalScrollIndicator = NO;
+        self.decelerationRate = UIScrollViewDecelerationRateFast;
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         // 监听点击
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -68,34 +73,36 @@
 }
 
 //设置imageView的图片
-- (void)configImageViewWithImage:(UIImage *)image{
+- (void)configImageViewWithImage:(UIImage *)image {
+    
     _imageView.image = image;
 }
 
-
 #pragma mark - photoSetter
 - (void)setPhoto:(JGPhoto *)photo {
-    _photo = photo;
     
+    _photo = photo;
     [self showImage];
 }
 
 #pragma mark 显示图片
-- (void)showImage
-{
+- (void)showImage {
+    
     [self photoStartLoad];
-
     [self adjustFrame];
 }
 
 #pragma mark 开始加载图片
-- (void)photoStartLoad
-{
+- (void)photoStartLoad {
+    
     if (_photo.image) {
+        
         [_photoLoadingView removeFromSuperview];
         _imageView.image = _photo.image;
         self.scrollEnabled = YES;
-    } else {
+    }
+    else {
+        
         _imageView.image = _photo.placeholder;
         self.scrollEnabled = NO;
         // 直接显示进度条
@@ -107,23 +114,32 @@
         ESWeak_(_imageView);
         
         [SDWebImageManager.sharedManager loadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
             ESStrong_(_photoLoadingView);
             if (receivedSize > kMinProgress) {
-                __photoLoadingView.progress = (float)receivedSize/expectedSize;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __photoLoadingView.progress = (float)receivedSize/expectedSize;
+                });
             }
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            
             ESStrongSelf;
             ESStrong_(_imageView);
-            __imageView.image = image;
-            [_self photoDidFinishLoadWithImage:image];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                __imageView.image = image;
+                [_self photoDidFinishLoadWithImage:image];
+            });
         }];
     }
 }
 
 #pragma mark 加载完毕
-- (void)photoDidFinishLoadWithImage:(UIImage *)image
-{
+- (void)photoDidFinishLoadWithImage:(UIImage *)image {
+    
     if (image) {
+        
         self.scrollEnabled = YES;
         _photo.image = image;
         [_photoLoadingView removeFromSuperview];
@@ -131,7 +147,9 @@
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewImageFinishLoad:)]) {
             [self.photoViewDelegate photoViewImageFinishLoad:self];
         }
-    } else {
+    }
+    else {
+        
         [self addSubview:_photoLoadingView];
         [_photoLoadingView showFailure];
     }
@@ -139,28 +157,29 @@
     // 设置缩放比例
     [self adjustFrame];
 }
+
 #pragma mark 调整frame
-- (void)adjustFrame
-{
-	if (_imageView.image == nil) return;
+- (void)adjustFrame {
+    
+    if (_imageView.image == nil) return;
     
     // 基本尺寸参数
     CGFloat boundsWidth = self.bounds.size.width;
     CGFloat boundsHeight = self.bounds.size.height;
     CGFloat imageWidth = _imageView.image.size.width;
     CGFloat imageHeight = _imageView.image.size.height;
-	
-	// 设置伸缩比例
+    
+    // 设置伸缩比例
     CGFloat imageScale = boundsWidth / imageWidth;
     CGFloat minScale = MIN(1.0, imageScale);
     
-	CGFloat maxScale = 2.0; 
-	if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
-		maxScale = maxScale / [[UIScreen mainScreen] scale];
-	}
-	self.maximumZoomScale = maxScale;
-	self.minimumZoomScale = minScale;
-	self.zoomScale = minScale;
+    CGFloat maxScale = 2.0;
+    if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
+        maxScale = maxScale / [[UIScreen mainScreen] scale];
+    }
+    self.maximumZoomScale = maxScale;
+    self.minimumZoomScale = minScale;
+    self.zoomScale = minScale;
     
     CGRect imageFrame = CGRectMake(0, MAX(0, (boundsHeight- imageHeight*imageScale)/2), boundsWidth, imageHeight *imageScale);
     
@@ -170,24 +189,31 @@
 
 #pragma mark - UIScrollViewDelegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    
     if (_zoomByDoubleTap) {
+        
         CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(_imageView.frame))/2;
         insetY = MAX(insetY, 0.0);
         if (ABS(_imageView.frame.origin.y - insetY) > 0.5) {
+            
             CGRect imageViewFrame = _imageView.frame;
             imageViewFrame = CGRectMake(imageViewFrame.origin.x, insetY, imageViewFrame.size.width, imageViewFrame.size.height);
             _imageView.frame = imageViewFrame;
         }
     }
-	return _imageView;
+    
+    return _imageView;
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+    
     _zoomByDoubleTap = NO;
     CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(_imageView.frame))/2;
     insetY = MAX(insetY, 0.0);
     if (ABS(_imageView.frame.origin.y - insetY) > 0.5) {
+        
         [UIView animateWithDuration:0.2 animations:^{
+            
             CGRect imageViewFrame = _imageView.frame;
             imageViewFrame = CGRectMake(imageViewFrame.origin.x, insetY, imageViewFrame.size.width, imageViewFrame.size.height);
             _imageView.frame = imageViewFrame;
@@ -198,6 +224,7 @@
 #pragma mark - 手势处理
 //单击隐藏
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
+    
     // 移除进度条
     [_photoLoadingView removeFromSuperview];
     
@@ -206,23 +233,28 @@
         [self.photoViewDelegate photoViewSingleTap:self];
     }
 }
+
 //双击放大
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap {
+    
     _zoomByDoubleTap = YES;
-
-	if (self.zoomScale == self.maximumZoomScale) {
-		[self setZoomScale:self.minimumZoomScale animated:YES];
-	} else {
+    if (self.zoomScale == self.maximumZoomScale) {
+        
+        [self setZoomScale:self.minimumZoomScale animated:YES];
+    }
+    else {
+        
         CGPoint touchPoint = [tap locationInView:self];
         CGFloat scale = self.maximumZoomScale/ self.zoomScale;
         CGRect rectTozoom=CGRectMake(touchPoint.x * scale, touchPoint.y * scale, 1, 1);
         [self zoomToRect:rectTozoom animated:YES];
-	}
+    }
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
+    
     // 取消请求
     [_imageView sd_setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
 }
+
 @end

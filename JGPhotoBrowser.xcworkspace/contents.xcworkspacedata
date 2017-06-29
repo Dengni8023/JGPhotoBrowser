@@ -5,6 +5,9 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
+      location = "group:JGPhotoBrowser.podspec">
+   </FileRef>
+   <FileRef
       location = "group:JGPhotoBrowser/JGPhotoBrowser.xcodeproj">
    </FileRef>
    <FileRef

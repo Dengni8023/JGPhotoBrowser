@@ -1,38 +1,41 @@
 //
 //  JGPhotoToolbar.m
-//  FingerNews
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-9-24.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import "JGPhotoToolbar.h"
-#import "JGPhoto.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
-@interface JGPhotoToolbar()
-{
+@interface JGPhotoToolbar() {
+    
     // 显示页码
     UILabel *_indexLabel;
     UIButton *_saveImageBtn;
 }
+
 @end
 
 @implementation JGPhotoToolbar
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
+    
     self = [super initWithFrame:frame];
     if (self) {
+        
         // Initialization code
     }
+    
     return self;
 }
 
-- (void)setPhotos:(NSArray *)photos
-{
-    _photos = photos;
+- (void)setPhotos:(NSArray *)photos {
     
+    _photos = photos;
     if (_photos.count > 1) {
+        
         _indexLabel = [[UILabel alloc] init];
         _indexLabel.font = [UIFont boldSystemFontOfSize:20];
         _indexLabel.frame = self.bounds;
@@ -54,19 +57,23 @@
     [self addSubview:_saveImageBtn];
 }
 
-- (void)saveImage
-{
+- (void)saveImage {
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
         JGPhoto *photo = _photos[_currentPhotoIndex];
         UIImageWriteToSavedPhotosAlbum(photo.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     });
 }
 
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
     if (error) {
+        
         [SVProgressHUD showErrorWithStatus:@"保存失败"];
-    } else {
+    }
+    else {
+        
         JGPhoto *photo = _photos[_currentPhotoIndex];
         photo.save = YES;
         _saveImageBtn.enabled = NO;
@@ -74,17 +81,16 @@
     }
 }
 
-- (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
-{
-    _currentPhotoIndex = currentPhotoIndex;
+- (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex {
     
     // 更新页码
+    _currentPhotoIndex = currentPhotoIndex;
     _indexLabel.text = [NSString stringWithFormat:@"%d / %d", (int)_currentPhotoIndex + 1, (int)_photos.count];
     
-    JGPhoto *photo = _photos[_currentPhotoIndex];
     // 按钮
+    JGPhoto *photo = _photos[_currentPhotoIndex];
     _saveImageBtn.enabled = photo.image != nil && !photo.save;
-    _saveImageBtn.hidden =!_showSaveBtn;
+    _saveImageBtn.hidden = !_showSaveBtn;
 }
 
 @end

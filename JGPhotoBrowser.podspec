@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JGPhotoBrowser"
-  s.version      = "1.1.1"
-  s.summary      = "The easiest lightest way to use PhotoBrowser. Copy and update from Sunnyyoung/MJPhotoBrowser."
+  s.version      = "1.1.2"
+  s.summary      = "The easiest lightest way to use PhotoBrowser. Modified from Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser) ."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
   The easiest lightest way to use PhotoBrowser.
-  Copy and update from Sunnyyoung/MJPhotoBrowser.
+  Modified from Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser) .
                   DESC
 
   s.homepage     = "https://github.com/dengni8023/JGPhotoBrowser"

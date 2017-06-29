@@ -2,8 +2,8 @@
 //  CollectionViewController.h
 //  JGPhotoBrowser
 //
-//  Created by Sunnyyoung on 15/5/22.
-//  Copyright (c) 2015年 Sunnyyoung. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

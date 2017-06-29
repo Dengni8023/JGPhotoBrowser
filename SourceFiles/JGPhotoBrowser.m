@@ -1,11 +1,12 @@
 //
 //  JGPhotoBrowser.m
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-3-4.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
+//
 
 #import "JGPhotoBrowser.h"
-#import "JGPhoto.h"
 #import "JGPhotoView.h"
 #import "JGPhotoToolbar.h"
 #import <SDWebImage/SDWebImagePrefetcher.h>
@@ -15,37 +16,61 @@
 #define kPhotoViewIndex(photoView) ([photoView tag] - kPhotoViewTagOffset)
 
 @interface JGPhotoBrowser () <JGPhotoViewDelegate>
-@property (strong, nonatomic) UIView *view;
-@property (strong, nonatomic) UIScrollView *photoScrollView;
-@property (strong, nonatomic) NSMutableSet *visiblePhotoViews, *reusablePhotoViews;
-@property (strong, nonatomic) JGPhotoToolbar *toolbar;
+
+@property (nonatomic, strong) UIView *view;
+@property (nonatomic, strong) UIScrollView *photoScrollView;
+@property (nonatomic, strong) NSMutableSet<JGPhotoView *> *visiblePhotoViews, *reusablePhotoViews;
+@property (nonatomic, strong) JGPhotoToolbar *toolbar;
+
 @end
 
 @implementation JGPhotoBrowser
 
-#pragma mark - init M
+/**
+ 内存管理处理，管理方式：show显示时存入数组，单机隐藏时移出数组
+ 
+ ARC外部无内存管理时（如：局部初始化后设置参数并调用show显示）
+ 如不做处理，本类实例会立即释放内存，JGPhotoView设置的photoViewDelegate释放以及无法切换显示图片
+ JGPhotoView的photoViewDelegate释放导致不响应代理方法
+ */
+static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
-- (instancetype)init
-{
+#pragma mark - init M
+- (instancetype)init {
+    
     self = [super init];
     if (self) {
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            showingBrowser = [[NSMutableArray alloc] init];
+        });
+        
         _showSaveBtn = YES;
     }
+    
     return self;
 }
 
-#pragma mark - get M
+- (void)dealloc {
+    
+}
 
-- (UIView *)view{
+#pragma mark - get M
+- (UIView *)view {
+    
     if (!_view) {
         _view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
         _view.backgroundColor = [UIColor blackColor];
     }
+    
     return _view;
 }
 
-- (UIScrollView *)photoScrollView{
+- (UIScrollView *)photoScrollView {
+    
     if (!_photoScrollView) {
+        
         CGRect frame = self.view.bounds;
         frame.origin.x -= kPadding;
         frame.size.width += (2 * kPadding);
@@ -57,11 +82,14 @@
         _photoScrollView.showsVerticalScrollIndicator = NO;
         _photoScrollView.backgroundColor = [UIColor clearColor];
     }
+    
     return _photoScrollView;
 }
 
-- (JGPhotoToolbar *)toolbar{
+- (JGPhotoToolbar *)toolbar {
+    
     if (!_toolbar) {
+        
         CGFloat barHeight = 49;
         CGFloat barY = self.view.frame.size.height - barHeight;
         _toolbar = [[JGPhotoToolbar alloc] init];
@@ -69,13 +97,15 @@
         _toolbar.frame = CGRectMake(0, barY, self.view.frame.size.width, barHeight);
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
+    
     return _toolbar;
 }
 
-- (void)show
-{
+- (void)show {
+    
+    [showingBrowser addObject:self];
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
-
+    
     //初始化数据
     {
         if (!_visiblePhotoViews) {
@@ -85,7 +115,6 @@
             _reusablePhotoViews = [NSMutableSet set];
         }
         self.toolbar.photos = self.photos;
-        
         
         CGRect frame = self.view.bounds;
         frame.origin.x -= kPadding;
@@ -98,34 +127,39 @@
         [self updateTollbarState];
         [self showPhotos];
     }
+    
     //渐变显示
     self.view.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:self.view];
     [UIView animateWithDuration:0.3 animations:^{
+        
         self.view.alpha = 1.0;
+        
     } completion:^(BOOL finished) {
+        
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     }];
 }
 
 #pragma mark - set M
-- (void)setPhotos:(NSArray *)photos
-{
+- (void)setPhotos:(NSArray *)photos {
+    
     _photos = photos;
     if (_photos.count <= 0) {
         return;
     }
-    for (int i = 0; i<_photos.count; i++) {
-        JGPhoto *photo = _photos[i];
-        photo.index = i;
-    }
+    
+    [_photos enumerateObjectsUsingBlock:^(JGPhoto * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.index = idx;
+    }];
 }
 
-- (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
-{
-    _currentPhotoIndex = currentPhotoIndex;
+- (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex {
     
+    _currentPhotoIndex = currentPhotoIndex;
     if (_photoScrollView) {
+        
         _photoScrollView.contentOffset = CGPointMake(_currentPhotoIndex * _photoScrollView.frame.size.width, 0);
         
         // 显示所有的相片
@@ -134,47 +168,52 @@
 }
 
 #pragma mark - Show Photos
-- (void)showPhotos
-{
+- (void)showPhotos {
+    
     CGRect visibleBounds = _photoScrollView.bounds;
-    int firstIndex = (int)floorf((CGRectGetMinX(visibleBounds)+kPadding*2) / CGRectGetWidth(visibleBounds));
-    int lastIndex  = (int)floorf((CGRectGetMaxX(visibleBounds)-kPadding*2-1) / CGRectGetWidth(visibleBounds));
-    if (firstIndex < 0) firstIndex = 0;
-    if (firstIndex >= _photos.count) firstIndex = (int)_photos.count - 1;
-    if (lastIndex < 0) lastIndex = 0;
-    if (lastIndex >= _photos.count) lastIndex = (int)_photos.count - 1;
+    NSInteger firstIndex = floorf((CGRectGetMinX(visibleBounds) + kPadding * 2) / CGRectGetWidth(visibleBounds));
+    NSInteger lastIndex  = floorf((CGRectGetMaxX(visibleBounds) - kPadding * 2 - 1) / CGRectGetWidth(visibleBounds));
+    firstIndex = MIN(MAX(0, firstIndex), _photos.count - 1);
+    firstIndex = MIN(MAX(0, lastIndex), _photos.count - 1);
     
     // 回收不再显示的ImageView
-    NSInteger photoViewIndex;
-    for (JGPhotoView *photoView in _visiblePhotoViews) {
-        photoViewIndex = kPhotoViewIndex(photoView);
+    __block NSInteger photoViewIndex = 0;
+    [_visiblePhotoViews enumerateObjectsUsingBlock:^(JGPhotoView * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        photoViewIndex = kPhotoViewIndex(obj);
         if (photoViewIndex < firstIndex || photoViewIndex > lastIndex) {
-            [_reusablePhotoViews addObject:photoView];
-            [photoView removeFromSuperview];
+            
+            [_reusablePhotoViews addObject:obj];
+            [obj removeFromSuperview];
         }
-    }
+    }];
     
     [_visiblePhotoViews minusSet:_reusablePhotoViews];
     while (_reusablePhotoViews.count > 2) {
+        
         [_reusablePhotoViews removeObject:[_reusablePhotoViews anyObject]];
     }
     
     for (NSUInteger index = firstIndex; index <= lastIndex; index++) {
+        
         if (![self isShowingPhotoViewAtIndex:index]) {
-            [self showPhotoViewAtIndex:(int)index];
+            
+            [self showPhotoViewAtIndex:index];
         }
     }
     
 }
 
 //  显示一个图片view
-- (void)showPhotoViewAtIndex:(int)index
-{
+- (void)showPhotoViewAtIndex:(NSInteger)index {
+    
     JGPhotoView *photoView = [self dequeueReusablePhotoView];
-    if (!photoView) { // 添加新的图片view
+    if (!photoView) {
+        
+        // 添加新的图片view
         photoView = [[JGPhotoView alloc] init];
-        photoView.photoViewDelegate = self;
     }
+    photoView.photoViewDelegate = self;
     
     // 调整当前页的frame
     CGRect bounds = _photoScrollView.bounds;
@@ -194,18 +233,26 @@
 }
 
 //  加载index附近的图片
-- (void)loadImageNearIndex:(int)index
-{
+- (void)loadImageNearIndex:(NSInteger)index {
+    
     if (index > 0) {
+        
         JGPhoto *photo = _photos[index - 1];
-        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:(SDWebImageRetryFailed | SDWebImageLowPriority) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            
             //do nothing
         }];
     }
     
     if (index < _photos.count - 1) {
+        
         JGPhoto *photo = _photos[index + 1];
-        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:(SDWebImageRetryFailed | SDWebImageLowPriority) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            
             //do nothing
         }];
     }
@@ -213,54 +260,63 @@
 
 //  index这页是否正在显示
 - (BOOL)isShowingPhotoViewAtIndex:(NSUInteger)index {
-    for (JGPhotoView *photoView in _visiblePhotoViews) {
-        if (kPhotoViewIndex(photoView) == index) {
-            return YES;
-        }
-    }
-    return  NO;
+    
+    __block BOOL isShow = NO;
+    [_visiblePhotoViews enumerateObjectsUsingBlock:^(JGPhotoView * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        isShow = kPhotoViewIndex(obj) == index;
+        *stop = isShow;
+    }];
+    
+    return  isShow;
 }
+
 // 重用页面
-- (JGPhotoView *)dequeueReusablePhotoView
-{
+- (JGPhotoView *)dequeueReusablePhotoView {
+    
     JGPhotoView *photoView = [_reusablePhotoViews anyObject];
     if (photoView) {
+        
         [_reusablePhotoViews removeObject:photoView];
     }
+    
     return photoView;
 }
 
 #pragma mark - updateTollbarState
-- (void)updateTollbarState
-{
+- (void)updateTollbarState {
+    
     _currentPhotoIndex = _photoScrollView.contentOffset.x / _photoScrollView.frame.size.width;
     _toolbar.currentPhotoIndex = _currentPhotoIndex;
 }
 
-
-
 #pragma mark - JGPhotoViewDelegate
-- (void)photoViewSingleTap:(JGPhotoView *)photoView
-{
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    // 移除工具条
-    [self.toolbar removeFromSuperview];
+- (void)photoViewImageFinishLoad:(JGPhotoView *)photoView {
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.view.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-    }];
+    [self updateTollbarState];
 }
 
-- (void)photoViewImageFinishLoad:(JGPhotoView *)photoView
-{
-    [self updateTollbarState];
+- (void)photoViewSingleTap:(JGPhotoView *)photoView {
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    
+    // 移除工具条
+    [self.toolbar removeFromSuperview];
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.view.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.view removeFromSuperview];
+        [showingBrowser removeObject:self];
+    }];
 }
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	[self showPhotos];
+    
+    [self showPhotos];
     [self updateTollbarState];
 }
 

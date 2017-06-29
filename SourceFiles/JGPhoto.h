@@ -1,16 +1,13 @@
 //
 //  JGPhoto.h
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-3-4.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
+//
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import <QuartzCore/QuartzCore.h>
-#import <YLGIFImage/YLImageView.h>
-#import <YLGIFImage/YLGIFImage.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+#import <UIKit/UIKit.h>
 
 @interface JGPhoto : NSObject
 
@@ -23,6 +20,6 @@
 
 // 是否已经保存到相册
 @property (nonatomic, assign) BOOL save;
-@property (nonatomic, assign) int index; // 索引
+@property (nonatomic, assign) NSInteger index; // 索引
 
 @end

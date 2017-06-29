@@ -1,20 +1,20 @@
 //
 //  JGPhotoLoadingView.h
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-3-4.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 #define kMinProgress 0.0001
 
-@class JGPhotoBrowser;
-@class JGPhoto;
-
 @interface JGPhotoLoadingView : UIView
-@property (nonatomic) float progress;
+
+@property (nonatomic, assign) CGFloat progress;
 
 - (void)showLoading;
 - (void)showFailure;
+
 @end

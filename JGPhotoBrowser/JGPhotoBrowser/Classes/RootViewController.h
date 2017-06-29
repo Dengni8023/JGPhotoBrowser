@@ -1,5 +1,5 @@
 //
-//  CollectionViewCell.h
+//  RootViewController.h
 //  JGPhotoBrowser
 //
 //  Created by 梅继高 on 2017/6/29.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CollectionViewCell : UICollectionViewCell
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@interface RootViewController : UIViewController
 
 @end

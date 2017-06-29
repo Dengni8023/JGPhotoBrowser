@@ -1,17 +1,16 @@
 //
 //  JGPhotoLoadingView.m
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-3-4.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import "JGPhotoLoadingView.h"
-#import "JGPhotoBrowser.h"
-#import <QuartzCore/QuartzCore.h>
 #import "JGPhotoProgressView.h"
 
-@interface JGPhotoLoadingView ()
-{
+@interface JGPhotoLoadingView () {
+    
     UILabel *_failureLabel;
     JGPhotoProgressView *_progressView;
 }
@@ -20,16 +19,15 @@
 
 @implementation JGPhotoLoadingView
 
-- (void)setFrame:(CGRect)frame
-{
+- (void)setFrame:(CGRect)frame {
     [super setFrame:[UIScreen mainScreen].bounds];
 }
 
-- (void)showFailure
-{
-    [_progressView removeFromSuperview];
+- (void)showFailure {
     
-    if (_failureLabel == nil) {
+    [_progressView removeFromSuperview];
+    if (!_failureLabel) {
+        
         _failureLabel = [[UILabel alloc] init];
         _failureLabel.bounds = CGRectMake(0, 0, self.bounds.size.width, 44);
         _failureLabel.textAlignment = NSTextAlignmentCenter;
@@ -43,11 +41,11 @@
     [self addSubview:_failureLabel];
 }
 
-- (void)showLoading
-{
-    [_failureLabel removeFromSuperview];
+- (void)showLoading {
     
-    if (_progressView == nil) {
+    [_failureLabel removeFromSuperview];
+    if (!_progressView) {
+        
         _progressView = [[JGPhotoProgressView alloc] init];
         _progressView.bounds = CGRectMake( 0, 0, 60, 60);
         _progressView.center = self.center;
@@ -57,12 +55,14 @@
 }
 
 #pragma mark - customlize method
-- (void)setProgress:(float)progress
-{
+- (void)setProgress:(CGFloat)progress {
+    
     _progress = progress;
     _progressView.progress = progress;
     if (progress >= 1.0) {
+        
         [_progressView removeFromSuperview];
     }
 }
+
 @end

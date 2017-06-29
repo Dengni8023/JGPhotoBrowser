@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37A431F901F241AA0912201A /* libPods-JGPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7105F282569E11B9C4F7D /* libPods-JGPhotoBrowser.a */; };
+		D42B34711F049419006EC23A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B34701F049419006EC23A /* RootViewController.m */; };
 		D4568B641EC2AE1D00C77BA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568B631EC2AE1D00C77BA5 /* main.m */; };
 		D4568B671EC2AE1D00C77BA5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4568B661EC2AE1D00C77BA5 /* AppDelegate.m */; };
 		D4568B6D1EC2AE1D00C77BA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4568B6B1EC2AE1D00C77BA5 /* Main.storyboard */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		29F02964E8CF5026109BB0A1 /* Pods-JGPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowser.release.xcconfig"; path = "../Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		3180A63F7C35011739D1AA18 /* Pods-JGPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowser.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
+		D42B346F1F049419006EC23A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		D42B34701F049419006EC23A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		D4568B5F1EC2AE1D00C77BA5 /* JGPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4568B631EC2AE1D00C77BA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D4568B651EC2AE1D00C77BA5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				D4568B811EC2AF4100C77BA5 /* CollectionViewCell.m */,
 				D4568B821EC2AF4100C77BA5 /* CollectionViewController.h */,
 				D4568B831EC2AF4100C77BA5 /* CollectionViewController.m */,
+				D42B346F1F049419006EC23A /* RootViewController.h */,
+				D42B34701F049419006EC23A /* RootViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -188,11 +193,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = MEETStudio;
+				ORGANIZATIONNAME = "JIgao Mei";
 				TargetAttributes = {
 					D4568B5E1EC2AE1D00C77BA5 = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = U786ECSD2E;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -288,6 +294,7 @@
 				D4BBAA851EC4416300699D9C /* JGPhotoProgressView.m in Sources */,
 				D4BBAA811EC4416300699D9C /* JGPhoto.m in Sources */,
 				D4568B921EC2AF4100C77BA5 /* CollectionViewCell.m in Sources */,
+				D42B34711F049419006EC23A /* RootViewController.m in Sources */,
 				D4568B671EC2AE1D00C77BA5 /* AppDelegate.m in Sources */,
 				D4568B641EC2AE1D00C77BA5 /* main.m in Sources */,
 				D4BBAA861EC4416300699D9C /* JGPhotoToolbar.m in Sources */,
@@ -411,10 +418,13 @@
 			baseConfigurationReference = 3180A63F7C35011739D1AA18 /* Pods-JGPhotoBrowser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U786ECSD2E;
 				INFOPLIST_FILE = JGPhotoBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meetstudio.JGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f8a59060-5273-4140-bee1-1c88a3688ad7";
+				PROVISIONING_PROFILE_SPECIFIER = "MEETStudio Team";
 			};
 			name = Debug;
 		};
@@ -423,10 +433,12 @@
 			baseConfigurationReference = 29F02964E8CF5026109BB0A1 /* Pods-JGPhotoBrowser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = JGPhotoBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meetstudio.JGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

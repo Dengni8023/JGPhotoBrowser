@@ -1,8 +1,9 @@
 //
 //  JGPhotoProgressView.m
+//  JGPhotoBrowser
 //
-//  Created by mj on 13-3-4.
-//  Copyright (c) 2013年 itcast. All rights reserved.
+//  Created by 梅继高 on 2017/6/29.
+//  Copyright © 2017年 Jigao Mei. All rights reserved.
 //
 
 #import "JGPhotoProgressView.h"
@@ -11,16 +12,19 @@
 
 @implementation JGPhotoProgressView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        
         self.backgroundColor = [UIColor clearColor];
     }
+    
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{    
+- (void)drawRect:(CGRect)rect {
+    
     CGPoint centerPoint = CGPointMake(rect.size.height / 2, rect.size.width / 2);
     CGFloat radius = MIN(rect.size.height, rect.size.width) / 2;
     
@@ -59,33 +63,35 @@
     
     CGContextSetBlendMode(context, kCGBlendModeClear);;
     CGFloat innerRadius = radius * 0.7;
-	CGPoint newCenterPoint = CGPointMake(centerPoint.x - innerRadius, centerPoint.y - innerRadius);    
-	CGContextAddEllipseInRect(context, CGRectMake(newCenterPoint.x, newCenterPoint.y, innerRadius*2, innerRadius*2));
-	CGContextFillPath(context);
+    CGPoint newCenterPoint = CGPointMake(centerPoint.x - innerRadius, centerPoint.y - innerRadius);
+    CGContextAddEllipseInRect(context, CGRectMake(newCenterPoint.x, newCenterPoint.y, innerRadius*2, innerRadius*2));
+    CGContextFillPath(context);
 }
 
 #pragma mark - Property Methods
 
-- (UIColor *)trackTintColor
-{
-    if (!_trackTintColor)
-    {
+- (UIColor *)trackTintColor {
+    
+    if (!_trackTintColor) {
+        
         _trackTintColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.7f];
     }
+    
     return _trackTintColor;
 }
 
-- (UIColor *)progressTintColor
-{
-    if (!_progressTintColor)
-    {
+- (UIColor *)progressTintColor {
+    
+    if (!_progressTintColor) {
+        
         _progressTintColor = [UIColor whiteColor];
     }
+    
     return _progressTintColor;
 }
 
-- (void)setProgress:(float)progress
-{
+- (void)setProgress:(CGFloat)progress {
+    
     _progress = progress;
     [self setNeedsDisplay];
 }
