@@ -1,6 +1,6 @@
 # JGPhotoBrowser
  
-Modified from MJPhotoBrowser增强版(https://github.com/Sunnyyoung/MJPhotoBrowser)
+Modified from MJPhotoBrowser增强版 (https://github.com/Sunnyyoung/MJPhotoBrowser)
 
 ## 来源
 
@@ -23,5 +23,5 @@ https://github.com/Sunnyyoung/MJPhotoBrowser
 ### 1.1.2
 
 1. 目录结构修改
-2、优化内存管理模式
-3、JGPhotoView属性photoViewDelegate修改为weak修饰，修复内存问题
+2. 优化内存管理模式
+3. JGPhotoView属性photoViewDelegate修改为weak修饰，修复内存问题
