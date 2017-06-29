@@ -174,7 +174,7 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     NSInteger firstIndex = floorf((CGRectGetMinX(visibleBounds) + kPadding * 2) / CGRectGetWidth(visibleBounds));
     NSInteger lastIndex  = floorf((CGRectGetMaxX(visibleBounds) - kPadding * 2 - 1) / CGRectGetWidth(visibleBounds));
     firstIndex = MIN(MAX(0, firstIndex), _photos.count - 1);
-    firstIndex = MIN(MAX(0, lastIndex), _photos.count - 1);
+    lastIndex = MIN(MAX(0, lastIndex), _photos.count - 1);
     
     // 回收不再显示的ImageView
     __block NSInteger photoViewIndex = 0;
