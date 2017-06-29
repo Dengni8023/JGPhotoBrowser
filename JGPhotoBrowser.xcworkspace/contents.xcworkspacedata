@@ -8,7 +8,7 @@
       location = "group:JGPhotoBrowser.podspec">
    </FileRef>
    <FileRef
-      location = "group:JGPhotoBrowser/JGPhotoBrowser.xcodeproj">
+      location = "group:JGPhotoBrowserExample/JGPhotoBrowserExample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

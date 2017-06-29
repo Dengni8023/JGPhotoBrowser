@@ -14,6 +14,6 @@ pod 'SVProgressHUD', '~> 2.1' # https://github.com/SVProgressHUD/SVProgressHUD
 # Async GIF Image decoder and ImageView which supports playing GIF image.
 pod 'YLGIFImage', '~> 0.11' # https://github.com/liyong03/YLGIFImage
 
-project "JGPhotoBrowser/JGPhotoBrowser.xcodeproj"
+project "JGPhotoBrowserExample/JGPhotoBrowserExample.xcodeproj"
 
 end
