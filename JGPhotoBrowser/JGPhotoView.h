@@ -13,6 +13,7 @@
 
 @protocol JGPhotoViewDelegate <NSObject>
 
+@required
 - (void)photoViewImageFinishLoad:(JGPhotoView *)photoView;
 - (void)photoViewSingleTap:(JGPhotoView *)photoView;
 
@@ -22,6 +23,7 @@
 
 // 图片
 @property (nonatomic, strong) JGPhoto *photo;
+
 // 代理
 @property (nonatomic, weak) id<JGPhotoViewDelegate> photoViewDelegate;
 

@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		71DFF8098AF195ACD3B590F1 /* libPods-JGPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4BFEB7E2BFC70D5C0B2FB9 /* libPods-JGPhotoBrowser.a */; };
 		D41B076A1F04AA5500C4E675 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B07691F04AA5500C4E675 /* main.m */; };
 		D41B076D1F04AA5500C4E675 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B076C1F04AA5500C4E675 /* AppDelegate.m */; };
 		D41B07701F04AA5500C4E675 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B076F1F04AA5500C4E675 /* ViewController.m */; };
 		D41B07731F04AA5500C4E675 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41B07711F04AA5500C4E675 /* Main.storyboard */; };
 		D41B07751F04AA5500C4E675 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41B07741F04AA5500C4E675 /* Assets.xcassets */; };
-		D41B07A31F04AC7900C4E675 /* JGPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D41B07A21F04AC7900C4E675 /* JGPhotoBrowser.h */; };
+		D41B07A31F04AC7900C4E675 /* JGPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D41B07A21F04AC7900C4E675 /* JGPhotoBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D41B07A51F04AC8800C4E675 /* JGPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B07A41F04AC8800C4E675 /* JGPhotoBrowser.m */; };
-		D41B07A91F04ACF400C4E675 /* JGPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D41B07A71F04ACF400C4E675 /* JGPhoto.h */; };
+		D41B07A91F04ACF400C4E675 /* JGPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D41B07A71F04ACF400C4E675 /* JGPhoto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D41B07AA1F04ACF400C4E675 /* JGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B07A81F04ACF400C4E675 /* JGPhoto.m */; };
 		D41B07AD1F04AD1000C4E675 /* JGPhotoLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = D41B07AB1F04AD1000C4E675 /* JGPhotoLoadingView.h */; };
 		D41B07AE1F04AD1000C4E675 /* JGPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B07AC1F04AD1000C4E675 /* JGPhotoLoadingView.m */; };
@@ -28,15 +27,48 @@
 		D41B07BE1F04AEED00C4E675 /* JGCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B07BD1F04AEED00C4E675 /* JGCollectionViewController.m */; };
 		D41B07C11F04AEFD00C4E675 /* JGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41B07C01F04AEFD00C4E675 /* JGCollectionViewCell.m */; };
 		D41B07C41F04B4AD00C4E675 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41B07C31F04B4AD00C4E675 /* LaunchScreen.storyboard */; };
-		D41B07C71F04BDBA00C4E675 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D41B07C61F04BDBA00C4E675 /* libSDWebImage.a */; };
-		D41B07C91F04BDBD00C4E675 /* libSVProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D41B07C81F04BDBD00C4E675 /* libSVProgressHUD.a */; };
-		D41B07CB1F04BDC200C4E675 /* libYLGIFImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D41B07CA1F04BDC200C4E675 /* libYLGIFImage.a */; };
-		D41B07CC1F04BE3700C4E675 /* JGPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41B07931F04AB9F00C4E675 /* JGPhotoBrowser.framework */; };
+		D4CF4DD71F32E6D400E2CE14 /* 9833023_080802356198_2.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4CF4DD61F32E6D400E2CE14 /* 9833023_080802356198_2.gif */; };
+		D4CF4DE71F3321C700E2CE14 /* JGPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D41B07A61F04ACC200C4E675 /* JGPhotoBrowser.bundle */; };
+		D4CF4DE81F3322E300E2CE14 /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CF4DBD1F32C1DA00E2CE14 /* FLAnimatedImage.framework */; };
+		D4CF4DE91F3322E300E2CE14 /* FLAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4CF4DBD1F32C1DA00E2CE14 /* FLAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4CF4DEA1F3322E300E2CE14 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CF4DBE1F32C1DA00E2CE14 /* SDWebImage.framework */; };
+		D4CF4DEB1F3322E300E2CE14 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4CF4DBE1F32C1DA00E2CE14 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4CF4DEC1F3322E300E2CE14 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CF4DBF1F32C1DA00E2CE14 /* SVProgressHUD.framework */; };
+		D4CF4DED1F3322E300E2CE14 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4CF4DBF1F32C1DA00E2CE14 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4CF4DFB1F33247A00E2CE14 /* JGPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41B07931F04AB9F00C4E675 /* JGPhotoBrowser.framework */; };
+		D4CF4DFC1F33247A00E2CE14 /* JGPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41B07931F04AB9F00C4E675 /* JGPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FDB5D92CD401216576F78942 /* Pods_JGPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BEE2DB77BE46176DD97268 /* Pods_JGPhotoBrowser.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D4CF4DFD1F33247A00E2CE14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41B075D1F04AA5400C4E675 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D41B07921F04AB9F00C4E675;
+			remoteInfo = JGPhotoBrowser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4CF4DEE1F3322E300E2CE14 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4CF4DED1F3322E300E2CE14 /* SVProgressHUD.framework in Embed Frameworks */,
+				D4CF4DEB1F3322E300E2CE14 /* SDWebImage.framework in Embed Frameworks */,
+				D4CF4DE91F3322E300E2CE14 /* FLAnimatedImage.framework in Embed Frameworks */,
+				D4CF4DFC1F33247A00E2CE14 /* JGPhotoBrowser.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4825684A5E84A9F2F22D5CE0 /* Pods-JGPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowser.release.xcconfig"; path = "../Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
-		4B4BFEB7E2BFC70D5C0B2FB9 /* libPods-JGPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JGPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B07651F04AA5500C4E675 /* JGPhotoBrowserExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGPhotoBrowserExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41B07691F04AA5500C4E675 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D41B076B1F04AA5500C4E675 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,10 +98,13 @@
 		D41B07BF1F04AEFD00C4E675 /* JGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCollectionViewCell.h; sourceTree = "<group>"; };
 		D41B07C01F04AEFD00C4E675 /* JGCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCollectionViewCell.m; sourceTree = "<group>"; };
 		D41B07C31F04B4AD00C4E675 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D41B07C61F04BDBA00C4E675 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = SDWebImage/libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D41B07C81F04BDBD00C4E675 /* libSVProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSVProgressHUD.a; path = SVProgressHUD/libSVProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D41B07CA1F04BDC200C4E675 /* libYLGIFImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libYLGIFImage.a; path = YLGIFImage/libYLGIFImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CF4DA81F32BF6D00E2CE14 /* CopyPodsResourceShell.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = CopyPodsResourceShell.sh; sourceTree = "<group>"; };
+		D4CF4DBD1F32C1DA00E2CE14 /* FLAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAnimatedImage.framework; path = PodFiles/FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CF4DBE1F32C1DA00E2CE14 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = PodFiles/SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CF4DBF1F32C1DA00E2CE14 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = PodFiles/SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CF4DD61F32E6D400E2CE14 /* 9833023_080802356198_2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 9833023_080802356198_2.gif; sourceTree = "<group>"; };
 		D7832AE2A5D5236D3DFABD1F /* Pods-JGPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowser.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
+		F3BEE2DB77BE46176DD97268 /* Pods_JGPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +112,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D41B07CC1F04BE3700C4E675 /* JGPhotoBrowser.framework in Frameworks */,
-				D41B07C71F04BDBA00C4E675 /* libSDWebImage.a in Frameworks */,
-				D41B07C91F04BDBD00C4E675 /* libSVProgressHUD.a in Frameworks */,
-				D41B07CB1F04BDC200C4E675 /* libYLGIFImage.a in Frameworks */,
+				D4CF4DEC1F3322E300E2CE14 /* SVProgressHUD.framework in Frameworks */,
+				D4CF4DEA1F3322E300E2CE14 /* SDWebImage.framework in Frameworks */,
+				D4CF4DE81F3322E300E2CE14 /* FLAnimatedImage.framework in Frameworks */,
+				D4CF4DFB1F33247A00E2CE14 /* JGPhotoBrowser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71DFF8098AF195ACD3B590F1 /* libPods-JGPhotoBrowser.a in Frameworks */,
+				FDB5D92CD401216576F78942 /* Pods_JGPhotoBrowser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,10 +133,10 @@
 		2F5DF562B806B3BDC3B2A177 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D41B07CA1F04BDC200C4E675 /* libYLGIFImage.a */,
-				D41B07C81F04BDBD00C4E675 /* libSVProgressHUD.a */,
-				D41B07C61F04BDBA00C4E675 /* libSDWebImage.a */,
-				4B4BFEB7E2BFC70D5C0B2FB9 /* libPods-JGPhotoBrowser.a */,
+				D4CF4DBD1F32C1DA00E2CE14 /* FLAnimatedImage.framework */,
+				F3BEE2DB77BE46176DD97268 /* Pods_JGPhotoBrowser.framework */,
+				D4CF4DBE1F32C1DA00E2CE14 /* SDWebImage.framework */,
+				D4CF4DBF1F32C1DA00E2CE14 /* SVProgressHUD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,6 +198,7 @@
 		D41B07941F04AB9F00C4E675 /* JGPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				D4CF4DA81F32BF6D00E2CE14 /* CopyPodsResourceShell.sh */,
 				D41B07A11F04AC7900C4E675 /* JGPhotoBrowser */,
 				D41B07961F04AB9F00C4E675 /* Info.plist */,
 			);
@@ -193,6 +229,7 @@
 		D41B07BB1F04AED800C4E675 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4CF4DD61F32E6D400E2CE14 /* 9833023_080802356198_2.gif */,
 				D41B07BF1F04AEFD00C4E675 /* JGCollectionViewCell.h */,
 				D41B07C01F04AEFD00C4E675 /* JGCollectionViewCell.m */,
 				D41B07BC1F04AEED00C4E675 /* JGCollectionViewController.h */,
@@ -227,10 +264,12 @@
 				D41B07611F04AA5500C4E675 /* Sources */,
 				D41B07621F04AA5500C4E675 /* Frameworks */,
 				D41B07631F04AA5500C4E675 /* Resources */,
+				D4CF4DEE1F3322E300E2CE14 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D4CF4DFE1F33247A00E2CE14 /* PBXTargetDependency */,
 			);
 			name = JGPhotoBrowserExample;
 			productName = JGPhotoBrowserExample;
@@ -247,6 +286,7 @@
 				D41B07901F04AB9F00C4E675 /* Headers */,
 				D41B07911F04AB9F00C4E675 /* Resources */,
 				A4A1765FFFBEC7B5D8B7649C /* [CP] Copy Pods Resources */,
+				D4CF4DAA1F32BFCC00E2CE14 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -273,6 +313,7 @@
 					};
 					D41B07921F04AB9F00C4E675 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = U786ECSD2E;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -301,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CF4DD71F32E6D400E2CE14 /* 9833023_080802356198_2.gif in Resources */,
 				D41B07751F04AA5500C4E675 /* Assets.xcassets in Resources */,
 				D41B07C41F04B4AD00C4E675 /* LaunchScreen.storyboard in Resources */,
 				D41B07731F04AA5500C4E675 /* Main.storyboard in Resources */,
@@ -311,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CF4DE71F3321C700E2CE14 /* JGPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +390,19 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D4CF4DAA1F32BFCC00E2CE14 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n#sh执行权限\nchmod +x \"${PROJECT_DIR}/${TARGET_NAME}/CopyPodsResourceShell.sh\"\n\n#执行sh\n\"${PROJECT_DIR}/${TARGET_NAME}/CopyPodsResourceShell.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -376,6 +432,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4CF4DFE1F33247A00E2CE14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D41B07921F04AB9F00C4E675 /* JGPhotoBrowser */;
+			targetProxy = D4CF4DFD1F33247A00E2CE14 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D41B07711F04AA5500C4E675 /* Main.storyboard */ = {
@@ -430,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -472,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -484,18 +548,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U786ECSD2E;
-				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/SDWebImage",
-					"$(BUILT_PRODUCTS_DIR)/SVProgressHUD",
-					"$(BUILT_PRODUCTS_DIR)/YLGIFImage",
+				FRAMEWORK_SEARCH_PATHS = (
+					$BUILT_PRODUCTS_DIR,
+					$BUILT_PRODUCTS_DIR/PodFiles,
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = JGPhotoBrowserExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/SDWebImage",
-					"$(BUILT_PRODUCTS_DIR)/SVProgressHUD",
-					"$(BUILT_PRODUCTS_DIR)/YLGIFImage",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meijigao.JGPhotoBrowserExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,23 +568,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
-				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/SDWebImage",
-					"$(BUILT_PRODUCTS_DIR)/SVProgressHUD",
-					"$(BUILT_PRODUCTS_DIR)/YLGIFImage",
+				DEVELOPMENT_TEAM = U786ECSD2E;
+				FRAMEWORK_SEARCH_PATHS = (
+					$BUILT_PRODUCTS_DIR,
+					$BUILT_PRODUCTS_DIR/PodFiles,
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = JGPhotoBrowserExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/SDWebImage",
-					"$(BUILT_PRODUCTS_DIR)/SVProgressHUD",
-					"$(BUILT_PRODUCTS_DIR)/YLGIFImage",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meijigao.JGPhotoBrowserExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f8a59060-5273-4140-bee1-1c88a3688ad7";
+				PROVISIONING_PROFILE_SPECIFIER = "MEETStudio Team";
 			};
 			name = Release;
 		};
@@ -535,13 +592,20 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U786ECSD2E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FLAnimatedImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+				);
 				INFOPLIST_FILE = JGPhotoBrowser/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.meijigao.JGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -558,13 +622,20 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = U786ECSD2E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FLAnimatedImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+				);
 				INFOPLIST_FILE = JGPhotoBrowser/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.meijigao.JGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

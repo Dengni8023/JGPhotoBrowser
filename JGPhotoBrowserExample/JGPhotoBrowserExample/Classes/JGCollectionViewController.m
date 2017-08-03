@@ -7,9 +7,9 @@
 //
 
 #import "JGCollectionViewController.h"
-#import "UIImageView+WebCache.h"
 #import "JGCollectionViewCell.h"
-#import "JGPhotoBrowser.h"
+#import <JGPhotoBrowser/JGPhotoBrowser.h>
+#import <SDWebImage/FLAnimatedImageView+WebCache.h>
 
 @interface JGCollectionViewController ()
 
@@ -26,30 +26,33 @@ static NSString * const reuseIdentifier = @"JGCollectionCell";
     self = [super initWithCoder:aDecoder];
     if (self) {
         
-        _imageURLArray = @[@"http://test.api.yypapa.com/img?id=17923&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17921&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17920&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17919&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17915&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17913&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17914&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17912&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17911&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17910&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17909&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17908&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17907&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17906&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17905&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17904&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17902&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17901&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17898&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17897&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17896&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17895&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17894&size=100x100",
-                           @"http://test.api.yypapa.com/img?id=17892&size=100x100"];
+        _imageURLArray = @[@"http://test.api.yypapa.com/img?id=17923",
+                           @"http://test.api.yypapa.com/img?id=17921",
+                           @"http://test.api.yypapa.com/img?id=17920",
+                           @"http://test.api.yypapa.com/img?id=17919",
+                           @"http://test.api.yypapa.com/img?id=17915",
+                           @"http://test.api.yypapa.com/img?id=17913",
+                           @"http://test.api.yypapa.com/img?id=17914",
+                           @"http://test.api.yypapa.com/img?id=17912",
+                           @"http://test.api.yypapa.com/img?id=17911",
+                           @"http://test.api.yypapa.com/img?id=17910",
+                           @"http://test.api.yypapa.com/img?id=17909",
+                           @"http://test.api.yypapa.com/img?id=17908",
+                           @"http://test.api.yypapa.com/img?id=17907",
+                           @"http://test.api.yypapa.com/img?id=17906",
+                           @"http://test.api.yypapa.com/img?id=17905",
+                           @"http://test.api.yypapa.com/img?id=17904",
+                           @"http://test.api.yypapa.com/img?id=17902",
+                           @"http://test.api.yypapa.com/img?id=17901",
+                           @"http://test.api.yypapa.com/img?id=17898",
+                           @"http://test.api.yypapa.com/img?id=17897",
+                           @"http://test.api.yypapa.com/img?id=17896",
+                           @"http://test.api.yypapa.com/img?id=17895",
+                           @"http://test.api.yypapa.com/img?id=16256",
+                           @"http://pic22.nipic.com/20120624/9833023_080802356198_2.gif?id=0",
+                           @"http://test.api.yypapa.com/img?id=17894",
+                           @"http://test.api.yypapa.com/img?id=17892",
+                           ];
     }
     
     return self;
@@ -80,7 +83,9 @@ static NSString * const reuseIdentifier = @"JGCollectionCell";
     
     JGCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:_imageURLArray[indexPath.row]]];
+    NSString *imageURL = _imageURLArray[indexPath.row];
+    imageURL = [imageURL stringByAppendingString:@"&size=100x100"];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL]];
     
     return cell;
 }
@@ -94,7 +99,7 @@ static NSString * const reuseIdentifier = @"JGCollectionCell";
     for (NSString *imageURL in _imageURLArray) {
         
         JGPhoto *photo = [[JGPhoto alloc] init];
-        photo.url = [NSURL URLWithString:[imageURL substringToIndex:[imageURL rangeOfString:@"&"].location]];
+        photo.url = [NSURL URLWithString:imageURL];
         photo.srcImageView = ((JGCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]]).imageView;
         [photoArray addObject:photo];
         

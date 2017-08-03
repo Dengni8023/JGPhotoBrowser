@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JGPhotoBrowser"
-  s.version      = "1.1.2"
+  s.version      = "1.2.0"
   s.summary      = "The easiest lightest way to use PhotoBrowser. Modified from Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser) ."
 
   # This description is used to generate tags and improve search results.
@@ -135,7 +135,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency "SDWebImage", "~> 4.0"
+  s.dependency "SDWebImage/GIF"
   s.dependency "SVProgressHUD", "~> 2.1"
-  s.dependency "YLGIFImage", "~> 0.11"
 
 end

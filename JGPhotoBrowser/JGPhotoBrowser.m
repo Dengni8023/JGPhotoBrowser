@@ -9,7 +9,7 @@
 #import "JGPhotoBrowser.h"
 #import "JGPhotoView.h"
 #import "JGPhotoToolbar.h"
-#import <SDWebImage/SDWebImagePrefetcher.h>
+#import <SDWebImage/FLAnimatedImageView+WebCache.h>
 
 #define kPadding 10
 #define kPhotoViewTagOffset 1000
@@ -35,7 +35,7 @@
  */
 static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
-#pragma mark - init M
+#pragma mark - init & dealloc
 - (instancetype)init {
     
     self = [super init];
@@ -56,10 +56,11 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     
 }
 
-#pragma mark - get M
+#pragma mark - get
 - (UIView *)view {
     
     if (!_view) {
+        
         _view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
         _view.backgroundColor = [UIColor blackColor];
     }
@@ -115,6 +116,7 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
             _reusablePhotoViews = [NSMutableSet set];
         }
         self.toolbar.photos = self.photos;
+        self.toolbar.showSaveBtn = _showSaveBtn;
         
         CGRect frame = self.view.bounds;
         frame.origin.x -= kPadding;

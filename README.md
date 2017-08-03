@@ -25,3 +25,8 @@ https://github.com/Sunnyyoung/MJPhotoBrowser
 1. 目录结构修改
 2. 优化内存管理模式
 3. JGPhotoView属性photoViewDelegate修改为weak修饰，修复内存问题
+
+### 1.1.2
+
+1. GIF播放支持
+2. JGPhotoToolbar添加元素优化，避免重复添加

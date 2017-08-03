@@ -1,19 +1,25 @@
+source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '7.0'
+inhibit_all_warnings!
+use_frameworks!
 
+# workspace
 workspace "JGPhotoBrowser"
 
+# platform
+platform :ios, '8.0'
+
+# target
 target "JGPhotoBrowser" do
 
 # Asynchronous image downloader with cache support with an UIImageView category
 pod 'SDWebImage', '~> 4.0' # https://github.com/rs/SDWebImage
+pod 'SDWebImage/GIF' # GIF image，use FLAnimatedImageView instead of UIImageView
 
 # A clean and lightweight progress HUD for your iOS and tvOS app
 pod 'SVProgressHUD', '~> 2.1' # https://github.com/SVProgressHUD/SVProgressHUD
 
-# Async GIF Image decoder and ImageView which supports playing GIF image.
-pod 'YLGIFImage', '~> 0.11' # https://github.com/liyong03/YLGIFImage
-
+# project
 project "JGPhotoBrowserExample/JGPhotoBrowserExample.xcodeproj"
 
 end

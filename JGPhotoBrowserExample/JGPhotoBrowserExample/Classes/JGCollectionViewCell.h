@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FLAnimatedImage/FLAnimatedImageView.h>
 
 @interface JGCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet FLAnimatedImageView *imageView;
 
 @end
