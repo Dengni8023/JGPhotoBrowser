@@ -145,7 +145,7 @@
         ESWeak_(photoLoadingView);
         ESWeak_(imgViewWithGIF);
         
-        [imgViewWithGIF sd_setImageWithURL:_photo.url placeholderImage:_photo.image options:(SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageHandleCookies | SDWebImageTransformAnimatedImage) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        [imgViewWithGIF sd_setImageWithURL:_photo.url placeholderImage:_photo.image ?: _photo.placeholder options:(SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageHandleCookies | SDWebImageTransformAnimatedImage) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
             ESStrong_(photoLoadingView);
             if (receivedSize > kMinProgress) {

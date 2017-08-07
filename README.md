@@ -26,7 +26,13 @@ https://github.com/Sunnyyoung/MJPhotoBrowser
 2. 优化内存管理模式
 3. JGPhotoView属性photoViewDelegate修改为weak修饰，修复内存问题
 
-### 1.1.2
+### 1.2.0
 
-1. GIF播放支持
-2. JGPhotoToolbar添加元素优化，避免重复添加
+1. 最低版本要求iOS 8
+2. GIF播放支持
+3. JGPhotoToolbar添加元素优化，避免重复添加
+
+### 1.2.1
+
+1. 图片保存方式修改，支持GIF保存
+2. 大图浏览默认图导致黑屏问题

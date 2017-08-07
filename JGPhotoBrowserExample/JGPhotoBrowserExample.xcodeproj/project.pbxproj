@@ -601,6 +601,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/FLAnimatedImage\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+					"$(BUILT_PRODUCTS_DIR)/PodFiles",
 				);
 				INFOPLIST_FILE = JGPhotoBrowser/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -631,6 +632,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/FLAnimatedImage\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+					"$(BUILT_PRODUCTS_DIR)/PodFiles",
 				);
 				INFOPLIST_FILE = JGPhotoBrowser/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

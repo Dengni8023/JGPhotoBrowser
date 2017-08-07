@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JGPhotoBrowser"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "The easiest lightest way to use PhotoBrowser. Modified from Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser) ."
 
   # This description is used to generate tags and improve search results.

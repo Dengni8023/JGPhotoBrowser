@@ -12,10 +12,10 @@
 
 @interface JGPhotoToolbar() {
     
-    // 显示页码
-    UILabel *_indexLabel;
-    UIButton *_saveImageBtn;
 }
+
+@property (nonatomic, strong) UILabel *indexLabel;
+@property (nonatomic, strong) UIButton *saveImageBtn;
 
 @end
 
@@ -103,28 +103,76 @@
 #pragma mark - Save
 - (void)saveImage {
     
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        // 保存相片到相机胶卷
-        JGPhoto *photo = _photos[_currentPhotoIndex];
-        
-        UIImageWriteToSavedPhotosAlbum(photo.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        // 保存相片到相册
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        PHAuthorizationStatus authorizationStatus = [PHPhotoLibrary authorizationStatus];
+        if (authorizationStatus == PHAuthorizationStatusAuthorized) {
+            
+            [strongSelf saveShowingImageToPhotoLibrary];
+        }
+        else if (authorizationStatus == PHAuthorizationStatusNotDetermined) {
+            
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                
+                if (status == PHAuthorizationStatusAuthorized) {
+                    
+                    [strongSelf saveShowingImageToPhotoLibrary];
+                }
+                else {
+                    
+                    [SVProgressHUD showWithStatus:@"请在隐私设置界面，授权访问相册"];
+                }
+            }];
+        }
+        else {
+            
+            [SVProgressHUD showWithStatus:@"请在隐私设置界面，授权访问相册"];
+        }
     });
 }
 
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+- (void)saveShowingImageToPhotoLibrary {
     
-    if (error) {
+    __weak typeof(self) weakSelf = self;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         
-        [SVProgressHUD showErrorWithStatus:@"保存失败"];
-    }
-    else {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        JGPhoto *showPhoto = [strongSelf.photos objectAtIndex:strongSelf.currentPhotoIndex];
+        NSData *saveData = showPhoto.GIFImage.data ?: UIImageJPEGRepresentation(showPhoto.image, 1.f);
+        if ([PHAssetCreationRequest class]) {
+            
+            PHAssetCreationRequest *request = [PHAssetCreationRequest creationRequestForAsset];
+            [request addResourceWithType:PHAssetResourceTypePhoto data:saveData options:nil];
+        }
+        else {
+            
+            NSString *temporaryFileName = [NSProcessInfo processInfo].globallyUniqueString;
+            NSString *temporaryFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:temporaryFileName];
+            NSURL *temporaryFileURL = [NSURL fileURLWithPath:temporaryFilePath];
+            NSError *error = nil;
+            [saveData writeToURL:temporaryFileURL options:NSDataWritingAtomic error:&error];
+            
+            [PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:temporaryFileURL];
+            [[NSFileManager defaultManager] removeItemAtURL:temporaryFileURL error:nil];
+        }
         
-        JGPhoto *photo = _photos[_currentPhotoIndex];
-        photo.save = YES;
-        _saveImageBtn.enabled = NO;
-        [SVProgressHUD showSuccessWithStatus:@"成功保存到相册"];
-    }
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            BOOL saved = success && !error ? YES : NO;
+            JGPhoto *showPhoto = [strongSelf.photos objectAtIndex:strongSelf.currentPhotoIndex];
+            showPhoto.save = saved ? YES : NO;
+            strongSelf.saveImageBtn.enabled = !saved;
+            
+            [SVProgressHUD showSuccessWithStatus:saved ? @"成功保存到相册" : @"保存失败"];
+        });
+    }];
 }
 
 #pragma mark - End
