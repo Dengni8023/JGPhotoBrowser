@@ -1,6 +1,11 @@
 # JGPhotoBrowser
+
+ 图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)
  
-Modified from MJPhotoBrowser增强版 (https://github.com/Sunnyyoung/MJPhotoBrowser)
+ 功能包括：
+ 1、浏览图片大图，支持手势缩放
+ 2、支持图片保存、支持GIF图片保存
+ 3、增加图片介绍展示
 
 ## 来源
 
@@ -36,3 +41,10 @@ https://github.com/Sunnyyoung/MJPhotoBrowser
 
 1. 图片保存方式修改，支持GIF保存
 2. 大图浏览默认图导致黑屏问题
+
+### 1.2.2
+
+1. 移除对SVProgressHUD的依赖
+2. 增加图片介绍展示
+3. iPhone X支持
+4.  浏览图片屏蔽转屏操作

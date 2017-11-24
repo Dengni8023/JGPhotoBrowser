@@ -1,43 +1,32 @@
 //
 //  JGPhotoView.m
-//  JGPhotoBrowserExample
+//  JGPhotoBrowser
 //
-//  Created by 梅继高 on 2017/6/29.
-//  Copyright © 2017年 Jigao Mei. All rights reserved.
+//  Created by Mei Jigao on 2017/11/24.
+//  Copyright © 2017年 MeiJigao. All rights reserved.
 //
 
 #import "JGPhotoView.h"
-#import "JGPhotoLoadingView.h"
-#import <SDWebImage/FLAnimatedImageView+WebCache.h>
-#import <objc/runtime.h>
-
-#define ESWeak(var, weakVar) __weak __typeof(&*var) weakVar = var
-#define ESStrong_DoNotCheckNil(weakVar, _var) __typeof(&*weakVar) _var = weakVar
-#define ESStrong(weakVar, _var) ESStrong_DoNotCheckNil(weakVar, _var); if (!_var) return;
-
-#define ESWeak_(var) ESWeak(var, weak_##var);
-#define ESStrong_(var) ESStrong(weak_##var, _##var);
-
-/** defines a weak `self` named `__weakSelf` */
-#define ESWeakSelf      ESWeak(self, __weakSelf);
-/** defines a strong `self` named `_self` from `__weakSelf` */
-#define ESStrongSelf    ESStrong(__weakSelf, _self);
+#import "JGPhoto.h"
+#import "JGPhotoStatusView.h"
+#import "FLAnimatedImageView+WebCache.h"
+#import "JGSourceBase.h"
 
 @interface JGPhotoView () <UIScrollViewDelegate> {
     
     BOOL _zoomByDoubleTap;
     FLAnimatedImageView *imgViewWithGIF;
-    JGPhotoLoadingView *photoLoadingView;
+    JGPhotoStatusView *photoStatusView;
 }
 
 @end
 
 @implementation JGPhotoView
 
-#pragma mark - init & dealloc
-- (instancetype)initWithFrame:(CGRect)frame {
+#pragma mark - init
+- (instancetype)init {
     
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         
         self.clipsToBounds = YES;
@@ -48,14 +37,13 @@
         [self addSubview:imgViewWithGIF];
         
         // 进度条
-        photoLoadingView = [[JGPhotoLoadingView alloc] init];
+        photoStatusView = [[JGPhotoStatusView alloc] init];
         
         // 属性
         self.delegate = self;
-        //self.showsHorizontalScrollIndicator = NO;
-        //self.showsVerticalScrollIndicator = NO;
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = NO;
         self.decelerationRate = UIScrollViewDecelerationRateFast;
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         // 监听点击
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -74,10 +62,17 @@
 
 - (void)dealloc {
     
-    //NSLog(@"%s %zd :", __PRETTY_FUNCTION__, __LINE__);
+    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
     
     // 取消请求
     [imgViewWithGIF sd_setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
+}
+
+#pragma mark - View
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self adjustFrame];
 }
 
 #pragma mark - 显示图片
@@ -91,7 +86,9 @@
 
 - (void)adjustFrame {
     
-    if (imgViewWithGIF.image == nil) return;
+    if (imgViewWithGIF.image == nil) {
+        return;
+    }
     
     // 基本尺寸参数
     CGFloat boundsWidth = self.bounds.size.width;
@@ -101,9 +98,9 @@
     
     // 设置伸缩比例
     CGFloat imageScale = boundsWidth / imageWidth;
-    CGFloat minScale = MIN(1.0, imageScale);
+    CGFloat minScale = MIN(0.8, imageScale);
     
-    CGFloat maxScale = 2.0;
+    CGFloat maxScale = 3.0;
     if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
         maxScale = maxScale / [[UIScreen mainScreen] scale];
     }
@@ -122,13 +119,13 @@
     
     if (_photo.GIFImage) {
         
-        [photoLoadingView removeFromSuperview];
+        [photoStatusView removeFromSuperview];
         imgViewWithGIF.animatedImage = _photo.GIFImage;
         self.scrollEnabled = YES;
     }
     else if (_photo.image) {
         
-        [photoLoadingView removeFromSuperview];
+        [photoStatusView removeFromSuperview];
         imgViewWithGIF.image = _photo.image;
         self.scrollEnabled = YES;
     }
@@ -138,30 +135,25 @@
         self.scrollEnabled = NO;
         
         // 直接显示进度条
-        [photoLoadingView showLoading];
-        [self addSubview:photoLoadingView];
+        [photoStatusView showWithStatus:JGPhotoStatusLoading];
+        [self addSubview:photoStatusView];
         
-        ESWeakSelf;
-        ESWeak_(photoLoadingView);
-        ESWeak_(imgViewWithGIF);
-        
+        JGWeak(self);
+        JGWeak(photoStatusView);
         [imgViewWithGIF sd_setImageWithURL:_photo.url placeholderImage:_photo.image ?: _photo.placeholder options:(SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageHandleCookies | SDWebImageTransformAnimatedImage) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
-            ESStrong_(photoLoadingView);
-            if (receivedSize > kMinProgress) {
-                
+            if (receivedSize > JGPhotoLoadMinProgress) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    photoLoadingView.progress = (float)receivedSize/expectedSize;
+                    JGStrong(photoStatusView);
+                    photoStatusView.progress = (CGFloat)receivedSize / expectedSize;
                 });
             }
             
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
-            ESStrongSelf;
-            ESStrong_(imgViewWithGIF);
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [_self photoImageDidFinishLoad];
+                JGStrong(self);
+                [self photoImageDidFinishLoad];
             });
         }];
     }
@@ -174,17 +166,16 @@
         self.scrollEnabled = YES;
         _photo.GIFImage = imgViewWithGIF.animatedImage;
         _photo.image = imgViewWithGIF.image;
-        [photoLoadingView removeFromSuperview];
+        [photoStatusView removeFromSuperview];
         
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewImageFinishLoad:)]) {
-            
             [self.photoViewDelegate photoViewImageFinishLoad:self];
         }
     }
     else {
         
-        [self addSubview:photoLoadingView];
-        [photoLoadingView showFailure];
+        [self addSubview:photoStatusView];
+        [photoStatusView showWithStatus:JGPhotoStatusLoadFail];
     }
     
     // 设置缩放比例
@@ -225,23 +216,25 @@
     }
 }
 
-#pragma mark - 手势处理
-//单击隐藏
+#pragma mark - Gesture
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     
-    // 移除进度条
-    [photoLoadingView removeFromSuperview];
+    // 移除提示
+    [UIView animateWithDuration:0.2 animations:^{
+        photoStatusView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [photoStatusView removeFromSuperview];
+    }];
     
     // 通知代理
     if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
-        
         [self.photoViewDelegate photoViewSingleTap:self];
     }
 }
 
-//双击放大
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap {
     
+    //双击放大
     _zoomByDoubleTap = YES;
     if (self.zoomScale == self.maximumZoomScale) {
         

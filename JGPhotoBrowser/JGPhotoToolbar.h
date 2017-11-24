@@ -1,20 +1,37 @@
 //
 //  JGPhotoToolbar.h
-//  JGPhotoBrowserExample
+//  JGPhotoBrowser
 //
-//  Created by 梅继高 on 2017/6/29.
-//  Copyright © 2017年 Jigao Mei. All rights reserved.
+//  Created by Mei Jigao on 2017/11/24.
+//  Copyright © 2017年 MeiJigao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "JGPhoto.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class JGPhoto;
 
 @interface JGPhotoToolbar : UIView
 
-// 所有的图片对象
-@property (nonatomic, strong) NSArray<JGPhoto *> *photos;
-// 当前展示的图片索引
-@property (nonatomic, assign) NSUInteger currentPhotoIndex;
-@property (nonatomic, assign) NSUInteger showSaveBtn;
+/** 需要显示关闭按钮时，关闭按钮的回调，回调存在则显示关闭按钮，内部回调完成后则置空该回调 */
+@property (nonatomic, copy) void (^closeShowAction)(void);
+
+/** 显示保存按钮时，保存按钮的回调，如置空则不显示保存按钮，注意内存循环引用问题 */
+@property (nonatomic, copy) void (^saveShowPhotoAction)(NSInteger index);
+
+/** 是否显示保存按钮 */
+@property (nonatomic, assign) BOOL showSaveBtn;
+
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+
+- (instancetype)initWithPhotosCount:(NSInteger)count index:(NSInteger)curIndex;
+
+/** 更新当前显示序号及是否显示保存按钮 */
+- (void)changeCurrentIndex:(NSInteger)toIndex indexsaved:(BOOL)saved;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -1,23 +1,23 @@
 PODS:
   - FLAnimatedImage (1.0.12)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
-  - SDWebImage/GIF (4.0.0):
+  - JGSourceBase (0.0.1)
+  - SDWebImage (4.2.2):
+    - SDWebImage/Core (= 4.2.2)
+  - SDWebImage/Core (4.2.2)
+  - SDWebImage/GIF (4.2.2):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
-  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
-  - SDWebImage (~> 4.0)
+  - JGSourceBase (~> 0.0.1)
+  - SDWebImage (~> 4.2.0)
   - SDWebImage/GIF
-  - SVProgressHUD (~> 2.1)
 
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  JGSourceBase: e6fbd6a7e519789253c58569197ea789a8bb81cf
+  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
 
-PODFILE CHECKSUM: 19257254ed3a75e5c9fa220873aad0e51c636707
+PODFILE CHECKSUM: 550319f1d13369048e17b54e6b4839c9d67a7257
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

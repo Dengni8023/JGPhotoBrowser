@@ -1,19 +1,29 @@
 //
 //  JGPhotoToolbar.m
-//  JGPhotoBrowserExample
+//  JGPhotoBrowser
 //
-//  Created by 梅继高 on 2017/6/29.
-//  Copyright © 2017年 Jigao Mei. All rights reserved.
+//  Created by Mei Jigao on 2017/11/24.
+//  Copyright © 2017年 MeiJigao. All rights reserved.
 //
 
 #import "JGPhotoToolbar.h"
-#import <SVProgressHUD/SVProgressHUD.h>
-#import <Photos/Photos.h>
+#import "JGPhoto.h"
+#import "JGSourceBase.h"
+
+@interface JGPhotoToolClose : UIButton {
+    
+}
+
+@end
 
 @interface JGPhotoToolbar() {
     
 }
 
+@property (nonatomic, assign) NSInteger totalCount;
+@property (nonatomic, assign) NSUInteger currentIndex;
+
+@property (nonatomic, strong) JGPhotoToolClose *closeBtn;
 @property (nonatomic, strong) UILabel *indexLabel;
 @property (nonatomic, strong) UIButton *saveImageBtn;
 
@@ -21,44 +31,16 @@
 
 @implementation JGPhotoToolbar
 
-#pragma mark - init & dealloc
-- (instancetype)initWithFrame:(CGRect)frame {
+#pragma mark - init
+- (instancetype)initWithPhotosCount:(NSInteger)count index:(NSInteger)curIndex {
     
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         
-        // 页码
-        _indexLabel = [[UILabel alloc] init];
-        _indexLabel.font = [UIFont boldSystemFontOfSize:20];
-        _indexLabel.frame = self.bounds;
-        _indexLabel.backgroundColor = [UIColor clearColor];
-        _indexLabel.textColor = [UIColor whiteColor];
-        _indexLabel.textAlignment = NSTextAlignmentCenter;
-        _indexLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self addSubview:_indexLabel];
-        _indexLabel.hidden = YES;
+        _totalCount = count;
+        _currentIndex = curIndex;
         
-        // 保存图片按钮
-        CGFloat btnWidth = frame.size.height;
-        _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _saveImageBtn.frame = CGRectMake(20, 0, btnWidth, btnWidth);
-        _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        
-        // 动态framework打包bundle在framework内
-        // 动态framework打包bundle在taraget内
-        NSBundle *parentBundle = [NSBundle bundleForClass:[self class]];
-        NSString *resBundlePath = [parentBundle pathForResource:@"JGPhotoBrowser" ofType:@"bundle"];
-        if (resBundlePath) {
-            
-            NSBundle *imageBundle = [NSBundle bundleWithPath:resBundlePath];
-            
-            [_saveImageBtn setImage:[UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"save_icon" ofType:@"png"]] forState:UIControlStateNormal];
-            [_saveImageBtn setImage:[UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"save_icon_highlighted" ofType:@"png"]] forState:UIControlStateHighlighted];
-        }
-        
-        [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_saveImageBtn];
-        _saveImageBtn.hidden = YES;
+        [self setupViewElements];
     }
     
     return self;
@@ -66,115 +48,147 @@
 
 - (void)dealloc {
     
-    //NSLog(@"%s %zd :", __PRETTY_FUNCTION__, __LINE__);
+    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
-#pragma mark - Photos
-- (void)setPhotos:(NSArray *)photos {
+#pragma mark - View
+- (void)setupViewElements {
     
-    _photos = photos;
-    _indexLabel.hidden = _photos.count <= 1;
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.28];
+    
+    // 关闭
+    _closeBtn = [JGPhotoToolClose buttonWithType:UIButtonTypeCustom];
+    [_closeBtn addTarget:self action:@selector(closeShow:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_closeBtn];
+    _closeBtn.hidden = YES;
+    
+    // 页码
+    _indexLabel = [[UILabel alloc] init];
+    _indexLabel.backgroundColor = [UIColor clearColor];
+    _indexLabel.font = [UIFont systemFontOfSize:18];
+    _indexLabel.textColor = [UIColor whiteColor];
+    _indexLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_indexLabel];
+    _indexLabel.hidden = _totalCount <= 1;
     
     // 保存图片按钮
-    CGFloat btnWidth = self.bounds.size.height;
-    _saveImageBtn.frame = CGRectMake(20, 0, btnWidth, btnWidth);
-    _saveImageBtn.hidden = !_showSaveBtn;
+    _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _saveImageBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [_saveImageBtn setTitleColor:_indexLabel.textColor forState:UIControlStateNormal];
+    [_saveImageBtn setTitle:@"保存" forState:UIControlStateNormal];
+    [_saveImageBtn addTarget:self action:@selector(saveImage:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_saveImageBtn];
+    _saveImageBtn.hidden = YES;
 }
 
-- (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex {
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    // btn
+    [_saveImageBtn sizeToFit];
+    CGRect btnFrame = _saveImageBtn.frame;
+    btnFrame.size.width = CGRectGetWidth(btnFrame) + 8 * 2;
+    btnFrame.size.height = CGRectGetHeight(btnFrame) + 4 * 2;
+    btnFrame.origin.x = CGRectGetWidth(self.bounds) - 20 - CGRectGetWidth(btnFrame);
+    btnFrame.origin.y = (CGRectGetHeight(self.bounds) - CGRectGetHeight(btnFrame)) * 0.5;
+    _saveImageBtn.frame = btnFrame;
+    
+    // index
+    [_indexLabel sizeToFit];
+    CGRect indexFrame = _indexLabel.frame;
+    CGFloat btnMinX = CGRectGetMinX(btnFrame);
+    indexFrame.size.width = MIN(CGRectGetWidth(_indexLabel.frame), btnMinX - (CGRectGetWidth(self.bounds) - btnMinX));
+    indexFrame.origin.x = (CGRectGetWidth(self.bounds) - CGRectGetWidth(indexFrame)) * 0.5;
+    indexFrame.origin.y = (CGRectGetHeight(self.bounds) - CGRectGetHeight(indexFrame)) * 0.5;
+    _indexLabel.frame = indexFrame;
+    
+    // clsoe
+    _closeBtn.frame = CGRectMake(20, (CGRectGetHeight(self.bounds) - CGRectGetHeight(btnFrame)) * 0.5, CGRectGetHeight(btnFrame), CGRectGetHeight(btnFrame));
+}
+
+#pragma mark - Index
+- (void)changeCurrentIndex:(NSInteger)toIndex indexsaved:(BOOL)saved {
     
     // 更新页码
-    _currentPhotoIndex = currentPhotoIndex;
-    _indexLabel.text = [NSString stringWithFormat:@"%d / %d", (int)_currentPhotoIndex + 1, (int)_photos.count];
+    _currentIndex = toIndex;
+    _indexLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex + 1, _totalCount];
     
     // 按钮
-    _saveImageBtn.hidden = !_showSaveBtn;
-    JGPhoto *photo = _photos[_currentPhotoIndex];
-    _saveImageBtn.enabled = photo.image != nil && !photo.save;
+    [self setShowSaveBtn:!saved];
+    [self setNeedsLayout];
 }
 
-- (void)setShowSaveBtn:(NSUInteger)showSaveBtn {
+- (void)setCloseShowAction:(void (^)(void))closeShowAction {
     
-    // 按钮
+    _closeShowAction = closeShowAction;
+    _closeBtn.hidden = !_closeShowAction;
+}
+
+- (void)setSaveShowPhotoAction:(void (^)(NSInteger))saveShowPhotoAction {
+    
+    _saveShowPhotoAction = saveShowPhotoAction;
+    _saveImageBtn.hidden = (!_showSaveBtn || !_saveShowPhotoAction);
+}
+
+- (void)setShowSaveBtn:(BOOL)showSaveBtn {
+    
     _showSaveBtn = showSaveBtn;
-    _saveImageBtn.hidden = !_showSaveBtn;
+    _saveImageBtn.hidden = (!_showSaveBtn || !_saveShowPhotoAction);
 }
 
-#pragma mark - Save
-- (void)saveImage {
+#pragma mark - Action
+- (void)closeShow:(JGPhotoToolClose *)sender {
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        // 保存相片到相册
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        PHAuthorizationStatus authorizationStatus = [PHPhotoLibrary authorizationStatus];
-        if (authorizationStatus == PHAuthorizationStatusAuthorized) {
-            
-            [strongSelf saveShowingImageToPhotoLibrary];
-        }
-        else if (authorizationStatus == PHAuthorizationStatusNotDetermined) {
-            
-            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                
-                if (status == PHAuthorizationStatusAuthorized) {
-                    
-                    [strongSelf saveShowingImageToPhotoLibrary];
-                }
-                else {
-                    
-                    [SVProgressHUD showWithStatus:@"请在隐私设置界面，授权访问相册"];
-                }
-            }];
-        }
-        else {
-            
-            [SVProgressHUD showWithStatus:@"请在隐私设置界面，授权访问相册"];
-        }
-    });
+    if (_closeShowAction) {
+        _closeShowAction();
+        _closeShowAction = nil;
+    }
 }
 
-- (void)saveShowingImageToPhotoLibrary {
+- (void)saveImage:(UIButton *)sender {
     
-    __weak typeof(self) weakSelf = self;
-    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        JGPhoto *showPhoto = [strongSelf.photos objectAtIndex:strongSelf.currentPhotoIndex];
-        NSData *saveData = showPhoto.GIFImage.data ?: UIImageJPEGRepresentation(showPhoto.image, 1.f);
-        if ([PHAssetCreationRequest class]) {
-            
-            PHAssetCreationRequest *request = [PHAssetCreationRequest creationRequestForAsset];
-            [request addResourceWithType:PHAssetResourceTypePhoto data:saveData options:nil];
-        }
-        else {
-            
-            NSString *temporaryFileName = [NSProcessInfo processInfo].globallyUniqueString;
-            NSString *temporaryFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:temporaryFileName];
-            NSURL *temporaryFileURL = [NSURL fileURLWithPath:temporaryFilePath];
-            NSError *error = nil;
-            [saveData writeToURL:temporaryFileURL options:NSDataWritingAtomic error:&error];
-            
-            [PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:temporaryFileURL];
-            [[NSFileManager defaultManager] removeItemAtURL:temporaryFileURL error:nil];
-        }
-        
-    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            
-            BOOL saved = success && !error ? YES : NO;
-            JGPhoto *showPhoto = [strongSelf.photos objectAtIndex:strongSelf.currentPhotoIndex];
-            showPhoto.save = saved ? YES : NO;
-            strongSelf.saveImageBtn.enabled = !saved;
-            
-            [SVProgressHUD showSuccessWithStatus:saved ? @"成功保存到相册" : @"保存失败"];
-        });
-    }];
+    if (_saveShowPhotoAction) {
+        _saveShowPhotoAction(_currentIndex);
+    }
 }
 
 #pragma mark - End
+
+@end
+
+@implementation JGPhotoToolClose
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    CGFloat centerX = CGRectGetWidth(self.frame) * 0.5, circleY = CGRectGetHeight(self.frame) * 0.5, strokeWidth = 1.5;
+    CGFloat radius = CGRectGetWidth(self.frame) * 0.5, closeDis = radius * 0.5 * sin(M_PI_4);
+    CGFloat closeMinX = centerX - closeDis, closeMaxX = centerX + closeDis;
+    CGFloat closeMinY = circleY - closeDis, closeMaxY = circleY + closeDis;
+    
+    // 绘制参数
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextSetLineWidth(ctx, strokeWidth);
+    CGContextSetLineCap(ctx, kCGLineCapRound);
+    CGContextSetShouldAntialias(ctx, true);
+    
+    // 绘制圆，半径处理，否则边界被切
+    //CGContextAddArc(ctx, centerX, circleY, radius - strokeWidth * 0.5, 0, M_PI * 2, true);
+    
+    // 绘制圆中心叉
+    CGContextMoveToPoint(ctx, closeMinX, closeMinY);
+    CGContextAddLineToPoint(ctx, closeMaxX, closeMaxY);
+    CGContextMoveToPoint(ctx, closeMinX, closeMaxY);
+    CGContextAddLineToPoint(ctx, closeMaxX, closeMinY);
+    
+    CGContextStrokePath(ctx);
+}
 
 @end

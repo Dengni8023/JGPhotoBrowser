@@ -2,13 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:README.md">
-   </FileRef>
-   <FileRef
-      location = "group:JGPhotoBrowser.podspec">
-   </FileRef>
-   <FileRef
-      location = "group:JGPhotoBrowserExample/JGPhotoBrowserExample.xcodeproj">
+      location = "group:JGPhotoBrowser.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

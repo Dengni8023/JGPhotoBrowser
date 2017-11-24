@@ -1,14 +1,21 @@
 //
 //  JGPhoto.m
-//  JGPhotoBrowserExample
+//  JGPhotoBrowser
 //
-//  Created by 梅继高 on 2017/6/29.
-//  Copyright © 2017年 Jigao Mei. All rights reserved.
+//  Created by Mei Jigao on 2017/11/24.
+//  Copyright © 2017年 MeiJigao. All rights reserved.
 //
 
 #import "JGPhoto.h"
+#import "JGSourceBase.h"
 
 @implementation JGPhoto
+
+#pragma mark - init
+- (void)dealloc {
+    
+    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+}
 
 #pragma mark 截图
 - (UIImage *)capture:(UIView *)view {
@@ -30,5 +37,7 @@
         _capture = [self capture:srcImageView];
     }
 }
+
+#pragma mark - End
 
 @end
