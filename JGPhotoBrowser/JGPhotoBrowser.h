@@ -16,5 +16,10 @@ FOUNDATION_EXPORT const unsigned char JGPhotoBrowserVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <JGPhotoBrowser/PublicHeader.h>
 
-#import "JGPhoto.h"
+#if __has_include(<JGPhotoBrowser/JGPhotoBrowserImpl.h>)
+#import <JGPhotoBrowser/JGPhotoBrowserImpl.h>
+#import <JGPhotoBrowser/JGPhoto.h>
+#else
 #import "JGPhotoBrowserImpl.h"
+#import "JGPhoto.h"
+#endif

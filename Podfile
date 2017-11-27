@@ -14,7 +14,7 @@ platform :ios, '8.0'
 target "JGPhotoBrowser" do
     
     # JGSourceBase
-    pod 'JGSourceBase', "~> 0.0.1"
+    pod 'JGSourceBase', "~> 0.0.2"
     
     # Asynchronous image downloader with cache support with an UIImageView category
     pod 'SDWebImage', '~> 4.2.2' # https://github.com/rs/SDWebImage

@@ -2,7 +2,7 @@
 //  JGSourceCommon.h
 //  JGSourceBase
 //
-//  Created by Mei Jigao on 2017/11/16.
+//  Created by Mei Jigao on 2017/11/24.
 //  Copyright © 2017年 MeiJigao. All rights reserved.
 //
 
@@ -29,22 +29,22 @@ FOUNDATION_EXPORT void JGEnableLogWithMode(JGLogMode mode);
 #define JGLogFile(fmt, ...)     NSLog((@"\n\nFile:\t%@\nFunc:\t%s\nLine:\t%zd\n" fmt "\n "), [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
 #define JGLog(fmt, ...) {\
-    switch (JGEnableLogMode) {\
-        case JGLogModeLog:\
-            JGLogOnly(fmt, ##__VA_ARGS__);\
-            break;\
-        case JGLogModeFunc:\
-            JGLogFunc(fmt, ##__VA_ARGS__);\
-            break;\
-        case JGLogModePretty:\
-            JGLogPretty(fmt, ##__VA_ARGS__);\
-            break;\
-        case JGLogModeFile:\
-            JGLogFile(fmt, ##__VA_ARGS__);\
-            break;\
-        case JGLogModeNone:\
-            break;\
-    }\
+switch (JGEnableLogMode) {\
+case JGLogModeLog:\
+JGLogOnly(fmt, ##__VA_ARGS__);\
+break;\
+case JGLogModeFunc:\
+JGLogFunc(fmt, ##__VA_ARGS__);\
+break;\
+case JGLogModePretty:\
+JGLogPretty(fmt, ##__VA_ARGS__);\
+break;\
+case JGLogModeFile:\
+JGLogFile(fmt, ##__VA_ARGS__);\
+break;\
+case JGLogModeNone:\
+break;\
+}\
 }
 
 // Reuse identifier
