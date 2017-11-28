@@ -36,8 +36,6 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
-    _progress = 0.6;
-    
     CGFloat pathWidth = 8;
     CGPoint centerPoint = CGPointMake(rect.size.height * 0.5, rect.size.width * 0.5);
     CGFloat radius = MIN(rect.size.height, rect.size.width) * 0.5 - pathWidth * 0.5;
