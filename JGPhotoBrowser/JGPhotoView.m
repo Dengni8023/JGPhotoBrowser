@@ -24,9 +24,9 @@
 @implementation JGPhotoView
 
 #pragma mark - init
-- (instancetype)init {
+- (instancetype)initWithFrame:(CGRect)frame {
     
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
         
         self.clipsToBounds = YES;
@@ -69,11 +69,11 @@
 }
 
 #pragma mark - View
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    [self adjustFrame];
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//
+//    [self adjustFrame];
+//}
 
 #pragma mark - 显示图片
 - (void)setPhoto:(JGPhoto *)photo {
