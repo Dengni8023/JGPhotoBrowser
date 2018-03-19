@@ -14,7 +14,7 @@
 #pragma mark - init
 - (void)dealloc {
     
-    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark 截图
@@ -31,7 +31,7 @@
 - (void)setSrcImageView:(UIImageView *)srcImageView {
     
     _srcImageView = srcImageView;
-    _placeholder = srcImageView.image;
+    _placeholder = self.placeholder ?: srcImageView.image;
     if (srcImageView.clipsToBounds) {
         
         _capture = [self capture:srcImageView];

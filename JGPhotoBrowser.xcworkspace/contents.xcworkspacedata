@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:JGPhotoBrowserDemo/JGPhotoBrowserDemo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:JGPhotoBrowser.xcodeproj">
    </FileRef>
    <FileRef

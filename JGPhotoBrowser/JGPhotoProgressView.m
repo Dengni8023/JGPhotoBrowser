@@ -29,7 +29,7 @@
 #pragma mark - init
 - (void)dealloc {
     
-    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - Draw

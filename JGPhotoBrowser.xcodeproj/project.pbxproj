@@ -7,16 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		337BB49648F9130ED05444E9 /* Pods_JGPhotoBrowserDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4734013114FF4D687E3B3A4A /* Pods_JGPhotoBrowserDemo.framework */; };
 		D4C9BC331FC868C3003D0976 /* JGPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C9BC311FC868C3003D0976 /* JGPhotoBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D4C9BC411FC8690F003D0976 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C9BC401FC8690F003D0976 /* AppDelegate.m */; };
-		D4C9BC491FC8690F003D0976 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C9BC481FC8690F003D0976 /* Assets.xcassets */; };
-		D4C9BC4C1FC8690F003D0976 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C9BC4A1FC8690F003D0976 /* LaunchScreen.storyboard */; };
-		D4C9BC4F1FC8690F003D0976 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C9BC4E1FC8690F003D0976 /* main.m */; };
-		D4C9BC531FC86920003D0976 /* JGPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C9BC2E1FC868C3003D0976 /* JGPhotoBrowser.framework */; };
-		D4C9BC541FC86920003D0976 /* JGPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4C9BC2E1FC868C3003D0976 /* JGPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D4C9BC5B1FC86954003D0976 /* JGPhotoBrowserDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C9BC5A1FC86954003D0976 /* JGPhotoBrowserDemo.m */; };
-		D4C9BC5E1FC86968003D0976 /* JGPhotoBrowserDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C9BC5D1FC86968003D0976 /* JGPhotoBrowserDemoCell.m */; };
 		D4C9BC631FC86A2A003D0976 /* JGPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C9BC611FC86A2A003D0976 /* JGPhoto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4C9BC641FC86A2A003D0976 /* JGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C9BC621FC86A2A003D0976 /* JGPhoto.m */; };
 		D4C9BC691FC86A64003D0976 /* JGPhotoExtraBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C9BC671FC86A64003D0976 /* JGPhotoExtraBar.h */; };
@@ -34,32 +25,7 @@
 		DA508D58BB5D688CD182BE9D /* Pods_JGPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC12AD138B0D06356217DBB /* Pods_JGPhotoBrowser.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D4C9BC551FC86920003D0976 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D4C9BC251FC868C3003D0976 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D4C9BC2D1FC868C3003D0976;
-			remoteInfo = JGPhotoBrowser;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D4C9BC571FC86920003D0976 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D4C9BC541FC86920003D0976 /* JGPhotoBrowser.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		03E310F06AF0AA1B2B002D0D /* Pods-JGPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		380F61052F8B6B8B553A1CC1 /* Pods-JGPhotoBrowserDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowserDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		4734013114FF4D687E3B3A4A /* Pods_JGPhotoBrowserDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGPhotoBrowserDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D729754F13BC94FDA2CAE3B /* Pods-JGPhotoBrowserDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowserDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,18 +33,7 @@
 		D4C9BC2E1FC868C3003D0976 /* JGPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C9BC311FC868C3003D0976 /* JGPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowser.h; sourceTree = "<group>"; };
 		D4C9BC321FC868C3003D0976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4C9BC3D1FC8690F003D0976 /* JGPhotoBrowserDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JGPhotoBrowserDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4C9BC3F1FC8690F003D0976 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D4C9BC401FC8690F003D0976 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D4C9BC481FC8690F003D0976 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D4C9BC4B1FC8690F003D0976 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D4C9BC4D1FC8690F003D0976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4C9BC4E1FC8690F003D0976 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D4C9BC591FC86954003D0976 /* JGPhotoBrowserDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowserDemo.h; sourceTree = "<group>"; };
-		D4C9BC5A1FC86954003D0976 /* JGPhotoBrowserDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPhotoBrowserDemo.m; sourceTree = "<group>"; };
-		D4C9BC5C1FC86968003D0976 /* JGPhotoBrowserDemoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowserDemoCell.h; sourceTree = "<group>"; };
-		D4C9BC5D1FC86968003D0976 /* JGPhotoBrowserDemoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPhotoBrowserDemoCell.m; sourceTree = "<group>"; };
-		D4C9BC5F1FC869B7003D0976 /* JGPhotoBrowser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JGPhotoBrowser.podspec; sourceTree = "<group>"; };
+		D4C9BC5F1FC869B7003D0976 /* JGPhotoBrowser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JGPhotoBrowser.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D4C9BC601FC869B7003D0976 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D4C9BC611FC86A2A003D0976 /* JGPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhoto.h; sourceTree = "<group>"; };
 		D4C9BC621FC86A2A003D0976 /* JGPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPhoto.m; sourceTree = "<group>"; };
@@ -94,7 +49,6 @@
 		D4C9BC781FC86AD1003D0976 /* JGPhotoToolbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPhotoToolbar.m; sourceTree = "<group>"; };
 		D4C9BC7B1FC86AE4003D0976 /* JGPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhotoView.h; sourceTree = "<group>"; };
 		D4C9BC7C1FC86AE4003D0976 /* JGPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPhotoView.m; sourceTree = "<group>"; };
-		FFAEDB4313DDD1DA3F57F2DD /* Pods-JGPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,15 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA508D58BB5D688CD182BE9D /* Pods_JGPhotoBrowser.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4C9BC3A1FC8690F003D0976 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4C9BC531FC86920003D0976 /* JGPhotoBrowser.framework in Frameworks */,
-				337BB49648F9130ED05444E9 /* Pods_JGPhotoBrowserDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,8 +75,6 @@
 		9B87496016A836A034DB5F9A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				03E310F06AF0AA1B2B002D0D /* Pods-JGPhotoBrowser.debug.xcconfig */,
-				FFAEDB4313DDD1DA3F57F2DD /* Pods-JGPhotoBrowser.release.xcconfig */,
 				380F61052F8B6B8B553A1CC1 /* Pods-JGPhotoBrowserDemo.debug.xcconfig */,
 				8D729754F13BC94FDA2CAE3B /* Pods-JGPhotoBrowserDemo.release.xcconfig */,
 			);
@@ -144,7 +87,6 @@
 				D4C9BC5F1FC869B7003D0976 /* JGPhotoBrowser.podspec */,
 				D4C9BC601FC869B7003D0976 /* README.md */,
 				D4C9BC301FC868C3003D0976 /* JGPhotoBrowser */,
-				D4C9BC3E1FC8690F003D0976 /* JGPhotoBrowserDemo */,
 				D4C9BC2F1FC868C3003D0976 /* Products */,
 				9B87496016A836A034DB5F9A /* Pods */,
 				45770CF97627CFDBB69CE355 /* Frameworks */,
@@ -155,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				D4C9BC2E1FC868C3003D0976 /* JGPhotoBrowser.framework */,
-				D4C9BC3D1FC8690F003D0976 /* JGPhotoBrowserDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,31 +122,6 @@
 				D4C9BC7C1FC86AE4003D0976 /* JGPhotoView.m */,
 			);
 			path = JGPhotoBrowser;
-			sourceTree = "<group>";
-		};
-		D4C9BC3E1FC8690F003D0976 /* JGPhotoBrowserDemo */ = {
-			isa = PBXGroup;
-			children = (
-				D4C9BC581FC8693D003D0976 /* Classes */,
-				D4C9BC3F1FC8690F003D0976 /* AppDelegate.h */,
-				D4C9BC401FC8690F003D0976 /* AppDelegate.m */,
-				D4C9BC481FC8690F003D0976 /* Assets.xcassets */,
-				D4C9BC4A1FC8690F003D0976 /* LaunchScreen.storyboard */,
-				D4C9BC4D1FC8690F003D0976 /* Info.plist */,
-				D4C9BC4E1FC8690F003D0976 /* main.m */,
-			);
-			path = JGPhotoBrowserDemo;
-			sourceTree = "<group>";
-		};
-		D4C9BC581FC8693D003D0976 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				D4C9BC591FC86954003D0976 /* JGPhotoBrowserDemo.h */,
-				D4C9BC5A1FC86954003D0976 /* JGPhotoBrowserDemo.m */,
-				D4C9BC5C1FC86968003D0976 /* JGPhotoBrowserDemoCell.h */,
-				D4C9BC5D1FC86968003D0976 /* JGPhotoBrowserDemoCell.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,28 +165,6 @@
 			productReference = D4C9BC2E1FC868C3003D0976 /* JGPhotoBrowser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D4C9BC3C1FC8690F003D0976 /* JGPhotoBrowserDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4C9BC501FC8690F003D0976 /* Build configuration list for PBXNativeTarget "JGPhotoBrowserDemo" */;
-			buildPhases = (
-				A909068B3E69C71AC2B80524 /* [CP] Check Pods Manifest.lock */,
-				D4C9BC391FC8690F003D0976 /* Sources */,
-				D4C9BC3A1FC8690F003D0976 /* Frameworks */,
-				D4C9BC3B1FC8690F003D0976 /* Resources */,
-				D4C9BC571FC86920003D0976 /* Embed Frameworks */,
-				E75E2AEF4E4F74A270431FD0 /* [CP] Embed Pods Frameworks */,
-				7230ABDC328E298F61E61F89 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D4C9BC561FC86920003D0976 /* PBXTargetDependency */,
-			);
-			name = JGPhotoBrowserDemo;
-			productName = JGPhotoBrowserDemo;
-			productReference = D4C9BC3D1FC8690F003D0976 /* JGPhotoBrowserDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -281,10 +175,6 @@
 				ORGANIZATIONNAME = MeiJigao;
 				TargetAttributes = {
 					D4C9BC2D1FC868C3003D0976 = {
-						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
-					};
-					D4C9BC3C1FC8690F003D0976 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -304,7 +194,6 @@
 			projectRoot = "";
 			targets = (
 				D4C9BC2D1FC868C3003D0976 /* JGPhotoBrowser */,
-				D4C9BC3C1FC8690F003D0976 /* JGPhotoBrowserDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -317,33 +206,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4C9BC3B1FC8690F003D0976 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4C9BC4C1FC8690F003D0976 /* LaunchScreen.storyboard in Resources */,
-				D4C9BC491FC8690F003D0976 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7230ABDC328E298F61E61F89 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		73B7F60A6DD447F4974FA499 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,46 +242,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JGPhotoBrowser/Pods-JGPhotoBrowser-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A909068B3E69C71AC2B80524 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JGPhotoBrowserDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E75E2AEF4E4F74A270431FD0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
-				"${BUILT_PRODUCTS_DIR}/JGSourceBase/JGSourceBase.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGSourceBase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -434,37 +259,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4C9BC391FC8690F003D0976 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4C9BC4F1FC8690F003D0976 /* main.m in Sources */,
-				D4C9BC5B1FC86954003D0976 /* JGPhotoBrowserDemo.m in Sources */,
-				D4C9BC411FC8690F003D0976 /* AppDelegate.m in Sources */,
-				D4C9BC5E1FC86968003D0976 /* JGPhotoBrowserDemoCell.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D4C9BC561FC86920003D0976 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4C9BC2D1FC868C3003D0976 /* JGPhotoBrowser */;
-			targetProxy = D4C9BC551FC86920003D0976 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D4C9BC4A1FC8690F003D0976 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4C9BC4B1FC8690F003D0976 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D4C9BC341FC868C3003D0976 /* Debug */ = {
@@ -579,7 +374,6 @@
 		};
 		D4C9BC371FC868C3003D0976 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03E310F06AF0AA1B2B002D0D /* Pods-JGPhotoBrowser.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -600,7 +394,6 @@
 		};
 		D4C9BC381FC868C3003D0976 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFAEDB4313DDD1DA3F57F2DD /* Pods-JGPhotoBrowser.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -615,36 +408,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MeiJigao.JGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D4C9BC511FC8690F003D0976 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 380F61052F8B6B8B553A1CC1 /* Pods-JGPhotoBrowserDemo.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27ZN797VLM;
-				INFOPLIST_FILE = JGPhotoBrowserDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MeiJigao.JGPhotoBrowserDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D4C9BC521FC8690F003D0976 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D729754F13BC94FDA2CAE3B /* Pods-JGPhotoBrowserDemo.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27ZN797VLM;
-				INFOPLIST_FILE = JGPhotoBrowserDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MeiJigao.JGPhotoBrowserDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -666,15 +429,6 @@
 			buildConfigurations = (
 				D4C9BC371FC868C3003D0976 /* Debug */,
 				D4C9BC381FC868C3003D0976 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D4C9BC501FC8690F003D0976 /* Build configuration list for PBXNativeTarget "JGPhotoBrowserDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D4C9BC511FC8690F003D0976 /* Debug */,
-				D4C9BC521FC8690F003D0976 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

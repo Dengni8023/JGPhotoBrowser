@@ -12,6 +12,8 @@
 #import "FLAnimatedImageView+WebCache.h"
 #import "JGSourceBase.h"
 
+#define JGPhotoBrowserDeviceScale [UIScreen mainScreen].scale
+
 @interface JGPhotoView () <UIScrollViewDelegate> {
     
     BOOL _zoomByDoubleTap;
@@ -62,7 +64,7 @@
 
 - (void)dealloc {
     
-    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
     
     // 取消请求
     [imgViewWithGIF sd_setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
@@ -108,7 +110,7 @@
     self.minimumZoomScale = minScale;
     self.zoomScale = minScale;
     
-    CGRect imageFrame = CGRectMake(0, MAX(0, (boundsHeight- imageHeight*imageScale)/2), boundsWidth, imageHeight *imageScale);
+    CGRect imageFrame = CGRectMake(0, MAX(0, (boundsHeight- imageHeight*imageScale) * 0.5), boundsWidth, imageHeight *imageScale);
     
     self.contentSize = CGSizeMake(CGRectGetWidth(imageFrame), CGRectGetHeight(imageFrame));
     imgViewWithGIF.frame = imageFrame;
@@ -187,9 +189,9 @@
     
     if (_zoomByDoubleTap) {
         
-        CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(imgViewWithGIF.frame))/2;
+        CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(imgViewWithGIF.frame)) * 0.5;
         insetY = MAX(insetY, 0.0);
-        if (ABS(imgViewWithGIF.frame.origin.y - insetY) > 0.5) {
+        if (ABS(imgViewWithGIF.frame.origin.y - insetY) > (1.f / JGPhotoBrowserDeviceScale)) {
             
             CGRect imageViewFrame = imgViewWithGIF.frame;
             imageViewFrame = CGRectMake(imageViewFrame.origin.x, insetY, imageViewFrame.size.width, imageViewFrame.size.height);
@@ -203,9 +205,9 @@
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
     
     _zoomByDoubleTap = NO;
-    CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(imgViewWithGIF.frame))/2;
+    CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(imgViewWithGIF.frame)) * 0.5;
     insetY = MAX(insetY, 0.0);
-    if (ABS(imgViewWithGIF.frame.origin.y - insetY) > 0.5) {
+    if (ABS(imgViewWithGIF.frame.origin.y - insetY) > (1.f / JGPhotoBrowserDeviceScale)) {
         
         [UIView animateWithDuration:0.2 animations:^{
             
@@ -243,8 +245,8 @@
     else {
         
         CGPoint touchPoint = [tap locationInView:self];
-        CGFloat scale = self.maximumZoomScale/ self.zoomScale;
-        CGRect rectTozoom=CGRectMake(touchPoint.x * scale, touchPoint.y * scale, 1, 1);
+        CGFloat scale = self.maximumZoomScale / self.zoomScale;
+        CGRect rectTozoom = CGRectMake(touchPoint.x * scale, touchPoint.y * scale, 1, 1);
         [self zoomToRect:rectTozoom animated:YES];
     }
 }

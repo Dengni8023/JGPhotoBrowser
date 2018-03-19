@@ -85,7 +85,7 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
 - (void)dealloc {
     
-    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - Controller
@@ -171,9 +171,11 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
         
         BOOL topTool = [self photoHasExtraText];
         UIEdgeInsets safeInsets = [self viewSafeAreaInsets];
-        _toolbar.frame = CGRectMake(safeInsets.left, topTool ? safeInsets.top : (CGRectGetHeight(self.view.bounds) - safeInsets.bottom - 49), CGRectGetWidth(self.view.bounds) - safeInsets.left - safeInsets.right, topTool ? 44 : 49);
+        _toolbar.frame = CGRectMake(0, topTool ? safeInsets.top : (CGRectGetHeight(self.view.bounds) - 49 - safeInsets.bottom), CGRectGetWidth(self.view.bounds), topTool ? 44 : 49);
+        _toolbar.browserSafeAreaInsets = UIEdgeInsetsMake(topTool ? safeInsets.top : 0, 0, topTool ? 0 : safeInsets.bottom, 0);
         
-        _extraBar.frame = CGRectMake(safeInsets.left, (CGRectGetHeight(self.view.bounds) - safeInsets.bottom - 80), CGRectGetWidth(self.view.bounds) - safeInsets.left - safeInsets.right, 80);
+        _extraBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 80 - safeInsets.bottom, CGRectGetWidth(self.view.bounds), 80);
+        _extraBar.browserSafeAreaInsets = UIEdgeInsetsMake(0, 0, safeInsets.bottom, 0);
     }
 }
 
@@ -492,17 +494,16 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     if ([self photoHasExtraText]) {
         
         _showTools = !_showTools;
-        BOOL topTool = [self photoHasExtraText];
         UIEdgeInsets safeInsets = [self viewSafeAreaInsets];
         
-        CGFloat toolY = topTool ? safeInsets.top : (CGRectGetHeight(self.view.bounds) - safeInsets.bottom - CGRectGetHeight(_toolbar.frame));
-        CGFloat hideY = topTool ? -CGRectGetWidth(_toolbar.frame) : (CGRectGetHeight(self.view.bounds) - safeInsets.bottom);
-        CGFloat extraY = CGRectGetHeight(self.view.bounds) - (_showTools ? (CGRectGetHeight(self.extraBar.frame) + safeInsets.bottom) : 0);
+        CGFloat toolY = safeInsets.top, hideY = -(safeInsets.top + CGRectGetHeight(_toolbar.frame));
+        CGFloat extraY = CGRectGetHeight(self.view.bounds) - (CGRectGetHeight(self.extraBar.frame) + safeInsets.bottom);
+        CGFloat extraHideY = CGRectGetHeight(self.view.bounds);
         
         [UIView animateWithDuration:0.2 animations:^{
             
-            self.toolbar.frame = CGRectMake(safeInsets.left, self.showTools ? toolY : hideY, CGRectGetWidth(self.view.bounds) - safeInsets.left - safeInsets.right, CGRectGetHeight(self.toolbar.frame));
-            self.extraBar.frame = CGRectMake(safeInsets.left, extraY, CGRectGetWidth(self.view.bounds) - safeInsets.left - safeInsets.right, CGRectGetHeight(self.extraBar.frame));
+            self.toolbar.frame = CGRectMake(0, self.showTools ? toolY : hideY, CGRectGetWidth(self.toolbar.frame), CGRectGetHeight(self.toolbar.frame));
+            self.extraBar.frame = CGRectMake(0, self.showTools ? extraY : extraHideY, CGRectGetWidth(self.extraBar.frame), CGRectGetHeight(self.extraBar.frame));
         }];
     }
     else {

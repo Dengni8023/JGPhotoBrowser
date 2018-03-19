@@ -10,25 +10,12 @@ workspace "JGPhotoBrowser"
 # platform
 platform :ios, '8.0'
 
-# JGPhotoBrowser
-target "JGPhotoBrowser" do
-    
-    # JGSourceBase
-    pod 'JGSourceBase', "~> 0.0.2"
-    
-    # Asynchronous image downloader with cache support with an UIImageView category
-    pod 'SDWebImage', '~> 4.2.2' # https://github.com/rs/SDWebImage
-    pod 'SDWebImage/GIF' # GIF image，use FLAnimatedImageView instead of UIImageView
-    
-    # project
-    project "JGPhotoBrowser.xcodeproj"
-    
-end
-
-# Demo中必须保留，即使内部无任何Pod依赖，否则Demo中无法使用JGAlertController依赖的Pod库
 # JGNetworkReachabilityDemo
 target "JGPhotoBrowserDemo" do
     
+    # Local
+    pod 'JGPhotoBrowser', :path => "."
+    
     # project
-    project "JGPhotoBrowser.xcodeproj"
+    project "JGPhotoBrowserDemo/JGPhotoBrowserDemo.xcodeproj"
 end

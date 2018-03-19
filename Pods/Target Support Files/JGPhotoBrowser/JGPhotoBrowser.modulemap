@@ -1,0 +1,6 @@
+framework module JGPhotoBrowser {
+  umbrella header "JGPhotoBrowser-umbrella.h"
+
+  export *
+  module * { export * }
+}

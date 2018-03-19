@@ -1,6 +1,0 @@
-framework module Pods_JGPhotoBrowser {
-  umbrella header "Pods-JGPhotoBrowser-umbrella.h"
-
-  export *
-  module * { export * }
-}

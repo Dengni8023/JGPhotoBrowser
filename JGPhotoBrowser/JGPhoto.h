@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) FLAnimatedImage *GIFImage; // 完整的GIF图片
 
 @property (nonatomic, strong) UIImageView *srcImageView; // 来源view
-@property (nonatomic, strong, readonly) UIImage *placeholder; // srcImageView图片
+@property (nonatomic, strong) UIImage *placeholder; // 默认为srcImageView图片，可单独设置
 @property (nonatomic, strong, readonly) UIImage *capture; // 截图
 
 // 是否已经保存到相册，仅当次有效

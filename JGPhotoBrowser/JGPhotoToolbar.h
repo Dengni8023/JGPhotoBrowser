@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 是否显示保存按钮 */
 @property (nonatomic, assign) BOOL showSaveBtn;
 
+/** iOS 11 SafeArea适配，用于iOS 11顶部、底部适配 */
+@property (nonatomic, assign) UIEdgeInsets browserSafeAreaInsets;
+
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

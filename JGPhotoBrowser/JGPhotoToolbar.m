@@ -10,19 +10,16 @@
 #import "JGPhoto.h"
 #import "JGSourceBase.h"
 
-@interface JGPhotoToolClose : UIButton {
-    
-}
+@interface JGPhotoToolClose : UIButton
 
 @end
 
-@interface JGPhotoToolbar() {
-    
-}
+@interface JGPhotoToolbar()
 
 @property (nonatomic, assign) NSInteger totalCount;
 @property (nonatomic, assign) NSUInteger currentIndex;
 
+@property (nonatomic, strong) UIView *colorBgView;
 @property (nonatomic, strong) JGPhotoToolClose *closeBtn;
 @property (nonatomic, strong) UILabel *indexLabel;
 @property (nonatomic, strong) UIButton *saveImageBtn;
@@ -48,13 +45,16 @@
 
 - (void)dealloc {
     
-    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - View
 - (void)setupViewElements {
     
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.28];
+    // bg
+    _colorBgView = [[UIView alloc] init];
+    _colorBgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.28];
+    [self addSubview:_colorBgView];
     
     // 关闭
     _closeBtn = [JGPhotoToolClose buttonWithType:UIButtonTypeCustom];
@@ -84,6 +84,17 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    if (self.backgroundColor && ![self.backgroundColor isEqual:[UIColor clearColor]]) {
+        _colorBgView.backgroundColor = self.backgroundColor;
+        self.backgroundColor = nil;
+    }
+    
+    // bg
+    CGRect bgFrame = self.bounds;
+    bgFrame.origin.y -= _browserSafeAreaInsets.top;
+    bgFrame.size.height += (_browserSafeAreaInsets.top + _browserSafeAreaInsets.bottom);
+    _colorBgView.frame = bgFrame;
+    
     // btn
     [_saveImageBtn sizeToFit];
     CGRect btnFrame = _saveImageBtn.frame;
@@ -104,6 +115,11 @@
     
     // clsoe
     _closeBtn.frame = CGRectMake(20, (CGRectGetHeight(self.bounds) - CGRectGetHeight(btnFrame)) * 0.5, CGRectGetHeight(btnFrame), CGRectGetHeight(btnFrame));
+}
+
+- (void)setBrowserSafeAreaInsets:(UIEdgeInsets)browserSafeAreaInsets {
+    _browserSafeAreaInsets = browserSafeAreaInsets;
+    [self setNeedsLayout];
 }
 
 #pragma mark - Index

@@ -2,12 +2,12 @@
 //  AppDelegate.m
 //  JGPhotoBrowserDemo
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/3/19.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "JGPhotoBrowserDemo.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +20,8 @@
     
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    JGPhotoBrowserDemo *vcT = [[JGPhotoBrowserDemo alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vcT];
-    _window.rootViewController = nav;
+    ViewController *vcT = [[ViewController alloc] init];
+    _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vcT];
     
     [_window makeKeyAndVisible];
     
