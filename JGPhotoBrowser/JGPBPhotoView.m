@@ -1,29 +1,29 @@
 //
-//  JGPhotoView.m
+//  JGPBPhotoView.m
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import "JGPhotoView.h"
-#import "JGPhoto.h"
-#import "JGPhotoStatusView.h"
+#import "JGPBPhotoView.h"
+#import "JGPBPhoto.h"
+#import "JGPBStatusView.h"
 #import "FLAnimatedImageView+WebCache.h"
 #import "JGSourceBase.h"
 
-#define JGPhotoBrowserDeviceScale [UIScreen mainScreen].scale
+#define JGPBPhotoViewDeviceScale [UIScreen mainScreen].scale
 
-@interface JGPhotoView () <UIScrollViewDelegate> {
+@interface JGPBPhotoView () <UIScrollViewDelegate> {
     
     BOOL _zoomByDoubleTap;
     FLAnimatedImageView *imgViewWithGIF;
-    JGPhotoStatusView *photoStatusView;
+    JGPBStatusView *photoStatusView;
 }
 
 @end
 
-@implementation JGPhotoView
+@implementation JGPBPhotoView
 
 #pragma mark - init
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -39,7 +39,7 @@
         [self addSubview:imgViewWithGIF];
         
         // 进度条
-        photoStatusView = [[JGPhotoStatusView alloc] init];
+        photoStatusView = [[JGPBStatusView alloc] init];
         
         // 属性
         self.delegate = self;
@@ -64,7 +64,7 @@
 
 - (void)dealloc {
     
-    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
     
     // 取消请求
     [imgViewWithGIF sd_setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
@@ -78,7 +78,7 @@
 //}
 
 #pragma mark - 显示图片
-- (void)setPhoto:(JGPhoto *)photo {
+- (void)setPhoto:(JGPBPhoto *)photo {
     
     _photo = photo;
     
@@ -137,16 +137,16 @@
         self.scrollEnabled = NO;
         
         // 直接显示进度条
-        [photoStatusView showWithStatus:JGPhotoStatusLoading];
+        [photoStatusView showWithStatus:JGPBPhotoStatusLoading];
         [self addSubview:photoStatusView];
         
-        JGWeak(self);
-        JGWeak(photoStatusView);
+        JGSCWeak(self)
+        JGSCWeak(photoStatusView)
         [imgViewWithGIF sd_setImageWithURL:_photo.url placeholderImage:_photo.image ?: _photo.placeholder options:(SDWebImageRetryFailed | SDWebImageLowPriority | SDWebImageHandleCookies | SDWebImageTransformAnimatedImage) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
             if (receivedSize > JGPhotoLoadMinProgress) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    JGStrong(photoStatusView);
+                    JGSCStrong(photoStatusView);
                     photoStatusView.progress = (CGFloat)receivedSize / expectedSize;
                 });
             }
@@ -154,7 +154,7 @@
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                JGStrong(self);
+                JGSCStrong(self);
                 [self photoImageDidFinishLoad];
             });
         }];
@@ -177,7 +177,7 @@
     else {
         
         [self addSubview:photoStatusView];
-        [photoStatusView showWithStatus:JGPhotoStatusLoadFail];
+        [photoStatusView showWithStatus:JGPBPhotoStatusLoadFail];
     }
     
     // 设置缩放比例
@@ -191,7 +191,7 @@
         
         CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(imgViewWithGIF.frame)) * 0.5;
         insetY = MAX(insetY, 0.0);
-        if (ABS(imgViewWithGIF.frame.origin.y - insetY) > (1.f / JGPhotoBrowserDeviceScale)) {
+        if (ABS(imgViewWithGIF.frame.origin.y - insetY) > (1.f / JGPBPhotoViewDeviceScale)) {
             
             CGRect imageViewFrame = imgViewWithGIF.frame;
             imageViewFrame = CGRectMake(imageViewFrame.origin.x, insetY, imageViewFrame.size.width, imageViewFrame.size.height);
@@ -207,10 +207,12 @@
     _zoomByDoubleTap = NO;
     CGFloat insetY = (CGRectGetHeight(self.bounds) - CGRectGetHeight(imgViewWithGIF.frame)) * 0.5;
     insetY = MAX(insetY, 0.0);
-    if (ABS(imgViewWithGIF.frame.origin.y - insetY) > (1.f / JGPhotoBrowserDeviceScale)) {
+    if (ABS(imgViewWithGIF.frame.origin.y - insetY) > (1.f / JGPBPhotoViewDeviceScale)) {
         
+        JGSCWeak(imgViewWithGIF)
         [UIView animateWithDuration:0.2 animations:^{
             
+            JGSCStrong(imgViewWithGIF)
             CGRect imageViewFrame = imgViewWithGIF.frame;
             imageViewFrame = CGRectMake(imageViewFrame.origin.x, insetY, imageViewFrame.size.width, imageViewFrame.size.height);
             imgViewWithGIF.frame = imageViewFrame;
@@ -222,9 +224,12 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     
     // 移除提示
+    JGSCWeak(photoStatusView)
     [UIView animateWithDuration:0.2 animations:^{
+        JGSCStrong(photoStatusView)
         photoStatusView.alpha = 0;
     } completion:^(BOOL finished) {
+        JGSCStrong(photoStatusView)
         [photoStatusView removeFromSuperview];
     }];
     

@@ -84,7 +84,7 @@
 
 - (void)dealloc {
     
-    JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - Controller
@@ -96,7 +96,7 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     
-    [self.collectionView registerClass:[DemoCollectionViewCell class] forCellWithReuseIdentifier:JGReuseIdentifier(DemoCollectionViewCell)];
+    [self.collectionView registerClass:[DemoCollectionViewCell class] forCellWithReuseIdentifier:JGSCReuseIdentifier(DemoCollectionViewCell)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,7 +117,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    DemoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JGReuseIdentifier(DemoCollectionViewCell) forIndexPath:indexPath];
+    DemoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JGSCReuseIdentifier(DemoCollectionViewCell) forIndexPath:indexPath];
     
     // 七牛图片自定义裁剪压缩
     NSString *imageURL = _imageURLArray[indexPath.row];
@@ -130,10 +130,10 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    NSMutableArray<JGPhoto *> *photoArray = [NSMutableArray array];
+    NSMutableArray<JGPBPhoto *> *photoArray = [NSMutableArray array];
     [_imageURLArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        JGPhoto *photo = [[JGPhoto alloc] init];
+        JGPBPhoto *photo = [[JGPBPhoto alloc] init];
         photo.url = [NSURL URLWithString:obj];
         photo.placeholder = photoArray.count > 0 ? photoArray[0].placeholder : nil;
         photo.srcImageView = ((DemoCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]]).imageView;
@@ -141,7 +141,7 @@
         [photoArray addObject:photo];
     }];
     
-    JGPhotoBrowser *photoBrowser = [[JGPhotoBrowser alloc] initWithPhotos:photoArray.copy index:indexPath.row];
+    JGPBBrowserController *photoBrowser = [[JGPBBrowserController alloc] initWithPhotos:photoArray.copy index:indexPath.row];
     [photoBrowser show];
 }
 

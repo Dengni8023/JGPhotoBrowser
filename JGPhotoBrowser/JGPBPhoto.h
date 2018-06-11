@@ -1,9 +1,9 @@
 //
-//  JGPhoto.h
+//  JGPBPhoto.h
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class FLAnimatedImage;
 
-@interface JGPhoto : NSObject
+@interface JGPBPhoto : NSObject
 
 @property (nonatomic, assign) NSInteger index; // 索引
 @property (nonatomic, copy) NSURL *url; // 图片链接
@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 是否已经保存到相册，仅当次有效
 @property (nonatomic, assign) BOOL saved;
+
+@end
+
+DEPRECATED_MSG_ATTRIBUTE("Use JGPBPhoto instead") @interface JGPhoto : JGPBPhoto
 
 @end
 

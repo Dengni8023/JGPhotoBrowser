@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name          = "JGPhotoBrowser"
-s.version       = "1.2.6"
+s.version       = "1.2.7"
 
 s.summary       = "图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)"
 s.description   = <<-DESC
@@ -34,6 +34,7 @@ s.platforms     = {
     :ios => 8.0,
 }
 s.source_files  = "JGPhotoBrowser/*.{h,m}"
+s.public_header_files  = "JGPhotoBrowser/{JGPhotoBrowser,JGPBBrowserController,JGPBPhoto}.h"
 # s.resource    = "JGAlertController/JGAlertController.bundle"
 
 # s.framework  = "SomeFramework"
@@ -42,10 +43,10 @@ s.source_files  = "JGPhotoBrowser/*.{h,m}"
 # s.library   = "iconv"
 # s.libraries = "iconv", "xml2"
 
-s.dependency "SDWebImage", "~> 4.2.3"
+s.dependency "SDWebImage", "4.2.3"
 s.dependency "SDWebImage/GIF"
 
-s.dependency "JGSourceBase", "~> 0.0.3"
+s.dependency "JGSourceBase", "0.0.5"
 
 s.requires_arc = true
 

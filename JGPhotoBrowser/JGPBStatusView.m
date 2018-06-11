@@ -1,24 +1,24 @@
 //
-//  JGPhotoStatusView.m
+//  JGPBStatusView.m
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import "JGPhotoStatusView.h"
+#import "JGPBStatusView.h"
 #import "JGSourceBase.h"
-#import "JGPhotoProgressView.h"
+#import "JGPBProgressView.h"
 
-@interface JGPhotoStatusView () {
+@interface JGPBStatusView () {
     
     UILabel *_statusLabel;
-    JGPhotoProgressView *_progressView;
+    JGPBProgressView *_progressView;
 }
 
 @end
 
-@implementation JGPhotoStatusView
+@implementation JGPBStatusView
 
 #pragma mark - init
 - (instancetype)init {
@@ -33,7 +33,7 @@
 #pragma mark - init
 - (void)dealloc {
     
-    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - View
@@ -71,32 +71,32 @@
 }
 
 #pragma mark - Show
-- (void)showWithStatus:(JGPhotoStatus)status {
+- (void)showWithStatus:(JGPBPhotoStatus)status {
     
     switch (status) {
-        case JGPhotoStatusLoading:
+        case JGPBPhotoStatusLoading:
             [self setProgress:0];
             break;
             
-        case JGPhotoStatusLoadFail:
+        case JGPBPhotoStatusLoadFail:
             [self showWithStatusString:@"网络不给力\n图片下载失败"];
             break;
             
-        case JGPhotoStatusSaveFail:
+        case JGPBPhotoStatusSaveFail:
             [self showWithStatusString:@"保存失败"];
             break;
             
-        case JGPhotoStatusSaveSuccess:
+        case JGPBPhotoStatusSaveSuccess:
             [self showWithStatusString:@"已成功保存到相册"];
             break;
             
-        case JGPhotoStatusPrivacy: {
+        case JGPBPhotoStatusPrivacy: {
             NSString *execute = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
             [self showWithStatusString:[NSString stringWithFormat:@"请在设置中开启\"%@\"的相册访问权限", execute]];
         }
             break;
             
-        case JGPhotoStatusNone:
+        case JGPBPhotoStatusNone:
             break;
     }
 }
@@ -132,7 +132,7 @@
     [_statusLabel removeFromSuperview];
     if (!_progressView) {
         
-        _progressView = [[JGPhotoProgressView alloc] init];
+        _progressView = [[JGPBProgressView alloc] init];
     }
     if (!_progressView.superview && progress < 1.0) {
         [self addSubview:_progressView];

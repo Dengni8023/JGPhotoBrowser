@@ -52,13 +52,13 @@
 
 - (void)initDatas {
     
-    JGWeak(self);
+    JGSCWeak(self)
     _demoData = @[
                   JGDemoTableSectionMake(@"",
                                          @[
                                            JGDemoTableRowMakeBlock(@"Image Collection List", ^(JGDemoTableRowData * _Nonnull rowData) {
                       
-                      JGStrong(self);
+                      JGSCStrong(self);
                       DemoCollectionViewController *vcT = [[DemoCollectionViewController alloc] init];
                       [self.navigationController pushViewController:vcT animated:YES];
                   }),
@@ -70,7 +70,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    JGEnableLogWithMode(JGLogModeFunc);
+    JGSCEnableLogWithMode(JGSCLogModeFunc);
     self.title = NSStringFromClass([self class]);
     
     self.clearsSelectionOnViewWillAppear = NO;
@@ -80,7 +80,7 @@
     self.tableView.sectionHeaderHeight = 48;
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:JGReuseIdentifier(UITableViewCell)];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:JGSCReuseIdentifier(UITableViewCell)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,7 +99,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JGReuseIdentifier(UITableViewCell) forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JGSCReuseIdentifier(UITableViewCell) forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     cell.textLabel.text = self.demoData[indexPath.section].rows[indexPath.row].title;

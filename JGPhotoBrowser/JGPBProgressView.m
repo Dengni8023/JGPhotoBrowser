@@ -1,17 +1,17 @@
 //
-//  JGPhotoProgressView.m
+//  JGPBProgressView.m
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import "JGPhotoProgressView.h"
+#import "JGPBProgressView.h"
 #import "JGSourceBase.h"
 
-#define kDegreeToRadian(x) (M_PI/180.0 * (x))
+#define JHPBProgressDegreeToRadian(x) (M_PI/180.0 * (x))
 
-@implementation JGPhotoProgressView
+@implementation JGPBProgressView
 
 #pragma mark - init
 - (instancetype)init {
@@ -29,7 +29,7 @@
 #pragma mark - init
 - (void)dealloc {
     
-    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - Draw
@@ -40,7 +40,7 @@
     CGPoint centerPoint = CGPointMake(rect.size.height * 0.5, rect.size.width * 0.5);
     CGFloat radius = MIN(rect.size.height, rect.size.width) * 0.5 - pathWidth * 0.5;
     
-    CGFloat radians = kDegreeToRadian((_progress * 359.9) - 90);
+    CGFloat radians = JHPBProgressDegreeToRadian((_progress * 359.9) - 90);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineCap(context, kCGLineCapRound);
@@ -49,7 +49,7 @@
     // 绘制半透明圆轨迹
     CGContextSetBlendMode(context, kCGBlendModeSourceIn);
     CGMutablePathRef trackPath = CGPathCreateMutable();
-    CGPathAddArc(trackPath, NULL, centerPoint.x, centerPoint.y, radius, kDegreeToRadian(270), kDegreeToRadian(-90), YES);
+    CGPathAddArc(trackPath, NULL, centerPoint.x, centerPoint.y, radius, JHPBProgressDegreeToRadian(270), JHPBProgressDegreeToRadian(-90), YES);
     CGContextAddPath(context, trackPath);
     CGContextSetStrokeColorWithColor(context, [self.trackTintColor colorWithAlphaComponent:0.6].CGColor);
     CGContextStrokePath(context);
@@ -58,7 +58,7 @@
     // 绘制圆弧
     CGContextSetBlendMode(context, kCGBlendModeNormal);
     CGMutablePathRef progressPath = CGPathCreateMutable();
-    CGPathAddArc(progressPath, NULL, centerPoint.x, centerPoint.y, radius, kDegreeToRadian(270), radians, NO);
+    CGPathAddArc(progressPath, NULL, centerPoint.x, centerPoint.y, radius, JHPBProgressDegreeToRadian(270), radians, NO);
     CGContextAddPath(context, progressPath);
     CGContextSetStrokeColorWithColor(context, self.progressTintColor.CGColor);
     CGContextStrokePath(context);
@@ -69,7 +69,7 @@
     CGFloat innerRadius = radius - pathWidth * 0.5;
     CGMutablePathRef clearPath = CGPathCreateMutable();
     CGPathMoveToPoint(clearPath, NULL, centerPoint.x, centerPoint.y);
-    CGPathAddArc(clearPath, NULL, centerPoint.x, centerPoint.y, innerRadius, kDegreeToRadian(270), radians, NO);
+    CGPathAddArc(clearPath, NULL, centerPoint.x, centerPoint.y, innerRadius, JHPBProgressDegreeToRadian(270), radians, NO);
     CGPathCloseSubpath(clearPath);
     CGContextAddPath(context, clearPath);
     CGContextFillPath(context);

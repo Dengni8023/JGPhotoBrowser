@@ -1,22 +1,22 @@
 //
-//  JGPhotoExtraBar.m
+//  JGPBPhotoInfoView.m
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import "JGPhotoExtraBar.h"
+#import "JGPBPhotoInfoView.h"
 #import "JGSourceBase.h"
 
-@interface JGPhotoExtraBar ()
+@interface JGPBPhotoInfoView ()
 
 @property (nonatomic, strong) UIView *colorBgView;
 @property (nonatomic, strong) UITextView *extraTextView;
 
 @end
 
-@implementation JGPhotoExtraBar
+@implementation JGPBPhotoInfoView
 
 #pragma mark - init
 - (instancetype)init {
@@ -49,7 +49,7 @@
 
 - (void)dealloc {
     
-    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - View

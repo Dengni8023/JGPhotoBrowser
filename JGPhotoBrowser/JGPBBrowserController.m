@@ -1,29 +1,29 @@
 //
-//  JGPhotoBrowserImpl.m
+//  JGPBBrowserController.m
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import "JGPhotoBrowserImpl.h"
+#import "JGPBBrowserController.h"
 #import "JGSourceBase.h"
-#import "JGPhoto.h"
-#import "JGPhotoView.h"
-#import "JGPhotoToolbar.h"
-#import "JGPhotoExtraBar.h"
+#import "JGPBPhoto.h"
+#import "JGPBPhotoView.h"
+#import "JGPBPhotoToolView.h"
+#import "JGPBPhotoInfoView.h"
 #import "FLAnimatedImageView+WebCache.h"
 #import <objc/runtime.h>
 #import <Photos/Photos.h>
-#import "JGPhotoStatusView.h"
+#import "JGPBStatusView.h"
 
-#define kPhotoViewTagOffset 1000
-#define kPhotoViewIndex(photoView) ([photoView tag] - kPhotoViewTagOffset)
+#define JGPBPhotoViewTagOffset 1000
+#define JGPBPhotoViewIndex(photoView) (photoView.tag - JGPBPhotoViewTagOffset)
 
-@interface JGPhotoBrowser () <UIScrollViewDelegate, JGPhotoViewDelegate>
+@interface JGPBBrowserController () <UIScrollViewDelegate, JGPBPhotoViewDelegate>
 
 // 所有的图片对象
-@property (nonatomic, strong) NSArray<JGPhoto *> *photos;
+@property (nonatomic, strong) NSArray<JGPBPhoto *> *photos;
 // 当前展示的图片索引
 @property (nonatomic, assign) NSUInteger currentIndex;
 // 保存按钮
@@ -33,29 +33,29 @@
 
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIScrollView *photoScrollView;
-@property (nonatomic, strong) NSMutableSet<JGPhotoView *> *visiblePhotoViews;
-@property (nonatomic, strong) NSMutableSet<JGPhotoView *> *reusablePhotoViews;
-@property (nonatomic, strong) JGPhotoToolbar *toolbar;
-@property (nonatomic, strong) JGPhotoStatusView *statusView;
-@property (nonatomic, strong) JGPhotoExtraBar *extraBar;
+@property (nonatomic, strong) NSMutableSet<JGPBPhotoView *> *visiblePhotoViews;
+@property (nonatomic, strong) NSMutableSet<JGPBPhotoView *> *reusablePhotoViews;
+@property (nonatomic, strong) JGPBStatusView *statusView;
+@property (nonatomic, strong) JGPBPhotoToolView *phToolView;
+@property (nonatomic, strong) JGPBPhotoInfoView *phInfoView;
 
 @end
 
-@implementation JGPhotoBrowser
+@implementation JGPBBrowserController
 
-static const char JGPhotoBrowserWindowKey = '\0';
+static const char JGPBBrowserWindowKey = '\0';
 
 /**
  内存管理处理，全局管理内存，外部不需要管理内存
  */
-static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
+static NSMutableArray<JGPBBrowserController *> *showingBrowser = nil;
 
 #pragma mark - init
-- (instancetype)initWithPhotos:(NSArray<JGPhoto *> *)photos index:(NSInteger)curIndex {
+- (instancetype)initWithPhotos:(NSArray<JGPBPhoto *> *)photos index:(NSInteger)curIndex {
     return [self initWithPhotos:photos index:curIndex showSave:YES];
 }
 
-- (instancetype)initWithPhotos:(NSArray<JGPhoto *> *)photos index:(NSInteger)curIndex showSave:(BOOL)showSaveBtn {
+- (instancetype)initWithPhotos:(NSArray<JGPBPhoto *> *)photos index:(NSInteger)curIndex showSave:(BOOL)showSaveBtn {
     
     self = [super init];
     if (self) {
@@ -78,14 +78,14 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
 - (void)initDatas {
     
-    [_photos enumerateObjectsUsingBlock:^(JGPhoto * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_photos enumerateObjectsUsingBlock:^(JGPBPhoto * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.index = idx;
     }];
 }
 
 - (void)dealloc {
     
-    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - Controller
@@ -127,32 +127,32 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     [self.view addSubview:_photoScrollView];
     
     // status
-    _statusView = [[JGPhotoStatusView alloc] init];
+    _statusView = [[JGPBStatusView alloc] init];
     [self.view addSubview:_statusView];
     _statusView.hidden = YES;
     
     // tool
-    _toolbar = [[JGPhotoToolbar alloc] initWithPhotosCount:_photos.count index:_currentIndex];
-    [self.view addSubview:_toolbar];
+    _phToolView = [[JGPBPhotoToolView alloc] initWithPhotosCount:_photos.count index:_currentIndex];
+    [self.view addSubview:_phToolView];
     
-    JGWeak(self);
-    _toolbar.showSaveBtn = _showSaveBtn;
+    JGSCWeak(self)
+    _phToolView.showSaveBtn = _showSaveBtn;
     if ([self photoHasExtraText]) {
-        _toolbar.closeShowAction = ^{
-            JGStrong(self);
+        _phToolView.closeShowAction = ^{
+            JGSCStrong(self);
             [self closePhotoShow];
         };
     }
-    _toolbar.saveShowPhotoAction = ^(NSInteger index) {
-        JGStrong(self);
+    _phToolView.saveShowPhotoAction = ^(NSInteger index) {
+        JGSCStrong(self);
         [self saveCurrentShowPhoto];
     };
     
     // extra
     if ([self photoHasExtraText]) {
         
-        _extraBar = [[JGPhotoExtraBar alloc] init];
-        [self.view addSubview:_extraBar];
+        _phInfoView = [[JGPBPhotoInfoView alloc] init];
+        [self.view addSubview:_phInfoView];
     }
 }
 
@@ -171,11 +171,11 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
         
         BOOL topTool = [self photoHasExtraText];
         UIEdgeInsets safeInsets = [self viewSafeAreaInsets];
-        _toolbar.frame = CGRectMake(0, topTool ? safeInsets.top : (CGRectGetHeight(self.view.bounds) - 49 - safeInsets.bottom), CGRectGetWidth(self.view.bounds), topTool ? 44 : 49);
-        _toolbar.browserSafeAreaInsets = UIEdgeInsetsMake(topTool ? safeInsets.top : 0, 0, topTool ? 0 : safeInsets.bottom, 0);
+        _phToolView.frame = CGRectMake(0, topTool ? safeInsets.top : (CGRectGetHeight(self.view.bounds) - 49 - safeInsets.bottom), CGRectGetWidth(self.view.bounds), topTool ? 44 : 49);
+        _phToolView.browserSafeAreaInsets = UIEdgeInsetsMake(topTool ? safeInsets.top : 0, 0, topTool ? 0 : safeInsets.bottom, 0);
         
-        _extraBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 80 - safeInsets.bottom, CGRectGetWidth(self.view.bounds), 80);
-        _extraBar.browserSafeAreaInsets = UIEdgeInsetsMake(0, 0, safeInsets.bottom, 0);
+        _phInfoView.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 80 - safeInsets.bottom, CGRectGetWidth(self.view.bounds), 80);
+        _phInfoView.browserSafeAreaInsets = UIEdgeInsetsMake(0, 0, safeInsets.bottom, 0);
     }
 }
 
@@ -190,7 +190,7 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 #pragma mark - Getter
 - (BOOL)photoHasExtraText {
     
-    for (JGPhoto *photo in _photos) {
+    for (JGPBPhoto *photo in _photos) {
         if (photo.extraText.length > 0) {
             return YES;
         }
@@ -200,10 +200,10 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
 - (UIWindow *)photoBrowserWindow {
     
-    UIWindow *window = objc_getAssociatedObject(self, &JGPhotoBrowserWindowKey);
+    UIWindow *window = objc_getAssociatedObject(self, &JGPBBrowserWindowKey);
     if (!window) {
         window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        objc_setAssociatedObject(self, &JGPhotoBrowserWindowKey, window, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &JGPBBrowserWindowKey, window, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return window;
 }
@@ -253,12 +253,13 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     
     // 回收不再显示的ImageView
     __block NSInteger photoViewIndex = 0;
-    [_visiblePhotoViews enumerateObjectsUsingBlock:^(JGPhotoView * _Nonnull obj, BOOL * _Nonnull stop) {
+    JGSCWeak(self)
+    [_visiblePhotoViews enumerateObjectsUsingBlock:^(JGPBPhotoView * _Nonnull obj, BOOL * _Nonnull stop) {
         
-        photoViewIndex = kPhotoViewIndex(obj);
+        photoViewIndex = JGPBPhotoViewIndex(obj);
         if (photoViewIndex < firstIndex || photoViewIndex > lastIndex) {
-            
-            [_reusablePhotoViews addObject:obj];
+            JGSCStrong(self);
+            [self.reusablePhotoViews addObject:obj];
             [obj removeFromSuperview];
         }
     }];
@@ -281,11 +282,11 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 //  显示一个图片view
 - (void)showPhotoViewAtIndex:(NSInteger)index {
     
-    JGPhotoView *photoView = [self dequeueReusablePhotoView];
+    JGPBPhotoView *photoView = [self dequeueReusablePhotoView];
     if (!photoView) {
         
         // 添加新的图片view
-        photoView = [[JGPhotoView alloc] init];
+        photoView = [[JGPBPhotoView alloc] init];
     }
     photoView.photoViewDelegate = self;
     
@@ -293,9 +294,9 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     CGRect bounds = _photoScrollView.bounds;
     CGRect photoViewFrame = bounds;
     photoViewFrame.origin.x = (bounds.size.width * index);
-    photoView.tag = kPhotoViewTagOffset + index;
+    photoView.tag = JGPBPhotoViewTagOffset + index;
     
-    JGPhoto *photo = _photos[index];
+    JGPBPhoto *photo = _photos[index];
     photoView.frame = photoViewFrame;
     photoView.photo = photo;
     
@@ -310,7 +311,7 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     
     if (index > 0) {
         
-        JGPhoto *photo = _photos[index - 1];
+        JGPBPhoto *photo = _photos[index - 1];
         [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:(SDWebImageRetryFailed | SDWebImageLowPriority) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
@@ -321,7 +322,7 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     
     if (index < _photos.count - 1) {
         
-        JGPhoto *photo = _photos[index + 1];
+        JGPBPhoto *photo = _photos[index + 1];
         [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:(SDWebImageRetryFailed | SDWebImageLowPriority) progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
@@ -335,9 +336,9 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 - (BOOL)isShowingPhotoViewAtIndex:(NSUInteger)index {
     
     __block BOOL isShow = NO;
-    [_visiblePhotoViews enumerateObjectsUsingBlock:^(JGPhotoView * _Nonnull obj, BOOL * _Nonnull stop) {
+    [_visiblePhotoViews enumerateObjectsUsingBlock:^(JGPBPhotoView * _Nonnull obj, BOOL * _Nonnull stop) {
         
-        isShow = kPhotoViewIndex(obj) == index;
+        isShow = JGPBPhotoViewIndex(obj) == index;
         *stop = isShow;
     }];
     
@@ -345,9 +346,9 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 }
 
 // 重用页面
-- (JGPhotoView *)dequeueReusablePhotoView {
+- (JGPBPhotoView *)dequeueReusablePhotoView {
     
-    JGPhotoView *photoView = [_reusablePhotoViews anyObject];
+    JGPBPhotoView *photoView = [_reusablePhotoViews anyObject];
     if (photoView) {
         
         [_reusablePhotoViews removeObject:photoView];
@@ -356,12 +357,12 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     return photoView;
 }
 
-#pragma mark - ToolBar
+#pragma mark - phToolView
 - (void)updateTollbarState {
     
     _currentIndex = _photoScrollView.contentOffset.x / _photoScrollView.frame.size.width;
-    [_toolbar changeCurrentIndex:_currentIndex indexsaved:_photos[_currentIndex].saved];
-    _extraBar.text = _photos[_currentIndex].extraText;
+    [_phToolView changeCurrentIndex:_currentIndex indexsaved:_photos[_currentIndex].saved];
+    _phInfoView.text = _photos[_currentIndex].extraText;
 }
 
 - (void)closePhotoShow {
@@ -382,11 +383,11 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
 - (void)saveCurrentShowPhoto {
     
-    JGWeak(self);
+    JGSCWeak(self)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         // 保存相片到相册
-        JGStrong(self);
+        JGSCStrong(self);
         PHAuthorizationStatus authorizationStatus = [PHPhotoLibrary authorizationStatus];
         if (authorizationStatus == PHAuthorizationStatusAuthorized) {
             
@@ -394,32 +395,32 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
         }
         else if (authorizationStatus == PHAuthorizationStatusNotDetermined) {
             
-            JGWeak(self);
+            JGSCWeak(self)
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 
-                JGStrong(self);
+                JGSCStrong(self);
                 if (status == PHAuthorizationStatusAuthorized) {
                     
                     [self saveShowingImageToPhotoLibrary];
                 }
                 else {
                     
-                    JGWeak(self);
+                    JGSCWeak(self)
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
-                        JGStrong(self);
-                        [self changePhotoStatusViewWithStatus:JGPhotoStatusPrivacy];
+                        JGSCStrong(self);
+                        [self changePhotoStatusViewWithStatus:JGPBPhotoStatusPrivacy];
                     });
                 }
             }];
         }
         else {
             
-            JGWeak(self);
+            JGSCWeak(self)
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                JGStrong(self);
-                [self changePhotoStatusViewWithStatus:JGPhotoStatusPrivacy];
+                JGSCStrong(self);
+                [self changePhotoStatusViewWithStatus:JGPBPhotoStatusPrivacy];
             });
         }
     });
@@ -427,11 +428,11 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 
 - (void)saveShowingImageToPhotoLibrary {
     
-    JGWeak(self);
+    JGSCWeak(self)
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         
-        JGStrong(self);
-        JGPhoto *showPhoto = [self.photos objectAtIndex:self.currentIndex];
+        JGSCStrong(self);
+        JGPBPhoto *showPhoto = [self.photos objectAtIndex:self.currentIndex];
         NSData *saveData = showPhoto.GIFImage.data ?: UIImageJPEGRepresentation(showPhoto.image, 1.f);
         if (@available(iOS 9.0, *)) {
             
@@ -454,27 +455,27 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            JGStrong(self);
+            JGSCStrong(self);
             BOOL saved = success && !error ? YES : NO;
-            JGPhoto *showPhoto = [self.photos objectAtIndex:self.currentIndex];
+            JGPBPhoto *showPhoto = [self.photos objectAtIndex:self.currentIndex];
             showPhoto.saved = saved ? YES : NO;
-            [self.toolbar changeCurrentIndex:self.currentIndex indexsaved:saved];
+            [self.phToolView changeCurrentIndex:self.currentIndex indexsaved:saved];
             
-            [self changePhotoStatusViewWithStatus:saved ? JGPhotoStatusSaveSuccess : JGPhotoStatusSaveFail];
+            [self changePhotoStatusViewWithStatus:saved ? JGPBPhotoStatusSaveSuccess : JGPBPhotoStatusSaveFail];
         });
     }];
 }
 
-- (void)changePhotoStatusViewWithStatus:(JGPhotoStatus)status {
+- (void)changePhotoStatusViewWithStatus:(JGPBPhotoStatus)status {
     
     _statusView.hidden = NO;
     _statusView.alpha = 1.f;
     [_statusView showWithStatus:status];
     
-    JGWeak(self);
+    JGSCWeak(self)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        JGStrong(self);
+        JGSCStrong(self);
         [UIView animateWithDuration:0.2 animations:^{
             self.statusView.alpha = 0;
         } completion:^(BOOL finished) {
@@ -483,27 +484,27 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
     });
 }
 
-#pragma mark - JGPhotoViewDelegate
-- (void)photoViewImageFinishLoad:(JGPhotoView *)photoView {
+#pragma mark - JGPBPhotoViewDelegate
+- (void)photoViewImageFinishLoad:(JGPBPhotoView *)photoView {
     
     [self updateTollbarState];
 }
 
-- (void)photoViewSingleTap:(JGPhotoView *)photoView {
+- (void)photoViewSingleTap:(JGPBPhotoView *)photoView {
     
     if ([self photoHasExtraText]) {
         
         _showTools = !_showTools;
         UIEdgeInsets safeInsets = [self viewSafeAreaInsets];
         
-        CGFloat toolY = safeInsets.top, hideY = -(safeInsets.top + CGRectGetHeight(_toolbar.frame));
-        CGFloat extraY = CGRectGetHeight(self.view.bounds) - (CGRectGetHeight(self.extraBar.frame) + safeInsets.bottom);
+        CGFloat toolY = safeInsets.top, hideY = -(safeInsets.top + CGRectGetHeight(_phToolView.frame));
+        CGFloat extraY = CGRectGetHeight(self.view.bounds) - (CGRectGetHeight(self.phInfoView.frame) + safeInsets.bottom);
         CGFloat extraHideY = CGRectGetHeight(self.view.bounds);
         
         [UIView animateWithDuration:0.2 animations:^{
             
-            self.toolbar.frame = CGRectMake(0, self.showTools ? toolY : hideY, CGRectGetWidth(self.toolbar.frame), CGRectGetHeight(self.toolbar.frame));
-            self.extraBar.frame = CGRectMake(0, self.showTools ? extraY : extraHideY, CGRectGetWidth(self.extraBar.frame), CGRectGetHeight(self.extraBar.frame));
+            self.phToolView.frame = CGRectMake(0, self.showTools ? toolY : hideY, CGRectGetWidth(self.phToolView.frame), CGRectGetHeight(self.phToolView.frame));
+            self.phInfoView.frame = CGRectMake(0, self.showTools ? extraY : extraHideY, CGRectGetWidth(self.phInfoView.frame), CGRectGetHeight(self.phInfoView.frame));
         }];
     }
     else {
@@ -520,5 +521,9 @@ static NSMutableArray<JGPhotoBrowser *> *showingBrowser = nil;
 }
 
 #pragma mark - End
+
+@end
+
+@implementation JGPhotoBrowser
 
 @end

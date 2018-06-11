@@ -1,18 +1,18 @@
 //
-//  JGPhotoToolbar.h
+//  JGPBPhotoToolView.h
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class JGPhoto;
+@class JGPBPhoto;
 
-@interface JGPhotoToolbar : UIView
+@interface JGPBPhotoToolView : UIView
 
 /** 需要显示关闭按钮时，关闭按钮的回调，回调存在则显示关闭按钮，内部回调完成后则置空该回调 */
 @property (nonatomic, copy) void (^closeShowAction)(void);

@@ -1,32 +1,32 @@
 //
-//  JGPhotoToolbar.m
+//  JGPBPhotoToolView.m
 //  JGPhotoBrowser
 //
-//  Created by Mei Jigao on 2017/11/24.
-//  Copyright © 2017年 MeiJigao. All rights reserved.
+//  Created by Mei Jigao on 2018/6/11.
+//  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import "JGPhotoToolbar.h"
-#import "JGPhoto.h"
+#import "JGPBPhotoToolView.h"
+#import "JGPBPhoto.h"
 #import "JGSourceBase.h"
 
-@interface JGPhotoToolClose : UIButton
+@interface JGPBPhotoToolClose : UIButton
 
 @end
 
-@interface JGPhotoToolbar()
+@interface JGPBPhotoToolView ()
 
 @property (nonatomic, assign) NSInteger totalCount;
 @property (nonatomic, assign) NSUInteger currentIndex;
 
 @property (nonatomic, strong) UIView *colorBgView;
-@property (nonatomic, strong) JGPhotoToolClose *closeBtn;
+@property (nonatomic, strong) JGPBPhotoToolClose *closeBtn;
 @property (nonatomic, strong) UILabel *indexLabel;
 @property (nonatomic, strong) UIButton *saveImageBtn;
 
 @end
 
-@implementation JGPhotoToolbar
+@implementation JGPBPhotoToolView
 
 #pragma mark - init
 - (instancetype)initWithPhotosCount:(NSInteger)count index:(NSInteger)curIndex {
@@ -45,7 +45,7 @@
 
 - (void)dealloc {
     
-    //JGLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - View
@@ -57,7 +57,7 @@
     [self addSubview:_colorBgView];
     
     // 关闭
-    _closeBtn = [JGPhotoToolClose buttonWithType:UIButtonTypeCustom];
+    _closeBtn = [JGPBPhotoToolClose buttonWithType:UIButtonTypeCustom];
     [_closeBtn addTarget:self action:@selector(closeShow:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_closeBtn];
     _closeBtn.hidden = YES;
@@ -127,7 +127,7 @@
     
     // 更新页码
     _currentIndex = toIndex;
-    _indexLabel.text = [NSString stringWithFormat:@"%zd/%zd", _currentIndex + 1, _totalCount];
+    _indexLabel.text = [NSString stringWithFormat:@"%@/%@", @(_currentIndex + 1), @(_totalCount)];
     
     // 按钮
     [self setShowSaveBtn:!saved];
@@ -153,7 +153,7 @@
 }
 
 #pragma mark - Action
-- (void)closeShow:(JGPhotoToolClose *)sender {
+- (void)closeShow:(JGPBPhotoToolClose *)sender {
     
     if (_closeShowAction) {
         _closeShowAction();
@@ -172,7 +172,7 @@
 
 @end
 
-@implementation JGPhotoToolClose
+@implementation JGPBPhotoToolClose
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -206,5 +206,7 @@
     
     CGContextStrokePath(ctx);
 }
+
+#pragma mark - End
 
 @end
