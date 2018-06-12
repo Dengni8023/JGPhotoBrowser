@@ -1,6 +1,6 @@
 {
   "name": "JGPhotoBrowser",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "summary": "图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)",
   "description": "图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)\n\n功能包括：\n1、浏览图片大图，支持手势缩放\n2、支持图片保存、支持GIF图片保存\n3、增加图片介绍展示",
   "homepage": "https://github.com/dengni8023/JGPhotoBrowser",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/dengni8023/JGPhotoBrowser.git",
-    "tag": "1.2.7"
+    "tag": "1.2.8"
   },
   "authors": [
     {
@@ -18,7 +18,7 @@
     },
     {
       "git": "https://github.com/dengni8023/JGPhotoBrowser.git",
-      "tag": "1.2.7"
+      "tag": "1.2.8"
     }
   ],
   "platforms": {
@@ -28,7 +28,7 @@
   "public_header_files": "JGPhotoBrowser/{JGPhotoBrowser,JGPBBrowserController,JGPBPhoto}.h",
   "dependencies": {
     "SDWebImage": [
-      "4.2.3"
+      "4.4.1"
     ],
     "SDWebImage/GIF": [
 
