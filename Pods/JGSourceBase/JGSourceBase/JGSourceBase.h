@@ -17,22 +17,35 @@ FOUNDATION_EXPORT const unsigned char JGSourceBaseVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <JGSourceBase/PublicHeader.h>
 
 // JGSC 缩写说明
-// 旧版本前缀JG，增加SC避免官方前缀冲突
-// JG: 作者名
+// JG: 作者
 // SC: Source Code
 
 #if __has_include(<JGSourceBase/JGSourceBase.h>)
 
+// Common
 #import <JGSourceBase/JGSCCommon.h>
-#import <JGSourceBase/JGSCLog.h>
-#import <JGSourceBase/JGSCRuntime.h>
-#import <JGSourceBase/JGSCWeakStrongProperty.h>
+#import <JGSourceBase/NSDictionary+JGSCEasyUse.h>
+#import <JGSourceBase/NSString+JGSCURL.h>
+#import <JGSourceBase/NSURL+JGSCURLQuery.h>
+
+// NSObject
+#ifdef JGSC_NSObject
+#import <JGSourceBase/NSObject+JGSCJSON.h>
+#import <JGSourceBase/NSObject+JGSCObject2Dict.h>
+#endif
 
 #else
 
+// Common
 #import "JGSCCommon.h"
-#import "JGSCLog.h"
-#import "JGSCRuntime.h"
-#import "JGSCWeakStrongProperty.h"
+#import "NSDictionary+JGSCEasyUse.h"
+#import "NSString+JGSCURL.h"
+#import "NSURL+JGSCURLQuery.h"
+
+// NSObject
+#ifdef JGSC_NSObject
+#import "NSObject+JGSCJSON.h"
+#import "NSObject+JGSCObject2Dict.h"
+#endif
 
 #endif

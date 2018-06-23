@@ -6,7 +6,6 @@
 //  Copyright © 2018年 MeiJigao. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

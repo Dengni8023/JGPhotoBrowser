@@ -1,10 +1,12 @@
 PODS:
   - FLAnimatedImage (1.0.12)
   - JGPhotoBrowser (1.2.8):
-    - JGSourceBase (= 0.0.5)
-    - SDWebImage (= 4.4.1)
+    - JGSourceBase (~> 0.1.0)
+    - SDWebImage (~> 4.4.1)
     - SDWebImage/GIF
-  - JGSourceBase (0.0.5)
+  - JGSourceBase (0.1.0):
+    - JGSourceBase/Common (= 0.1.0)
+  - JGSourceBase/Common (0.1.0)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
@@ -27,8 +29,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  JGPhotoBrowser: 425556f3fbd2f1a2996cffe39191cd9d926c756b
-  JGSourceBase: 9a7b3c3e40380d2f9e79bd995db6f3654083b2e9
+  JGPhotoBrowser: 03f95e5e552d8331ebc6929072c18e4368d9ca63
+  JGSourceBase: 03fca616c3686a7197fcac672201d7f083fd7d8b
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
 
 PODFILE CHECKSUM: 5e96f98ccfad7809164a8b4da4b55234e2542723
