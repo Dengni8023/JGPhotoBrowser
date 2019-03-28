@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/cocoaPods/specs.git'
 
 # 源码测试请屏蔽此选项，否则源码库内部调用出现的警告将不会提示
 #inhibit_all_warnings!
@@ -9,7 +9,7 @@ use_frameworks!
 workspace "JGPhotoBrowser"
 
 # platform
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 # JGNetworkReachabilityDemo
 target "JGPhotoBrowserDemo" do

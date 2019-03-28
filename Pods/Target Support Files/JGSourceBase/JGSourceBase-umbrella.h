@@ -11,12 +11,14 @@
 #endif
 
 #import "JGSourceBase.h"
-#import "JGSCCommon.h"
-#import "JGSCLogDefine.h"
-#import "JGSCWeakStrongProperty.h"
-#import "NSDictionary+JGSCEasyUse.h"
-#import "NSString+JGSCURL.h"
-#import "NSURL+JGSCURLQuery.h"
+#import "JGSBase.h"
+#import "JGSBaseUtils.h"
+#import "JGSLogFunction.h"
+#import "JGSStringURLUtils.h"
+#import "JGSWeakStrong.h"
+#import "NSDictionary+JGSBase.h"
+#import "NSObject+JGS_JSON.h"
+#import "UIColor+JGSBase.h"
 
 FOUNDATION_EXPORT double JGSourceBaseVersionNumber;
 FOUNDATION_EXPORT const unsigned char JGSourceBaseVersionString[];

@@ -7,21 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4C9BC331FC868C3003D0976 /* JGPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D4C9BC311FC868C3003D0976 /* JGPhotoBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D4D850D820CEB1F900AFD849 /* JGPBPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850D620CEB1F900AFD849 /* JGPBPhotoView.h */; };
-		D4D850D920CEB1F900AFD849 /* JGPBPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850D720CEB1F900AFD849 /* JGPBPhotoView.m */; };
-		D4D850DC20CEB21700AFD849 /* JGPBPhotoToolView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850DA20CEB21700AFD849 /* JGPBPhotoToolView.h */; };
-		D4D850DD20CEB21700AFD849 /* JGPBPhotoToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850DB20CEB21700AFD849 /* JGPBPhotoToolView.m */; };
-		D4D850E020CEB23F00AFD849 /* JGPBPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850DE20CEB23F00AFD849 /* JGPBPhoto.h */; };
-		D4D850E120CEB23F00AFD849 /* JGPBPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850DF20CEB23F00AFD849 /* JGPBPhoto.m */; };
-		D4D850E420CEB27300AFD849 /* JGPBBrowserController.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850E220CEB27300AFD849 /* JGPBBrowserController.h */; };
-		D4D850E520CEB27300AFD849 /* JGPBBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850E320CEB27300AFD849 /* JGPBBrowserController.m */; };
-		D4D850E820CEB30500AFD849 /* JGPBPhotoInfoView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850E620CEB30500AFD849 /* JGPBPhotoInfoView.h */; };
-		D4D850E920CEB30500AFD849 /* JGPBPhotoInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850E720CEB30500AFD849 /* JGPBPhotoInfoView.m */; };
-		D4D850EC20CEB32A00AFD849 /* JGPBProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850EA20CEB32A00AFD849 /* JGPBProgressView.h */; };
-		D4D850ED20CEB32A00AFD849 /* JGPBProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850EB20CEB32A00AFD849 /* JGPBProgressView.m */; };
-		D4D850F020CEB34E00AFD849 /* JGPBStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D850EE20CEB34E00AFD849 /* JGPBStatusView.h */; };
-		D4D850F120CEB34E00AFD849 /* JGPBStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D850EF20CEB34E00AFD849 /* JGPBStatusView.m */; };
+		D4792CE8224EADED006FB650 /* JGSPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CDC224EADEC006FB650 /* JGSPhotoBrowser.h */; };
+		D4792CE9224EADED006FB650 /* JGSPhotoDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4792CDD224EADEC006FB650 /* JGSPhotoDescriptionView.m */; };
+		D4792CEA224EADED006FB650 /* JGSPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = D4792CDE224EADEC006FB650 /* JGSPhotoBrowser.m */; };
+		D4792CEB224EADED006FB650 /* JGSPhotoDescriptionView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CDF224EADEC006FB650 /* JGSPhotoDescriptionView.h */; };
+		D4792CEC224EADED006FB650 /* JGSPhotoToolView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CE0224EADEC006FB650 /* JGSPhotoToolView.h */; };
+		D4792CED224EADED006FB650 /* JGSPhotoToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4792CE1224EADEC006FB650 /* JGSPhotoToolView.m */; };
+		D4792CEE224EADED006FB650 /* JGSPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D4792CE2224EADEC006FB650 /* JGSPhoto.m */; };
+		D4792CEF224EADED006FB650 /* JGSPhotoStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CE3224EADEC006FB650 /* JGSPhotoStatusView.h */; };
+		D4792CF0224EADED006FB650 /* JGSPhotoStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4792CE4224EADEC006FB650 /* JGSPhotoStatusView.m */; };
+		D4792CF1224EADED006FB650 /* JGSPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CE5224EADEC006FB650 /* JGSPhotoView.h */; };
+		D4792CF2224EADED006FB650 /* JGSPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4792CE6224EADEC006FB650 /* JGSPhotoView.m */; };
+		D4792CF3224EADED006FB650 /* JGSPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CE7224EADED006FB650 /* JGSPhoto.h */; };
+		D4792CF5224EAFBC006FB650 /* JGPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D4792CF4224EAFBC006FB650 /* JGPhotoBrowser.h */; };
 		DA508D58BB5D688CD182BE9D /* Pods_JGPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC12AD138B0D06356217DBB /* Pods_JGPhotoBrowser.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,25 +28,23 @@
 		4734013114FF4D687E3B3A4A /* Pods_JGPhotoBrowserDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGPhotoBrowserDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D729754F13BC94FDA2CAE3B /* Pods-JGPhotoBrowserDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowserDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9EC12AD138B0D06356217DBB /* Pods_JGPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4792CDC224EADEC006FB650 /* JGSPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSPhotoBrowser.h; sourceTree = "<group>"; };
+		D4792CDD224EADEC006FB650 /* JGSPhotoDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSPhotoDescriptionView.m; sourceTree = "<group>"; };
+		D4792CDE224EADEC006FB650 /* JGSPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSPhotoBrowser.m; sourceTree = "<group>"; };
+		D4792CDF224EADEC006FB650 /* JGSPhotoDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSPhotoDescriptionView.h; sourceTree = "<group>"; };
+		D4792CE0224EADEC006FB650 /* JGSPhotoToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSPhotoToolView.h; sourceTree = "<group>"; };
+		D4792CE1224EADEC006FB650 /* JGSPhotoToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSPhotoToolView.m; sourceTree = "<group>"; };
+		D4792CE2224EADEC006FB650 /* JGSPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSPhoto.m; sourceTree = "<group>"; };
+		D4792CE3224EADEC006FB650 /* JGSPhotoStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSPhotoStatusView.h; sourceTree = "<group>"; };
+		D4792CE4224EADEC006FB650 /* JGSPhotoStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSPhotoStatusView.m; sourceTree = "<group>"; };
+		D4792CE5224EADEC006FB650 /* JGSPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSPhotoView.h; sourceTree = "<group>"; };
+		D4792CE6224EADEC006FB650 /* JGSPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSPhotoView.m; sourceTree = "<group>"; };
+		D4792CE7224EADED006FB650 /* JGSPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSPhoto.h; sourceTree = "<group>"; };
+		D4792CF4224EAFBC006FB650 /* JGPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowser.h; sourceTree = "<group>"; };
 		D4C9BC2E1FC868C3003D0976 /* JGPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4C9BC311FC868C3003D0976 /* JGPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowser.h; sourceTree = "<group>"; };
 		D4C9BC321FC868C3003D0976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C9BC5F1FC869B7003D0976 /* JGPhotoBrowser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JGPhotoBrowser.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D4C9BC601FC869B7003D0976 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D4D850D620CEB1F900AFD849 /* JGPBPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBPhotoView.h; sourceTree = "<group>"; };
-		D4D850D720CEB1F900AFD849 /* JGPBPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBPhotoView.m; sourceTree = "<group>"; };
-		D4D850DA20CEB21700AFD849 /* JGPBPhotoToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBPhotoToolView.h; sourceTree = "<group>"; };
-		D4D850DB20CEB21700AFD849 /* JGPBPhotoToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBPhotoToolView.m; sourceTree = "<group>"; };
-		D4D850DE20CEB23F00AFD849 /* JGPBPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBPhoto.h; sourceTree = "<group>"; };
-		D4D850DF20CEB23F00AFD849 /* JGPBPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBPhoto.m; sourceTree = "<group>"; };
-		D4D850E220CEB27300AFD849 /* JGPBBrowserController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBBrowserController.h; sourceTree = "<group>"; };
-		D4D850E320CEB27300AFD849 /* JGPBBrowserController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBBrowserController.m; sourceTree = "<group>"; };
-		D4D850E620CEB30500AFD849 /* JGPBPhotoInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBPhotoInfoView.h; sourceTree = "<group>"; };
-		D4D850E720CEB30500AFD849 /* JGPBPhotoInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBPhotoInfoView.m; sourceTree = "<group>"; };
-		D4D850EA20CEB32A00AFD849 /* JGPBProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBProgressView.h; sourceTree = "<group>"; };
-		D4D850EB20CEB32A00AFD849 /* JGPBProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBProgressView.m; sourceTree = "<group>"; };
-		D4D850EE20CEB34E00AFD849 /* JGPBStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPBStatusView.h; sourceTree = "<group>"; };
-		D4D850EF20CEB34E00AFD849 /* JGPBStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGPBStatusView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,21 +101,19 @@
 			isa = PBXGroup;
 			children = (
 				D4C9BC321FC868C3003D0976 /* Info.plist */,
-				D4D850E220CEB27300AFD849 /* JGPBBrowserController.h */,
-				D4D850E320CEB27300AFD849 /* JGPBBrowserController.m */,
-				D4D850DE20CEB23F00AFD849 /* JGPBPhoto.h */,
-				D4D850DF20CEB23F00AFD849 /* JGPBPhoto.m */,
-				D4D850E620CEB30500AFD849 /* JGPBPhotoInfoView.h */,
-				D4D850E720CEB30500AFD849 /* JGPBPhotoInfoView.m */,
-				D4D850DA20CEB21700AFD849 /* JGPBPhotoToolView.h */,
-				D4D850DB20CEB21700AFD849 /* JGPBPhotoToolView.m */,
-				D4D850D620CEB1F900AFD849 /* JGPBPhotoView.h */,
-				D4D850D720CEB1F900AFD849 /* JGPBPhotoView.m */,
-				D4D850EA20CEB32A00AFD849 /* JGPBProgressView.h */,
-				D4D850EB20CEB32A00AFD849 /* JGPBProgressView.m */,
-				D4D850EE20CEB34E00AFD849 /* JGPBStatusView.h */,
-				D4D850EF20CEB34E00AFD849 /* JGPBStatusView.m */,
-				D4C9BC311FC868C3003D0976 /* JGPhotoBrowser.h */,
+				D4792CF4224EAFBC006FB650 /* JGPhotoBrowser.h */,
+				D4792CE7224EADED006FB650 /* JGSPhoto.h */,
+				D4792CE2224EADEC006FB650 /* JGSPhoto.m */,
+				D4792CDC224EADEC006FB650 /* JGSPhotoBrowser.h */,
+				D4792CDE224EADEC006FB650 /* JGSPhotoBrowser.m */,
+				D4792CDF224EADEC006FB650 /* JGSPhotoDescriptionView.h */,
+				D4792CDD224EADEC006FB650 /* JGSPhotoDescriptionView.m */,
+				D4792CE3224EADEC006FB650 /* JGSPhotoStatusView.h */,
+				D4792CE4224EADEC006FB650 /* JGSPhotoStatusView.m */,
+				D4792CE0224EADEC006FB650 /* JGSPhotoToolView.h */,
+				D4792CE1224EADEC006FB650 /* JGSPhotoToolView.m */,
+				D4792CE5224EADEC006FB650 /* JGSPhotoView.h */,
+				D4792CE6224EADEC006FB650 /* JGSPhotoView.m */,
 			);
 			path = JGPhotoBrowser;
 			sourceTree = "<group>";
@@ -131,14 +125,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4D850EC20CEB32A00AFD849 /* JGPBProgressView.h in Headers */,
-				D4D850D820CEB1F900AFD849 /* JGPBPhotoView.h in Headers */,
-				D4D850E420CEB27300AFD849 /* JGPBBrowserController.h in Headers */,
-				D4D850E820CEB30500AFD849 /* JGPBPhotoInfoView.h in Headers */,
-				D4D850E020CEB23F00AFD849 /* JGPBPhoto.h in Headers */,
-				D4D850DC20CEB21700AFD849 /* JGPBPhotoToolView.h in Headers */,
-				D4C9BC331FC868C3003D0976 /* JGPhotoBrowser.h in Headers */,
-				D4D850F020CEB34E00AFD849 /* JGPBStatusView.h in Headers */,
+				D4792CF1224EADED006FB650 /* JGSPhotoView.h in Headers */,
+				D4792CEC224EADED006FB650 /* JGSPhotoToolView.h in Headers */,
+				D4792CF5224EAFBC006FB650 /* JGPhotoBrowser.h in Headers */,
+				D4792CEB224EADED006FB650 /* JGSPhotoDescriptionView.h in Headers */,
+				D4792CE8224EADED006FB650 /* JGSPhotoBrowser.h in Headers */,
+				D4792CF3224EADED006FB650 /* JGSPhoto.h in Headers */,
+				D4792CEF224EADED006FB650 /* JGSPhotoStatusView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,13 +242,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4D850F120CEB34E00AFD849 /* JGPBStatusView.m in Sources */,
-				D4D850DD20CEB21700AFD849 /* JGPBPhotoToolView.m in Sources */,
-				D4D850E920CEB30500AFD849 /* JGPBPhotoInfoView.m in Sources */,
-				D4D850ED20CEB32A00AFD849 /* JGPBProgressView.m in Sources */,
-				D4D850D920CEB1F900AFD849 /* JGPBPhotoView.m in Sources */,
-				D4D850E520CEB27300AFD849 /* JGPBBrowserController.m in Sources */,
-				D4D850E120CEB23F00AFD849 /* JGPBPhoto.m in Sources */,
+				D4792CEA224EADED006FB650 /* JGSPhotoBrowser.m in Sources */,
+				D4792CED224EADED006FB650 /* JGSPhotoToolView.m in Sources */,
+				D4792CE9224EADED006FB650 /* JGSPhotoDescriptionView.m in Sources */,
+				D4792CEE224EADED006FB650 /* JGSPhoto.m in Sources */,
+				D4792CF2224EADED006FB650 /* JGSPhotoView.m in Sources */,
+				D4792CF0224EADED006FB650 /* JGSPhotoStatusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -367,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

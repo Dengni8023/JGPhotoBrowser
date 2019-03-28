@@ -1,65 +1,59 @@
 //
-//  JGPBPhotoToolView.m
-//  JGPhotoBrowser
+//  JGSPhotoToolView.m
+//  JGSPhotoBrowser
 //
-//  Created by Mei Jigao on 2018/6/11.
-//  Copyright © 2018年 MeiJigao. All rights reserved.
+//  Created by 梅继高 on 2019/3/28.
+//  Copyright © 2019 MeiJigao. All rights reserved.
 //
 
-#import "JGPBPhotoToolView.h"
-#import "JGPBPhoto.h"
+#import "JGSPhotoToolView.h"
 #import "JGSourceBase.h"
 
-@interface JGPBPhotoToolClose : UIButton
+@interface JGSPhotoToolView ()
 
-@end
-
-@interface JGPBPhotoToolView ()
-
+@property (nonatomic, assign) BOOL imgSaved; // 是否已保存图片
 @property (nonatomic, assign) NSInteger totalCount;
 @property (nonatomic, assign) NSUInteger currentIndex;
 
-@property (nonatomic, strong) UIView *colorBgView;
-@property (nonatomic, strong) JGPBPhotoToolClose *closeBtn;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) JGSPhotoToolClose *closeBtn;
 @property (nonatomic, strong) UILabel *indexLabel;
 @property (nonatomic, strong) UIButton *saveImageBtn;
 
 @end
 
-@implementation JGPBPhotoToolView
+@implementation JGSPhotoToolView
 
-#pragma mark - init
+#pragma mark - Life Cycle
 - (instancetype)initWithPhotosCount:(NSInteger)count index:(NSInteger)curIndex {
     
     self = [super init];
     if (self) {
         
-        _totalCount = count;
-        _currentIndex = curIndex;
-        
+        self.totalCount = count;
+        self.currentIndex = curIndex;
         [self setupViewElements];
     }
-    
     return self;
 }
 
 - (void)dealloc {
-    
-    //JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    //JGSLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - View
 - (void)setupViewElements {
     
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.28];
+    
     // bg
-    _colorBgView = [[UIView alloc] init];
-    _colorBgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.28];
-    [self addSubview:_colorBgView];
+    _contentView = [[UIView alloc] init];
+    [self addSubview:_contentView];
     
     // 关闭
-    _closeBtn = [JGPBPhotoToolClose buttonWithType:UIButtonTypeCustom];
+    _closeBtn = [JGSPhotoToolClose buttonWithType:UIButtonTypeCustom];
     [_closeBtn addTarget:self action:@selector(closeShow:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_closeBtn];
+    [self.contentView addSubview:_closeBtn];
     _closeBtn.hidden = YES;
     
     // 页码
@@ -68,8 +62,8 @@
     _indexLabel.font = [UIFont systemFontOfSize:18];
     _indexLabel.textColor = [UIColor whiteColor];
     _indexLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:_indexLabel];
-    _indexLabel.hidden = _totalCount <= 1;
+    [self.contentView addSubview:_indexLabel];
+    _indexLabel.hidden = self.totalCount <= 1;
     
     // 保存图片按钮
     _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -77,94 +71,83 @@
     [_saveImageBtn setTitleColor:_indexLabel.textColor forState:UIControlStateNormal];
     [_saveImageBtn setTitle:@"保存" forState:UIControlStateNormal];
     [_saveImageBtn addTarget:self action:@selector(saveImage:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_saveImageBtn];
+    [self.contentView addSubview:_saveImageBtn];
     _saveImageBtn.hidden = YES;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (self.backgroundColor && ![self.backgroundColor isEqual:[UIColor clearColor]]) {
-        _colorBgView.backgroundColor = self.backgroundColor;
-        self.backgroundColor = nil;
-    }
-    
-    // bg
-    CGRect bgFrame = self.bounds;
-    bgFrame.origin.y -= _browserSafeAreaInsets.top;
-    bgFrame.size.height += (_browserSafeAreaInsets.top + _browserSafeAreaInsets.bottom);
-    _colorBgView.frame = bgFrame;
+    CGFloat viewW = CGRectGetWidth(self.frame) - self.contentInset.left - self.contentInset.right;
+    CGFloat viewH = CGRectGetHeight(self.frame) - self.contentInset.top - self.contentInset.bottom;
+    CGRect viewRect = CGRectMake(self.contentInset.left, self.contentInset.top, viewW, viewH);
+    self.contentView.frame = viewRect;
     
     // btn
-    [_saveImageBtn sizeToFit];
-    CGRect btnFrame = _saveImageBtn.frame;
+    [self.saveImageBtn sizeToFit];
+    CGRect btnFrame = self.saveImageBtn.frame;
     btnFrame.size.width = CGRectGetWidth(btnFrame) + 8 * 2;
     btnFrame.size.height = CGRectGetHeight(btnFrame) + 4 * 2;
-    btnFrame.origin.x = CGRectGetWidth(self.bounds) - 20 - CGRectGetWidth(btnFrame);
-    btnFrame.origin.y = (CGRectGetHeight(self.bounds) - CGRectGetHeight(btnFrame)) * 0.5;
-    _saveImageBtn.frame = btnFrame;
+    btnFrame.origin.x = viewW - 20 - CGRectGetWidth(btnFrame);
+    btnFrame.origin.y = (viewH - CGRectGetHeight(btnFrame)) * 0.5;
+    self.saveImageBtn.frame = btnFrame;
     
     // index
-    [_indexLabel sizeToFit];
-    CGRect indexFrame = _indexLabel.frame;
+    [self.indexLabel sizeToFit];
+    CGRect indexFrame = self.indexLabel.frame;
     CGFloat btnMinX = CGRectGetMinX(btnFrame);
-    indexFrame.size.width = MIN(CGRectGetWidth(_indexLabel.frame), btnMinX - (CGRectGetWidth(self.bounds) - btnMinX));
-    indexFrame.origin.x = (CGRectGetWidth(self.bounds) - CGRectGetWidth(indexFrame)) * 0.5;
-    indexFrame.origin.y = (CGRectGetHeight(self.bounds) - CGRectGetHeight(indexFrame)) * 0.5;
-    _indexLabel.frame = indexFrame;
+    indexFrame.size.width = MIN(CGRectGetWidth(self.indexLabel.frame), btnMinX - (CGRectGetWidth(viewRect) - btnMinX));
+    indexFrame.origin.x = (viewW - CGRectGetWidth(indexFrame)) * 0.5;
+    indexFrame.origin.y = (viewH - CGRectGetHeight(indexFrame)) * 0.5;
+    self.indexLabel.frame = indexFrame;
     
     // clsoe
-    _closeBtn.frame = CGRectMake(20, (CGRectGetHeight(self.bounds) - CGRectGetHeight(btnFrame)) * 0.5, CGRectGetHeight(btnFrame), CGRectGetHeight(btnFrame));
+    self.closeBtn.frame = CGRectMake(20, (viewH - CGRectGetHeight(btnFrame)) * 0.5, CGRectGetHeight(btnFrame), CGRectGetHeight(btnFrame));
 }
 
-- (void)setBrowserSafeAreaInsets:(UIEdgeInsets)browserSafeAreaInsets {
-    _browserSafeAreaInsets = browserSafeAreaInsets;
+- (void)setContentInset:(UIEdgeInsets)contentInset {
+    _contentInset = contentInset;
     [self setNeedsLayout];
 }
 
 #pragma mark - Index
-- (void)changeCurrentIndex:(NSInteger)toIndex indexsaved:(BOOL)saved {
+- (void)changeCurrentIndex:(NSInteger)toIndex indexSaved:(BOOL)saved {
     
     // 更新页码
-    _currentIndex = toIndex;
-    _indexLabel.text = [NSString stringWithFormat:@"%@/%@", @(_currentIndex + 1), @(_totalCount)];
+    self.currentIndex = toIndex;
+    self.indexLabel.text = [NSString stringWithFormat:@"%@/%@", @(self.currentIndex + 1), @(self.totalCount)];
     
     // 按钮
-    [self setShowSaveBtn:!saved];
+    self.imgSaved = saved;
+    self.saveImageBtn.hidden = (!self.showSaveBtn || !self.saveShowPhotoAction || self.imgSaved);
     [self setNeedsLayout];
 }
 
 - (void)setCloseShowAction:(void (^)(void))closeShowAction {
-    
     _closeShowAction = closeShowAction;
-    _closeBtn.hidden = !_closeShowAction;
+    self.closeBtn.hidden = !self.closeShowAction;
 }
 
 - (void)setSaveShowPhotoAction:(void (^)(NSInteger))saveShowPhotoAction {
-    
     _saveShowPhotoAction = saveShowPhotoAction;
-    _saveImageBtn.hidden = (!_showSaveBtn || !_saveShowPhotoAction);
+    self.saveImageBtn.hidden = (!self.showSaveBtn || !self.saveShowPhotoAction || self.imgSaved);
 }
 
 - (void)setShowSaveBtn:(BOOL)showSaveBtn {
-    
     _showSaveBtn = showSaveBtn;
-    _saveImageBtn.hidden = (!_showSaveBtn || !_saveShowPhotoAction);
+    self.saveImageBtn.hidden = (!self.showSaveBtn || !self.saveShowPhotoAction || self.imgSaved);
 }
 
 #pragma mark - Action
-- (void)closeShow:(JGPBPhotoToolClose *)sender {
-    
-    if (_closeShowAction) {
-        _closeShowAction();
-        _closeShowAction = nil;
+- (void)closeShow:(JGSPhotoToolClose *)sender {
+    if (self.closeShowAction) {
+        self.closeShowAction();
     }
 }
 
 - (void)saveImage:(UIButton *)sender {
-    
-    if (_saveShowPhotoAction) {
-        _saveShowPhotoAction(_currentIndex);
+    if (self.saveShowPhotoAction) {
+        self.saveShowPhotoAction(self.currentIndex);
     }
 }
 
@@ -172,11 +155,10 @@
 
 @end
 
-@implementation JGPBPhotoToolClose
+@implementation JGSPhotoToolClose
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     [self setNeedsDisplay];
 }
 

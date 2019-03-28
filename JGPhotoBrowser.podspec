@@ -2,17 +2,17 @@
 Pod::Spec.new do |s|
     
     s.name          = "JGPhotoBrowser"
-    s.version       = "1.2.9"
+    s.version       = "2.0.0"
     
     s.summary       = "图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)"
     s.description   = <<-DESC
     
-    图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)
-    
-    功能包括：
-    1、浏览图片大图，支持手势缩放
-    2、支持图片保存、支持GIF图片保存
-    3、增加图片介绍展示
+        图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)
+        
+        功能包括：
+            1、浏览图片大图，支持手势缩放
+            2、支持图片保存、支持GIF图片保存
+            3、增加图片介绍展示
     DESC
     
     s.homepage      = "https://github.com/dengni8023/JGPhotoBrowser"
@@ -29,11 +29,11 @@ Pod::Spec.new do |s|
         :tag => "#{s.version}",
     }
     s.platforms     = {
-        :ios => 8.0,
+        :ios => 9.0,
     }
     
     s.source_files  = "JGPhotoBrowser/*.{h,m}"
-    s.public_header_files  = "JGPhotoBrowser/{JGPhotoBrowser,JGPBBrowserController,JGPBPhoto}.h"
+    s.public_header_files  = "JGPhotoBrowser/{JGPhotoBrowser,JGSPhotoBrowser,JGSPhoto}.h"
     # s.resource    = "JGAlertController/JGAlertController.bundle"
     
     # s.framework  = "Photos"
@@ -44,8 +44,8 @@ Pod::Spec.new do |s|
     
     s.requires_arc = true
     
-    s.dependency "SDWebImage", "~> 4.4.1"
+    s.dependency "SDWebImage", "~> 4.4.6"
     s.dependency "SDWebImage/GIF"
-    s.dependency "JGSourceBase", "~> 0.1.0"
+    s.dependency "JGSourceBase", "~> 1.0.0"
     
 end

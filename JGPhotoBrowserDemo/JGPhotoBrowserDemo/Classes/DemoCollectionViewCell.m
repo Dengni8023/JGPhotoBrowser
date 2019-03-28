@@ -16,7 +16,6 @@
     
     self = [super initWithCoder:aDecoder];
     if (self) {
-        
         [self initViewElements];
     }
     return self;
@@ -26,7 +25,6 @@
     
     self = [super initWithFrame:frame];
     if (self) {
-        
         [self initViewElements];
     }
     return self;
@@ -39,15 +37,14 @@
 }
 
 - (void)dealloc {
-    
-    JGSCLog(@"<%@: %p>", NSStringFromClass([self class]), self);
+    JGSLog(@"<%@: %p>", NSStringFromClass([self class]), self);
 }
 
 #pragma mark - Layout
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    _imageView.frame = self.bounds;
+    self.imageView.frame = self.bounds;
 }
 
 #pragma mark - End

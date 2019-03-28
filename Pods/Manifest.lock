@@ -1,16 +1,16 @@
 PODS:
   - FLAnimatedImage (1.0.12)
-  - JGPhotoBrowser (1.2.8):
-    - JGSourceBase (~> 0.1.0)
-    - SDWebImage (~> 4.4.1)
+  - JGPhotoBrowser (2.0.0):
+    - JGSourceBase (~> 1.0.0)
+    - SDWebImage (~> 4.4.6)
     - SDWebImage/GIF
-  - JGSourceBase (0.1.0):
-    - JGSourceBase/Common (= 0.1.0)
-  - JGSourceBase/Common (0.1.0)
-  - SDWebImage (4.4.1):
-    - SDWebImage/Core (= 4.4.1)
-  - SDWebImage/Core (4.4.1)
-  - SDWebImage/GIF (4.4.1):
+  - JGSourceBase (1.0.0):
+    - JGSourceBase/Base (= 1.0.0)
+  - JGSourceBase/Base (1.0.0)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SDWebImage/GIF (4.4.6):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
 
@@ -29,10 +29,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  JGPhotoBrowser: 03f95e5e552d8331ebc6929072c18e4368d9ca63
-  JGSourceBase: 03fca616c3686a7197fcac672201d7f083fd7d8b
-  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
+  JGPhotoBrowser: 71816ceb0240681da398939208872e5e0047d385
+  JGSourceBase: f7b889980d015732e3bef7aadc541d2e6599a5c6
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
 
-PODFILE CHECKSUM: 5e96f98ccfad7809164a8b4da4b55234e2542723
+PODFILE CHECKSUM: f86151f00395cb628e610a4a086d0b28f2ba8445
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

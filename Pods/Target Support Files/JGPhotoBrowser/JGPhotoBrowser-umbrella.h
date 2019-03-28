@@ -10,9 +10,9 @@
 #endif
 #endif
 
-#import "JGPBBrowserController.h"
-#import "JGPBPhoto.h"
 #import "JGPhotoBrowser.h"
+#import "JGSPhoto.h"
+#import "JGSPhotoBrowser.h"
 
 FOUNDATION_EXPORT double JGPhotoBrowserVersionNumber;
 FOUNDATION_EXPORT const unsigned char JGPhotoBrowserVersionString[];
