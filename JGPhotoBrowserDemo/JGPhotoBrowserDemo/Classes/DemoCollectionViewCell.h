@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FLAnimatedImage/FLAnimatedImage.h>
+#import <SDWebImage/SDWebImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DemoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong, readonly) FLAnimatedImageView *imageView;
+@property (nonatomic, strong, readonly) SDAnimatedImageView *imageView;
 
 @end
 

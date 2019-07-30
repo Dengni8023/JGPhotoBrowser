@@ -15,7 +15,7 @@
 @property (nonatomic, assign) NSInteger totalCount;
 @property (nonatomic, assign) NSUInteger currentIndex;
 
-@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) JGSPhotolToolbar *toolbar;
 @property (nonatomic, strong) JGSPhotoToolClose *closeBtn;
 @property (nonatomic, strong) UILabel *indexLabel;
 @property (nonatomic, strong) UIButton *saveImageBtn;
@@ -46,15 +46,12 @@
     
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.28];
     
-    // bg
-    _contentView = [[UIView alloc] init];
-    [self addSubview:_contentView];
-    
     // 关闭
     _closeBtn = [JGSPhotoToolClose buttonWithType:UIButtonTypeCustom];
     [_closeBtn addTarget:self action:@selector(closeShow:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_closeBtn];
     _closeBtn.hidden = YES;
+    [_closeBtn sizeToFit];
+    UIBarButtonItem *closeItem = [[UIBarButtonItem alloc] initWithCustomView:_closeBtn];
     
     // 页码
     _indexLabel = [[UILabel alloc] init];
@@ -62,8 +59,9 @@
     _indexLabel.font = [UIFont systemFontOfSize:18];
     _indexLabel.textColor = [UIColor whiteColor];
     _indexLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:_indexLabel];
     _indexLabel.hidden = self.totalCount <= 1;
+    [_indexLabel sizeToFit];
+    UIBarButtonItem *indexItem = [[UIBarButtonItem alloc] initWithCustomView:_indexLabel];
     
     // 保存图片按钮
     _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,8 +69,16 @@
     [_saveImageBtn setTitleColor:_indexLabel.textColor forState:UIControlStateNormal];
     [_saveImageBtn setTitle:@"保存" forState:UIControlStateNormal];
     [_saveImageBtn addTarget:self action:@selector(saveImage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_saveImageBtn];
     _saveImageBtn.hidden = YES;
+    [_saveImageBtn sizeToFit];
+    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:_saveImageBtn];
+    
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    _toolbar = [[JGSPhotolToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 44)];
+    _toolbar.backgroundColor = [UIColor clearColor];
+    _toolbar.items = @[closeItem, flexSpace, indexItem, flexSpace, saveItem];
+    [self addSubview:_toolbar];
 }
 
 - (void)layoutSubviews {
@@ -81,28 +87,7 @@
     CGFloat viewW = CGRectGetWidth(self.frame) - self.contentInset.left - self.contentInset.right;
     CGFloat viewH = CGRectGetHeight(self.frame) - self.contentInset.top - self.contentInset.bottom;
     CGRect viewRect = CGRectMake(self.contentInset.left, self.contentInset.top, viewW, viewH);
-    self.contentView.frame = viewRect;
-    
-    // btn
-    [self.saveImageBtn sizeToFit];
-    CGRect btnFrame = self.saveImageBtn.frame;
-    btnFrame.size.width = CGRectGetWidth(btnFrame) + 8 * 2;
-    btnFrame.size.height = CGRectGetHeight(btnFrame) + 4 * 2;
-    btnFrame.origin.x = viewW - 20 - CGRectGetWidth(btnFrame);
-    btnFrame.origin.y = (viewH - CGRectGetHeight(btnFrame)) * 0.5;
-    self.saveImageBtn.frame = btnFrame;
-    
-    // index
-    [self.indexLabel sizeToFit];
-    CGRect indexFrame = self.indexLabel.frame;
-    CGFloat btnMinX = CGRectGetMinX(btnFrame);
-    indexFrame.size.width = MIN(CGRectGetWidth(self.indexLabel.frame), btnMinX - (CGRectGetWidth(viewRect) - btnMinX));
-    indexFrame.origin.x = (viewW - CGRectGetWidth(indexFrame)) * 0.5;
-    indexFrame.origin.y = (viewH - CGRectGetHeight(indexFrame)) * 0.5;
-    self.indexLabel.frame = indexFrame;
-    
-    // clsoe
-    self.closeBtn.frame = CGRectMake(20, (viewH - CGRectGetHeight(btnFrame)) * 0.5, CGRectGetHeight(btnFrame), CGRectGetHeight(btnFrame));
+    self.toolbar.frame = viewRect;
 }
 
 - (void)setContentInset:(UIEdgeInsets)contentInset {
@@ -116,11 +101,11 @@
     // 更新页码
     self.currentIndex = toIndex;
     self.indexLabel.text = [NSString stringWithFormat:@"%@/%@", @(self.currentIndex + 1), @(self.totalCount)];
+    [self.indexLabel sizeToFit];
     
     // 按钮
     self.imgSaved = saved;
     self.saveImageBtn.hidden = (!self.showSaveBtn || !self.saveShowPhotoAction || self.imgSaved);
-    [self setNeedsLayout];
 }
 
 - (void)setCloseShowAction:(void (^)(void))closeShowAction {
@@ -155,12 +140,15 @@
 
 @end
 
-@implementation JGSPhotoToolClose
+@implementation JGSPhotolToolbar
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self setNeedsDisplay];
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
 }
+
+@end
+
+@implementation JGSPhotoToolClose
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];

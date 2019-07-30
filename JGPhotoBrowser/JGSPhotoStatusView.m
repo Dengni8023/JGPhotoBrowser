@@ -37,7 +37,7 @@
     [super layoutSubviews];
     
     CGFloat borderWidth = 76.f / 320.f * MIN(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-    CGFloat maxWidth = MIN(CGRectGetWidth(self.frame) - 18 * 2, CGRectGetHeight(self.frame) - 18 * 2);
+    CGFloat maxWidth = MIN(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)) * 2.f / 3.f;
     
     // status
     [self.statusLabel sizeToFit];
@@ -55,7 +55,7 @@
     self.statusLabel.frame = labelFrame;
     
     // loading
-    self.progressView.frame = CGRectMake((CGRectGetWidth(self.frame) - borderWidth) * 0.5, (CGRectGetHeight(self.frame) - borderWidth) * 0.5, borderWidth, borderWidth);
+    self.progressView.frame = CGRectMake((CGRectGetWidth(self.frame) - borderWidth) * 0.5 - 12, (CGRectGetHeight(self.frame) - borderWidth) * 0.5 - 12, borderWidth, borderWidth);
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
@@ -71,7 +71,7 @@
     
     switch (status) {
         case JGSPhotoStatusLoading:
-            [self setProgress:0];
+            self.progress = 0.f;
             break;
             
         case JGSPhotoStatusLoadFail:
@@ -105,7 +105,7 @@
         _statusLabel = [[UILabel alloc] init];
         _statusLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7f];
         _statusLabel.textColor = [UIColor whiteColor];
-        _statusLabel.font = [UIFont boldSystemFontOfSize:16];
+        _statusLabel.font = [UIFont systemFontOfSize:16];
         _statusLabel.textAlignment = NSTextAlignmentCenter;
         _statusLabel.numberOfLines = 0;
         _statusLabel.layer.cornerRadius = 4.f;
@@ -172,9 +172,9 @@ FOUNDATION_EXTERN CGFloat JGSProgressAngleToRadian(CGFloat angle) {
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
-    CGFloat pathWidth = 8;
+    CGFloat pathWidth = 8, margin = 12;
     CGPoint centerPoint = CGPointMake(rect.size.height * 0.5, rect.size.width * 0.5);
-    CGFloat radius = MIN(rect.size.height, rect.size.width) * 0.5 - pathWidth * 0.5;
+    CGFloat radius = MIN(rect.size.height, rect.size.width) * 0.5 - pathWidth * 0.5 - margin;
     
     CGFloat radians = JGSProgressAngleToRadian((_progress * 359.9) - 90);
     

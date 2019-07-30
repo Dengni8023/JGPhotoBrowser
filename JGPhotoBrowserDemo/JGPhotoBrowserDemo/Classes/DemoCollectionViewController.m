@@ -10,7 +10,6 @@
 #import <JGSourceBase/JGSourceBase.h>
 #import "DemoCollectionViewCell.h"
 #import <JGPhotoBrowser/JGPhotoBrowser.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface DemoCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
@@ -56,17 +55,31 @@
     
     // 图片
     self.imageURLArray = @[
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-001.jpg",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-002.jpg",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-003.jpg",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-004.jpg",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-005.jpg",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-006.gif",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-007.gif",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-008.gif",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-009.gif",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-010.gif",
-                           @"http://dengni8023-github.oss-cn-shenzhen.aliyuncs.com/JGSPhotoBrowser-012.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-001.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-002.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-003.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-004.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-005.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-006.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-007.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-008.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-009.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-010.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-011.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-012.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-013.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-014.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-015.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-016.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-017.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-018.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-019.jpg",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-020.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-021.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-022.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-023.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-024.gif",
+                           @"http://github-source.dengni8023.com/JGPhotoBrowser-025.jpg",
                            ];
 }
 
@@ -85,6 +98,18 @@
     [self.collectionView registerClass:[DemoCollectionViewCell class] forCellWithReuseIdentifier:JGSReuseIdentifier(DemoCollectionViewCell)];
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    //[self.view setNeedsLayout];
+    [self.collectionView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -98,12 +123,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     DemoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JGSReuseIdentifier(DemoCollectionViewCell) forIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor grayColor];
+    cell.contentView.backgroundColor = JGSColorHex(0xF4F4F4);
     
     // 七牛图片自定义裁剪压缩
     NSString *imageURL = self.imageURLArray[indexPath.row];
-    //imageURL = [imageURL stringByAppendingString:@"?imageView1/1/w/100/h/100"];
-    imageURL = [imageURL stringByAppendingString:@"?x-oss-process=image/resize,m_fill,w_300,h_300"];
+    imageURL = [imageURL stringByAppendingString:@"?imageView1/1/w/100/h/100"];
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL]];
     
     return cell;
@@ -136,7 +160,7 @@
         photo.url = [NSURL URLWithString:obj];
         photo.placeholder = srcImg ?: (photoArray.count > 0 ? photoArray[0].placeholder : nil);
         photo.srcImageView = ((DemoCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]]).imageView;
-        photo.imgDescription = (idx % 2) ? nil : [NSString stringWithFormat:@"%zd、这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；", idx + 1];
+        photo.imgDescription = (idx % 2) ? nil : [NSString stringWithFormat:@"%@、这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；这里是图片介绍一二三四五；", @(idx + 1)];
         [photoArray addObject:photo];
     }];
     

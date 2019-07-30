@@ -11,7 +11,6 @@
 #import "JGSPhotoView.h"
 #import "JGSPhotoToolView.h"
 #import "JGSPhotoDescriptionView.h"
-#import "FLAnimatedImageView+WebCache.h"
 #import <objc/runtime.h>
 #import <Photos/Photos.h>
 #import "JGSPhotoStatusView.h"
@@ -106,16 +105,23 @@ static NSMutableArray<JGSPhotoBrowser *> *showingBrowser = nil;
     [self setupViewElements];
 }
 
-- (BOOL)shouldAutorotate {
-    return NO;
-}
-
 - (BOOL)prefersStatusBarHidden {
     return [self photoBrowserWindow].alpha == 1.f;
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
     return UIStatusBarAnimationFade;
+}
+
+#pragma mark - Rotation
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [self.view setNeedsLayout];
+    [self.photoScrollView setNeedsLayout];
+    [self.statusView setNeedsLayout];
+    [self.photoToolView setNeedsLayout];
+    [self.photoDescView setNeedsLayout];
 }
 
 #pragma mark - View
@@ -186,7 +192,9 @@ static NSMutableArray<JGSPhotoBrowser *> *showingBrowser = nil;
         self.photoToolView.frame = CGRectMake(0, self.showImgDesc ? 0 : (viewH - toolHeight), viewW, toolHeight);
         self.photoToolView.contentInset = UIEdgeInsetsMake(self.showImgDesc ? safeInsets.top : 0, safeInsets.left, self.showImgDesc ? 0 : safeInsets.bottom, safeInsets.right);
         
-        CGFloat descHeight = JGSPhotoBrowserDescriptionHeight + safeInsets.bottom;
+        BOOL isLandscape = CGRectGetWidth(self.view.frame) > CGRectGetHeight(self.view.frame);
+        CGFloat percent = isLandscape ? (CGRectGetHeight(self.view.frame) / CGRectGetWidth(self.view.frame)) : 1.f;
+        CGFloat descHeight = JGSPhotoBrowserDescriptionHeight * percent + safeInsets.bottom;
         self.photoDescView.frame = CGRectMake(0, viewH - descHeight, viewW, descHeight);
         self.photoDescView.contentInset = UIEdgeInsetsMake(0, safeInsets.left, safeInsets.bottom, safeInsets.right);
     }
@@ -416,7 +424,7 @@ static NSMutableArray<JGSPhotoBrowser *> *showingBrowser = nil;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         JGSStrongSelf
         JGSPhoto *showPhoto = [self.photos objectAtIndex:self.currentIndex];
-        NSData *saveData = showPhoto.GIFImage.data ?: UIImageJPEGRepresentation(showPhoto.image, 1.f);
+        NSData *saveData = UIImageJPEGRepresentation(showPhoto.image, 1.f);
         
         PHAssetCreationRequest *request = [PHAssetCreationRequest creationRequestForAsset];
         [request addResourceWithType:PHAssetResourceTypePhoto data:saveData options:nil];

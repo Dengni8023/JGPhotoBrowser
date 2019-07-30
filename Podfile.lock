@@ -1,25 +1,25 @@
 PODS:
-  - FLAnimatedImage (1.0.12)
-  - JGPhotoBrowser (2.0.0):
-    - JGSourceBase (~> 1.0.0)
-    - SDWebImage (~> 4.4.6)
-    - SDWebImage/GIF
-  - JGSourceBase (1.0.0):
-    - JGSourceBase/Base (= 1.0.0)
-  - JGSourceBase/Base (1.0.0)
-  - SDWebImage (4.4.6):
-    - SDWebImage/Core (= 4.4.6)
-  - SDWebImage/Core (4.4.6)
-  - SDWebImage/GIF (4.4.6):
-    - FLAnimatedImage (~> 1.0)
-    - SDWebImage/Core
+  - JGPhotoBrowser (2.0.1):
+    - JGSourceBase (~> 1.1.0)
+    - SDWebImage (~> 5.0.0)
+  - JGSourceBase (1.1.0):
+    - JGSourceBase/AlertController (= 1.1.0)
+    - JGSourceBase/Base (= 1.1.0)
+    - JGSourceBase/Category (= 1.1.0)
+  - JGSourceBase/AlertController (1.1.0):
+    - JGSourceBase/Base
+  - JGSourceBase/Base (1.1.0)
+  - JGSourceBase/Category (1.1.0):
+    - JGSourceBase/Base
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
 
 DEPENDENCIES:
   - JGPhotoBrowser (from `.`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - FLAnimatedImage
     - JGSourceBase
     - SDWebImage
 
@@ -28,11 +28,10 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  JGPhotoBrowser: 71816ceb0240681da398939208872e5e0047d385
-  JGSourceBase: f7b889980d015732e3bef7aadc541d2e6599a5c6
-  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  JGPhotoBrowser: 17adf40a0dbfae74303f47e2af130c9fb68d0c7a
+  JGSourceBase: 345a8d73d7017ea0433a7ce4a579e86fae282378
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
 
-PODFILE CHECKSUM: f86151f00395cb628e610a4a086d0b28f2ba8445
+PODFILE CHECKSUM: a67617c71f2501abb1d67c79a627c00c09b4f6f4
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.5

@@ -1,8 +1,8 @@
 //
-//  JGSPhotoBrowser.h
-//  JGSPhotoBrowser
+//  JGPhotoBrowser.h
+//  JGPhotoBrowser
 //
-//  Created by 梅继高 on 2019/3/28.
+//  Created by 梅继高 on 2019/7/29.
 //  Copyright © 2019 MeiJigao. All rights reserved.
 //
 

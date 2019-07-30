@@ -32,7 +32,7 @@
 
 - (void)initViewElements {
     
-    _imageView = [[FLAnimatedImageView alloc] init];
+    _imageView = [[SDAnimatedImageView alloc] init];
     [self.contentView addSubview:_imageView];
 }
 
