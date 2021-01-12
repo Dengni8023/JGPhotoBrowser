@@ -1,7 +1,7 @@
 PODS:
-  - JGPhotoBrowser (2.0.1):
+  - JGPhotoBrowser (2.1.0):
     - JGSourceBase (~> 1.1.0)
-    - SDWebImage (~> 5.0.0)
+    - SDWebImage (~> 5.10.0)
   - JGSourceBase (1.1.0):
     - JGSourceBase/AlertController (= 1.1.0)
     - JGSourceBase/Base (= 1.1.0)
@@ -11,15 +11,15 @@ PODS:
   - JGSourceBase/Base (1.1.0)
   - JGSourceBase/Category (1.1.0):
     - JGSourceBase/Base
-  - SDWebImage (5.0.6):
-    - SDWebImage/Core (= 5.0.6)
-  - SDWebImage/Core (5.0.6)
+  - SDWebImage (5.10.2):
+    - SDWebImage/Core (= 5.10.2)
+  - SDWebImage/Core (5.10.2)
 
 DEPENDENCIES:
   - JGPhotoBrowser (from `.`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - JGSourceBase
     - SDWebImage
 
@@ -28,10 +28,10 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  JGPhotoBrowser: 17adf40a0dbfae74303f47e2af130c9fb68d0c7a
+  JGPhotoBrowser: 8da3d7a421c6599125cd89b887c4cea248d00e14
   JGSourceBase: 345a8d73d7017ea0433a7ce4a579e86fae282378
-  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
 
-PODFILE CHECKSUM: a67617c71f2501abb1d67c79a627c00c09b4f6f4
+PODFILE CHECKSUM: d8bf9aa771467eaa75a46c9a9811c0afb184b500
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.3

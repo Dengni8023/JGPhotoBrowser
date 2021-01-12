@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D45B618B22EEEF4F006DABBC /* JGSPhotoToolView.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B617F22EEEF4E006DABBC /* JGSPhotoToolView.h */; };
-		D45B618C22EEEF4F006DABBC /* JGSPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B618022EEEF4E006DABBC /* JGSPhotoBrowser.h */; };
-		D45B618D22EEEF4F006DABBC /* JGSPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B618122EEEF4E006DABBC /* JGSPhoto.h */; };
+		D45B618C22EEEF4F006DABBC /* JGSPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B618022EEEF4E006DABBC /* JGSPhotoBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D45B618D22EEEF4F006DABBC /* JGSPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B618122EEEF4E006DABBC /* JGSPhoto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D45B618E22EEEF4F006DABBC /* JGSPhotoToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B618222EEEF4E006DABBC /* JGSPhotoToolView.m */; };
 		D45B618F22EEEF4F006DABBC /* JGSPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B618322EEEF4F006DABBC /* JGSPhoto.m */; };
 		D45B619022EEEF4F006DABBC /* JGSPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B618422EEEF4F006DABBC /* JGSPhotoView.h */; };
@@ -19,12 +19,12 @@
 		D45B619422EEEF4F006DABBC /* JGSPhotoDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B618822EEEF4F006DABBC /* JGSPhotoDescriptionView.m */; };
 		D45B619522EEEF4F006DABBC /* JGSPhotoStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B618922EEEF4F006DABBC /* JGSPhotoStatusView.m */; };
 		D45B619622EEEF4F006DABBC /* JGSPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B618A22EEEF4F006DABBC /* JGSPhotoView.m */; };
+		D4F3DAE922F03070002EF0F0 /* JGPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B614822EEED66006DABBC /* JGPhotoBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		051E2FF2649AD7EF1AB3B935 /* Pods-JGPhotoBrowserDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowserDemo.release.xcconfig"; path = "Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo.release.xcconfig"; sourceTree = "<group>"; };
 		1AC75EB150867F7397EF35C0 /* Pods_JGPhotoBrowserDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGPhotoBrowserDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B49B6699093721BF0806626 /* Pods-JGPhotoBrowserDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JGPhotoBrowserDemo.debug.xcconfig"; path = "Target Support Files/Pods-JGPhotoBrowserDemo/Pods-JGPhotoBrowserDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		9E67307C2550D47AD0DA5C93 /* Pods_JGPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JGPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45B614822EEED66006DABBC /* JGPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGPhotoBrowser.h; sourceTree = "<group>"; };
 		D45B614922EEED66006DABBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D45B617722EEEF00006DABBC /* JGPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,16 +45,6 @@
 		D4F3DA2F22EFD0FB002EF0F0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		D45B617422EEEF00006DABBC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
 		D45B613B22EEED66006DABBC = {
 			isa = PBXGroup;
@@ -64,7 +54,6 @@
 				D4F3DA2D22EFD0FB002EF0F0 /* README.md */,
 				D45B614722EEED66006DABBC /* JGPhotoBrowser */,
 				D45B614622EEED66006DABBC /* Products */,
-				F95E8D7EE3D750DFC6770D2C /* Pods */,
 				F02611C0617CC756EDC8444B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -102,17 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				1AC75EB150867F7397EF35C0 /* Pods_JGPhotoBrowserDemo.framework */,
+				9E67307C2550D47AD0DA5C93 /* Pods_JGPhotoBrowser.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F95E8D7EE3D750DFC6770D2C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6B49B6699093721BF0806626 /* Pods-JGPhotoBrowserDemo.debug.xcconfig */,
-				051E2FF2649AD7EF1AB3B935 /* Pods-JGPhotoBrowserDemo.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +105,7 @@
 			files = (
 				D45B619022EEEF4F006DABBC /* JGSPhotoView.h in Headers */,
 				D45B618C22EEEF4F006DABBC /* JGSPhotoBrowser.h in Headers */,
+				D4F3DAE922F03070002EF0F0 /* JGPhotoBrowser.h in Headers */,
 				D45B618D22EEEF4F006DABBC /* JGSPhoto.h in Headers */,
 				D45B618B22EEEF4F006DABBC /* JGSPhotoToolView.h in Headers */,
 				D45B619222EEEF4F006DABBC /* JGSPhotoStatusView.h in Headers */,
@@ -140,8 +122,6 @@
 			buildPhases = (
 				D45B617222EEEF00006DABBC /* Headers */,
 				D45B617322EEEF00006DABBC /* Sources */,
-				D45B617422EEEF00006DABBC /* Frameworks */,
-				D45B617522EEEF00006DABBC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -158,7 +138,7 @@
 		D45B613C22EEED66006DABBC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = MeiJigao;
 				TargetAttributes = {
 					D45B617622EEEF00006DABBC = {
@@ -183,16 +163,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		D45B617522EEEF00006DABBC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D45B617322EEEF00006DABBC /* Sources */ = {
@@ -237,6 +207,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -299,6 +270,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

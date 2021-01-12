@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
     
     s.requires_arc = true
     
-    s.dependency "SDWebImage", "~> 5.0.0"
+    s.dependency "SDWebImage", "~> 5.10.0"
     s.dependency "JGSourceBase", "~> 1.1.0"
     
 end
