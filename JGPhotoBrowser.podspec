@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
     
     s.name          = "JGPhotoBrowser"
-    s.version       = "2.1.0"
+    s.version       = "2.1.1"
     
     s.summary       = "图片大图浏览查看工具，支持GIF图片。改写自 Sunnyyoung/MJPhotoBrowser (https://github.com/Sunnyyoung/MJPhotoBrowser)"
     s.description   = <<-DESC
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
         :tag => "#{s.version}",
     }
     s.platforms     = {
-        :ios => 9.0,
+        :ios => '9.0',
     }
     
     s.source_files  = [
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
     
     s.requires_arc = true
     
-    s.dependency "SDWebImage", "~> 5.10.0"
-    s.dependency "JGSourceBase", "~> 1.1.0"
+    s.dependency "SDWebImage", ">= 5.10.0"
+    s.dependency "JGSourceBase", ">= 1.1.0"
     
 end
